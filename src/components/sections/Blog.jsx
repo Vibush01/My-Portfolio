@@ -10,7 +10,7 @@ function Blog() {
   return (
     <section 
       id="blog" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-800/50' : 'bg-white'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -40,8 +40,8 @@ function Blog() {
             to="/blog"
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium border transition-all hover:-translate-y-0.5 ${
               theme === 'dark' 
-                ? 'border-slate-600 text-white hover:bg-slate-800' 
-                : 'border-slate-300 text-slate-900 hover:bg-slate-100'
+                ? 'border-slate-600 text-white hover:bg-slate-700' 
+                : 'border-slate-300 text-slate-900 hover:bg-white'
             }`}
           >
             See All Articles

@@ -7,7 +7,7 @@ function About() {
   return (
     <section 
       id="about" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-800/50' : 'bg-white'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -61,7 +61,7 @@ function About() {
                 <div 
                   key={index} 
                   className={`p-4 rounded-lg ${
-                    theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'
+                    theme === 'dark' ? 'bg-slate-900' : 'bg-white shadow-sm'
                   }`}
                 >
                   <p className={`font-semibold ${
@@ -124,8 +124,8 @@ function About() {
                         key={index}
                         className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
                           theme === 'dark' 
-                            ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' 
-                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                            ? 'bg-slate-900 text-slate-300 hover:bg-slate-700' 
+                            : 'bg-white text-slate-700 hover:bg-slate-100 shadow-sm'
                         }`}
                       >
                         {skill}

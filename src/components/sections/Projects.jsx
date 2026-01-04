@@ -10,7 +10,7 @@ function Projects() {
   return (
     <section 
       id="projects" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -40,8 +40,8 @@ function Projects() {
             to="/projects"
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium border transition-all hover:-translate-y-0.5 ${
               theme === 'dark' 
-                ? 'border-slate-600 text-white hover:bg-slate-800' 
-                : 'border-slate-300 text-slate-900 hover:bg-white'
+                ? 'border-slate-700 text-white hover:bg-slate-800' 
+                : 'border-slate-300 text-slate-900 hover:bg-slate-50'
             }`}
           >
             See All Projects

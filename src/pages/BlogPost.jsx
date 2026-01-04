@@ -58,17 +58,18 @@ const createMdxComponents = (theme) => ({
         <code 
           className={`px-2 py-1 rounded text-sm font-mono ${
             theme === 'dark' 
-              ? 'bg-slate-700 text-indigo-400' 
+              ? 'bg-indigo-500/20 text-indigo-300' 
               : 'bg-slate-100 text-indigo-600'
           }`}
           {...props} 
         />
       )
     }
+    // Code inside pre blocks
     return (
       <code 
         className={`text-sm font-mono ${
-          theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+          theme === 'dark' ? 'text-emerald-400' : 'text-slate-700'
         }`}
         {...props} 
       />
@@ -78,7 +79,7 @@ const createMdxComponents = (theme) => ({
     <pre 
       className={`p-5 rounded-xl overflow-x-auto mb-6 text-sm font-mono leading-relaxed ${
         theme === 'dark' 
-          ? 'bg-slate-800 border border-slate-700' 
+          ? 'bg-slate-950 border border-slate-800 text-slate-200' 
           : 'bg-slate-50 border border-slate-200'
       }`}
       {...props} 

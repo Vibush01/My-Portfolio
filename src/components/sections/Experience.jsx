@@ -7,7 +7,7 @@ function Experience() {
   return (
     <section 
       id="experience" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -35,7 +35,7 @@ function Experience() {
             <div 
               key={index}
               className={`relative pl-8 md:pl-0 pb-12 last:pb-0 ${
-                index % 2 === 0 ? 'md:pr-8 md:text-right md:ml-0 md:mr-auto md:w-1/2' : 'md:pl-8 md:ml-auto md:w-1/2'
+                index % 2 === 0 ? 'md:pr-8 md:ml-0 md:mr-auto md:w-1/2' : 'md:pl-8 md:ml-auto md:w-1/2'
               }`}
             >
               {/* Timeline dot */}
@@ -45,13 +45,13 @@ function Experience() {
                   : 'bg-white border-indigo-500'
               }`} />
 
-              {/* Card */}
-              <div className={`p-6 rounded-xl ${
+              {/* Card - Always left-aligned text */}
+              <div className={`p-6 rounded-xl text-left ${
                 theme === 'dark' 
                   ? 'bg-slate-800 border border-slate-700' 
-                  : 'bg-white border border-slate-200 shadow-sm'
+                  : 'bg-slate-50 border border-slate-200'
               }`}>
-                <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                <div className="flex items-center gap-2 mb-2">
                   <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                     theme === 'dark' 
                       ? 'bg-indigo-500/20 text-indigo-400' 
@@ -73,7 +73,7 @@ function Experience() {
                 </h3>
                 <p className="text-indigo-500 font-medium mb-3">{exp.company}</p>
 
-                <ul className={`space-y-2 text-sm ${index % 2 === 0 ? 'md:text-right' : ''} ${
+                <ul className={`space-y-2 text-sm ${
                   theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
                 }`}>
                   {exp.responsibilities.map((resp, i) => (
@@ -82,14 +82,14 @@ function Experience() {
                 </ul>
 
                 {/* Technologies */}
-                <div className={`flex flex-wrap gap-1.5 mt-4 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                <div className="flex flex-wrap gap-1.5 mt-4">
                   {exp.technologies.map((tech, i) => (
                     <span 
                       key={i}
                       className={`px-2 py-0.5 text-xs rounded-full ${
                         theme === 'dark' 
                           ? 'bg-slate-700 text-slate-300' 
-                          : 'bg-slate-100 text-slate-600'
+                          : 'bg-white text-slate-600 shadow-sm'
                       }`}
                     >
                       {tech}

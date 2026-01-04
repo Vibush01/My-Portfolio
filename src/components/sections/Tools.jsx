@@ -7,7 +7,7 @@ function Tools() {
   return (
     <section 
       id="tools" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Header */}
@@ -45,7 +45,7 @@ function Tools() {
                     key={index}
                     className={`group relative p-6 rounded-xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default ${
                       theme === 'dark' 
-                        ? 'bg-slate-800/50 border-slate-700 hover:border-slate-600' 
+                        ? 'bg-slate-900 border-slate-700 hover:border-slate-600' 
                         : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
                     }`}
                   >
