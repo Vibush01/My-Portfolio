@@ -2,45 +2,12 @@ import { Link } from 'react-router-dom'
 import SectionTitle from '../ui/SectionTitle'
 import BlogCard from '../BlogCard'
 import Button from '../ui/Button'
-
-// Sample blog posts (will be replaced with MDX later)
-const blogPosts = [
-  {
-    id: 1,
-    slug: 'building-scalable-react-apps',
-    title: 'Building Scalable React Applications with Modern Patterns',
-    excerpt: 'Learn the best practices and patterns for building large-scale React applications that are maintainable and performant.',
-    category: 'React',
-    date: 'Dec 28, 2025',
-    emoji: '⚛️',
-    color: '#61dafb',
-    colorEnd: '#21a1f1'
-  },
-  {
-    id: 2,
-    slug: 'hono-vs-express',
-    title: 'Hono vs Express: Why I Switched to Hono for Backend APIs',
-    excerpt: 'A comparison of Hono and Express.js, exploring performance, DX, and why Hono might be the better choice for modern APIs.',
-    category: 'Backend',
-    date: 'Dec 20, 2025',
-    emoji: '🔥',
-    color: '#ff6b35',
-    colorEnd: '#f7931e'
-  },
-  {
-    id: 3,
-    slug: 'mastering-jwt-authentication',
-    title: 'Mastering JWT Authentication in Full Stack Applications',
-    excerpt: 'A comprehensive guide to implementing secure JWT authentication with refresh tokens, best practices, and common pitfalls.',
-    category: 'Security',
-    date: 'Dec 15, 2025',
-    emoji: '🔐',
-    color: '#6366f1',
-    colorEnd: '#8b5cf6'
-  }
-]
+import { blogPosts } from '../../data/blog'
 
 function Blog() {
+  // Show only 3 featured/recent posts on homepage
+  const featuredPosts = blogPosts.filter(p => p.featured).slice(0, 3)
+
   return (
     <section id="blog" className="section">
       <div className="container mx-auto px-6">
@@ -51,7 +18,7 @@ function Blog() {
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {blogPosts.map((post) => (
+          {featuredPosts.map((post) => (
             <BlogCard key={post.id} post={post} />
           ))}
         </div>

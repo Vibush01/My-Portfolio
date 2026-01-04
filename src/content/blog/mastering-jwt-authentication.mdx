@@ -1,0 +1,89 @@
+# Mastering JWT Authentication in Full Stack Applications
+
+Security is paramount in modern web applications. In this guide, I'll walk you through implementing robust JWT authentication with refresh tokens.
+
+## Understanding JWT
+
+JSON Web Tokens consist of three parts:
+
+- **Header**: Algorithm and token type
+- **Payload**: User data and claims
+- **Signature**: Verification signature
+
+```
+eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyIjoiVml2ZWsifQ.signature
+```
+
+## Implementation
+
+### 1. Token Generation
+
+```javascript
+import jwt from "jsonwebtoken";
+
+function generateTokens(userId) {
+  const accessToken = jwt.sign({ userId }, process.env.ACCESS_SECRET, {
+    expiresIn: "15m",
+  });
+
+  const refreshToken = jwt.sign({ userId }, process.env.REFRESH_SECRET, {
+    expiresIn: "90d",
+  });
+
+  return { accessToken, refreshToken };
+}
+```
+
+### 2. Middleware Protection
+
+```javascript
+async function authMiddleware(req, res, next) {
+  const token = req.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return res.status(401).json({ error: "No token provided" });
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.ACCESS_SECRET);
+    req.userId = decoded.userId;
+    next();
+  } catch (error) {
+    return res.status(401).json({ error: "Invalid token" });
+  }
+}
+```
+
+### 3. Refresh Token Flow
+
+```javascript
+app.post("/refresh", async (req, res) => {
+  const { refreshToken } = req.body;
+
+  try {
+    const decoded = jwt.verify(refreshToken, process.env.REFRESH_SECRET);
+    const tokens = generateTokens(decoded.userId);
+    res.json(tokens);
+  } catch (error) {
+    res.status(401).json({ error: "Invalid refresh token" });
+  }
+});
+```
+
+## Security Best Practices
+
+1. **Short access token expiry** - 15 minutes max
+2. **HTTP-only cookies** for refresh tokens
+3. **Token rotation** on each refresh
+4. **Revocation list** for logout
+
+## Common Pitfalls
+
+❌ Storing tokens in localStorage (XSS vulnerable)
+❌ Long-lived access tokens
+❌ Not validating token on every request
+❌ Exposing secrets in frontend
+
+## Conclusion
+
+JWT authentication, when implemented correctly, provides a secure and scalable solution for modern applications. Always prioritize security!

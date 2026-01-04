@@ -1,0 +1,87 @@
+# Building Scalable React Applications with Modern Patterns
+
+React has evolved significantly over the years, and with React 19, we have even more powerful tools at our disposal. In this article, I'll share the patterns and practices I've learned while building production applications.
+
+## The Problem with Prop Drilling
+
+One of the most common issues in React applications is prop drilling - passing props through multiple levels of components just to get data where it's needed.
+
+```jsx
+// ❌ Prop drilling nightmare
+function App() {
+  const [user, setUser] = useState(null);
+  return (
+    <Layout user={user}>
+      <Dashboard user={user} />
+    </Layout>
+  );
+}
+```
+
+## Solution: Context + Custom Hooks
+
+Instead, we can use React Context combined with custom hooks:
+
+```jsx
+// ✅ Clean and scalable
+const UserContext = createContext();
+
+export function useUser() {
+  const context = useContext(UserContext);
+  if (!context) throw new Error("useUser must be used within UserProvider");
+  return context;
+}
+
+export function UserProvider({ children }) {
+  const [user, setUser] = useState(null);
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+}
+```
+
+## State Management at Scale
+
+For larger applications, consider using:
+
+1. **TanStack Query** - For server state management
+2. **Zustand** - For client state (simpler than Redux)
+3. **Jotai** - For atomic state management
+
+### TanStack Query Example
+
+```jsx
+import { useQuery } from "@tanstack/react-query";
+
+function useProjects() {
+  return useQuery({
+    queryKey: ["projects"],
+    queryFn: fetchProjects,
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
+}
+```
+
+## Component Composition
+
+Prefer composition over complex prop APIs:
+
+```jsx
+// ✅ Flexible and reusable
+<Card>
+  <Card.Header>Title</Card.Header>
+  <Card.Body>Content</Card.Body>
+  <Card.Footer>Actions</Card.Footer>
+</Card>
+```
+
+## Key Takeaways
+
+- Use Context + Custom Hooks for shared state
+- TanStack Query for server state
+- Composition patterns for flexible components
+- Keep components small and focused
+
+Happy coding! 🚀
