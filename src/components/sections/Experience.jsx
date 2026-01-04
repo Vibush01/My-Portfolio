@@ -1,115 +1,97 @@
-import SectionTitle from '../ui/SectionTitle'
+import useTheme from '../../hooks/useTheme'
 import { experience } from '../../data/experience'
 
 function Experience() {
-  return (
-    <section id="experience" className="section">
-      <div className="container mx-auto px-6">
-        <SectionTitle 
-          title="Experience" 
-          subtitle="My professional journey so far"
-        />
+  const { theme } = useTheme()
 
-        <div className="max-w-3xl mx-auto">
+  return (
+    <section 
+      id="experience" 
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
+            theme === 'dark' ? 'text-white' : 'text-slate-900'
+          }`}>
+            Experience
+          </h2>
+          <p className={`text-lg max-w-2xl mx-auto ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            My professional journey
+          </p>
+        </div>
+
+        {/* Timeline */}
+        <div className="relative max-w-3xl mx-auto">
+          {/* Timeline line */}
+          <div className={`absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 -translate-x-1/2 ${
+            theme === 'dark' ? 'bg-slate-700' : 'bg-slate-300'
+          }`} />
+
           {experience.map((exp, index) => (
             <div 
-              key={exp.id}
-              className="relative pl-8 pb-12 last:pb-0"
+              key={index}
+              className={`relative pl-8 md:pl-0 pb-12 last:pb-0 ${
+                index % 2 === 0 ? 'md:pr-8 md:text-right md:ml-0 md:mr-auto md:w-1/2' : 'md:pl-8 md:ml-auto md:w-1/2'
+              }`}
             >
-              {/* Timeline line */}
-              {index !== experience.length - 1 && (
-                <div 
-                  className="absolute left-[11px] top-8 bottom-0 w-0.5"
-                  style={{ backgroundColor: 'var(--color-border)' }}
-                />
-              )}
-
               {/* Timeline dot */}
-              <div 
-                className="absolute left-0 top-2 w-6 h-6 rounded-full flex items-center justify-center"
-                style={{ 
-                  background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))'
-                }}
-              >
-                <div 
-                  className="w-3 h-3 rounded-full"
-                  style={{ backgroundColor: 'var(--color-bg)' }}
-                />
-              </div>
+              <div className={`absolute left-0 md:left-1/2 top-1 w-4 h-4 rounded-full -translate-x-1/2 border-4 ${
+                theme === 'dark' 
+                  ? 'bg-slate-900 border-indigo-500' 
+                  : 'bg-white border-indigo-500'
+              }`} />
 
-              {/* Content */}
-              <div 
-                className="card ml-4"
-                style={{ backgroundColor: 'var(--color-surface)' }}
-              >
-                {/* Header */}
-                <div className="flex flex-wrap items-start justify-between gap-2 mb-4">
-                  <div>
-                    <h3 
-                      className="text-xl font-bold"
-                      style={{ color: 'var(--color-text)' }}
-                    >
-                      {exp.role}
-                    </h3>
-                    <a 
-                      href={exp.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-lg font-medium hover:underline"
-                      style={{ color: 'var(--color-primary)' }}
-                    >
-                      {exp.company}
-                    </a>
-                  </div>
-                  <div className="text-right">
-                    <p 
-                      className="text-sm font-medium"
-                      style={{ color: 'var(--color-text-secondary)' }}
-                    >
-                      {exp.startDate} - {exp.endDate}
-                    </p>
-                    <p 
-                      className="text-sm"
-                      style={{ color: 'var(--color-text-muted)' }}
-                    >
-                      {exp.location} • {exp.type}
-                    </p>
-                  </div>
+              {/* Card */}
+              <div className={`p-6 rounded-xl ${
+                theme === 'dark' 
+                  ? 'bg-slate-800 border border-slate-700' 
+                  : 'bg-white border border-slate-200 shadow-sm'
+              }`}>
+                <div className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                  <span className={`text-xs font-medium px-2 py-1 rounded-full ${
+                    theme === 'dark' 
+                      ? 'bg-indigo-500/20 text-indigo-400' 
+                      : 'bg-indigo-100 text-indigo-700'
+                  }`}>
+                    {exp.type}
+                  </span>
+                  <span className={`text-sm ${
+                    theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                  }`}>
+                    {exp.dates}
+                  </span>
                 </div>
 
-                {/* Description */}
-                <p 
-                  className="mb-4"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
-                  {exp.description}
-                </p>
+                <h3 className={`text-lg font-bold mb-1 ${
+                  theme === 'dark' ? 'text-white' : 'text-slate-900'
+                }`}>
+                  {exp.role}
+                </h3>
+                <p className="text-indigo-500 font-medium mb-3">{exp.company}</p>
 
-                {/* Responsibilities */}
-                <ul className="space-y-2 mb-4">
-                  {exp.responsibilities.map((resp, idx) => (
-                    <li 
-                      key={idx}
-                      className="flex items-start gap-2 text-sm"
-                      style={{ color: 'var(--color-text-secondary)' }}
-                    >
-                      <svg 
-                        className="w-4 h-4 flex-shrink-0 mt-1" 
-                        fill="currentColor" 
-                        viewBox="0 0 20 20"
-                        style={{ color: 'var(--color-accent)' }}
-                      >
-                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                      </svg>
-                      {resp}
-                    </li>
+                <ul className={`space-y-2 text-sm ${index % 2 === 0 ? 'md:text-right' : ''} ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                }`}>
+                  {exp.responsibilities.map((resp, i) => (
+                    <li key={i} className="leading-relaxed">• {resp}</li>
                   ))}
                 </ul>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-2">
-                  {exp.technologies.map((tech, idx) => (
-                    <span key={idx} className="tag">
+                <div className={`flex flex-wrap gap-1.5 mt-4 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
+                  {exp.technologies.map((tech, i) => (
+                    <span 
+                      key={i}
+                      className={`px-2 py-0.5 text-xs rounded-full ${
+                        theme === 'dark' 
+                          ? 'bg-slate-700 text-slate-300' 
+                          : 'bg-slate-100 text-slate-600'
+                      }`}
+                    >
                       {tech}
                     </span>
                   ))}

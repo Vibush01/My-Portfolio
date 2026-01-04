@@ -1,150 +1,139 @@
-import SectionTitle from '../ui/SectionTitle'
+import useTheme from '../../hooks/useTheme'
 import { skills, education, certifications } from '../../data/skills'
 
 function About() {
-  const skillCategories = [
-    { title: 'Languages', items: skills.languages },
-    { title: 'Frontend', items: skills.frontend },
-    { title: 'Backend', items: skills.backend },
-    { title: 'Database', items: skills.database },
-    { title: 'Tools', items: skills.tools },
-  ]
+  const { theme } = useTheme()
 
   return (
-    <section id="about" className="section" style={{ backgroundColor: 'var(--color-surface)' }}>
-      <div className="container mx-auto px-6">
-        <SectionTitle 
-          title="About Me" 
-          subtitle="Get to know me better"
-        />
+    <section 
+      id="about" 
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-800/50' : 'bg-white'}`}
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
+            theme === 'dark' ? 'text-white' : 'text-slate-900'
+          }`}>
+            About Me
+          </h2>
+          <p className={`text-lg max-w-2xl mx-auto ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            Get to know me better
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left - Bio */}
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Bio */}
           <div>
-            <h3 
-              className="text-xl font-semibold mb-4"
-              style={{ color: 'var(--color-text)' }}
-            >
+            <h3 className={`text-xl font-bold mb-4 ${
+              theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
               Who I Am
             </h3>
-            <div 
-              className="space-y-4 leading-relaxed"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
+            <div className={`space-y-4 leading-relaxed ${
+              theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+            }`}>
               <p>
-                I'm a passionate <span style={{ color: 'var(--color-primary)' }}>Full Stack Developer</span> currently 
-                pursuing B.E. in Computer Science & Engineering at Chitkara University. I love building 
-                scalable web applications and solving complex problems with clean, efficient code.
+                I'm a passionate Full Stack Developer with expertise in building scalable web applications 
+                using modern technologies like React 19, TypeScript, Hono, and the MERN stack.
               </p>
               <p>
-                Currently working at <span style={{ color: 'var(--color-accent)' }}>Headstart</span>, where I'm 
-                building high-performance dashboard applications with modern web technologies. I've also 
-                contributed to fintech solutions at Bluestock, developing secure onboarding platforms.
+                With experience at Headstart and Bluestock Fintech, I've developed high-performance 
+                dashboards, real-time systems, and secure authentication flows. I love solving complex 
+                problems and creating intuitive user experiences.
               </p>
               <p>
-                When I'm not coding, I enjoy exploring new technologies, contributing to open source, 
-                and sharing my knowledge through technical writing.
+                When I'm not coding, you'll find me exploring new technologies, writing technical blog 
+                posts, or contributing to open-source projects.
               </p>
             </div>
 
             {/* Education */}
             <div className="mt-8">
-              <h3 
-                className="text-xl font-semibold mb-4"
-                style={{ color: 'var(--color-text)' }}
-              >
+              <h4 className={`text-lg font-bold mb-3 ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+              }`}>
                 Education
-              </h3>
+              </h4>
               {education.map((edu, index) => (
                 <div 
-                  key={index}
-                  className="p-4 rounded-lg"
-                  style={{ 
-                    backgroundColor: 'var(--color-bg)',
-                    border: '1px solid var(--color-border)'
-                  }}
+                  key={index} 
+                  className={`p-4 rounded-lg ${
+                    theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'
+                  }`}
                 >
-                  <h4 
-                    className="font-semibold"
-                    style={{ color: 'var(--color-text)' }}
-                  >
+                  <p className={`font-semibold ${
+                    theme === 'dark' ? 'text-white' : 'text-slate-900'
+                  }`}>
                     {edu.degree}
-                  </h4>
-                  <p style={{ color: 'var(--color-primary)' }}>{edu.institution}</p>
-                  <p 
-                    className="text-sm"
-                    style={{ color: 'var(--color-text-muted)' }}
-                  >
-                    {edu.location} • {edu.year}
                   </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Right - Skills */}
-          <div>
-            <h3 
-              className="text-xl font-semibold mb-6"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Technical Skills
-            </h3>
-            <div className="space-y-6">
-              {skillCategories.map((category, index) => (
-                <div key={index}>
-                  <h4 
-                    className="text-sm font-medium mb-3"
-                    style={{ color: 'var(--color-text-secondary)' }}
-                  >
-                    {category.title}
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {category.items.map((skill, idx) => (
-                      <span 
-                        key={idx}
-                        className="px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-105"
-                        style={{ 
-                          backgroundColor: 'var(--color-bg)',
-                          color: 'var(--color-text)',
-                          border: '1px solid var(--color-border)'
-                        }}
-                      >
-                        {skill.name}
-                      </span>
-                    ))}
-                  </div>
+                  <p className="text-indigo-500">{edu.school}</p>
+                  <p className={`text-sm ${
+                    theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                  }`}>
+                    {edu.year}
+                  </p>
                 </div>
               ))}
             </div>
 
             {/* Certifications */}
-            <div className="mt-8">
-              <h3 
-                className="text-xl font-semibold mb-4"
-                style={{ color: 'var(--color-text)' }}
-              >
+            <div className="mt-6">
+              <h4 className={`text-lg font-bold mb-3 ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+              }`}>
                 Certifications
-              </h3>
-              <ul className="space-y-2">
+              </h4>
+              <div className="flex flex-wrap gap-2">
                 {certifications.map((cert, index) => (
-                  <li 
+                  <span 
                     key={index}
-                    className="flex items-start gap-2 text-sm"
-                    style={{ color: 'var(--color-text-muted)' }}
+                    className={`px-3 py-1.5 text-sm rounded-full ${
+                      theme === 'dark' 
+                        ? 'bg-indigo-500/20 text-indigo-400' 
+                        : 'bg-indigo-100 text-indigo-700'
+                    }`}
                   >
-                    <svg 
-                      className="w-5 h-5 flex-shrink-0 mt-0.5" 
-                      fill="currentColor" 
-                      viewBox="0 0 20 20"
-                      style={{ color: 'var(--color-primary)' }}
-                    >
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
                     {cert}
-                  </li>
+                  </span>
                 ))}
-              </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Skills */}
+          <div>
+            <h3 className={`text-xl font-bold mb-6 ${
+              theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
+              Technical Skills
+            </h3>
+            <div className="space-y-6">
+              {Object.entries(skills).map(([category, skillList]) => (
+                <div key={category}>
+                  <h4 className={`text-sm font-medium uppercase tracking-wide mb-3 ${
+                    theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                  }`}>
+                    {category}
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {skillList.map((skill, index) => (
+                      <span 
+                        key={index}
+                        className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                          theme === 'dark' 
+                            ? 'bg-slate-800 text-slate-300 hover:bg-slate-700' 
+                            : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                        }`}
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

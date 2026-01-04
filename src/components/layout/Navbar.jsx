@@ -19,7 +19,6 @@ function Navbar() {
   const handleNavClick = (href) => {
     setIsMenuOpen(false)
     
-    // If it's a hash link and we're on the home page, scroll to section
     if (href.startsWith('/#') && location.pathname === '/') {
       const element = document.querySelector(href.replace('/', ''))
       if (element) {
@@ -30,21 +29,20 @@ function Navbar() {
 
   return (
     <nav 
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md"
-      style={{ 
-        backgroundColor: theme === 'dark' ? 'rgba(15, 23, 42, 0.8)' : 'rgba(248, 250, 252, 0.8)',
-        borderBottom: '1px solid var(--color-border)'
-      }}
+      className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b ${
+        theme === 'dark' 
+          ? 'bg-slate-900/80 border-slate-700' 
+          : 'bg-slate-50/80 border-slate-200'
+      }`}
     >
-      <div className="container mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link 
             to="/" 
-            className="text-xl font-bold"
-            style={{ color: 'var(--color-text)' }}
+            className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
           >
-            <span className="gradient-text">VK</span>
+            <span className="bg-gradient-to-r from-indigo-500 to-cyan-400 bg-clip-text text-transparent">VK</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -54,8 +52,9 @@ function Navbar() {
                 key={link.name}
                 to={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className="text-sm font-medium transition-colors hover:text-[var(--color-primary)]"
-                style={{ color: 'var(--color-text-secondary)' }}
+                className={`text-sm font-medium transition-colors hover:text-indigo-500 ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                }`}
               >
                 {link.name}
               </Link>
@@ -66,11 +65,11 @@ function Navbar() {
           <div className="flex items-center gap-4">
             <button
               onClick={toggleTheme}
-              className="p-2 rounded-lg transition-colors"
-              style={{ 
-                backgroundColor: 'var(--color-surface)',
-                color: 'var(--color-text)'
-              }}
+              className={`p-2 rounded-lg transition-colors ${
+                theme === 'dark' 
+                  ? 'bg-slate-800 text-white hover:bg-slate-700' 
+                  : 'bg-white text-slate-900 hover:bg-slate-100'
+              }`}
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? (
@@ -86,8 +85,7 @@ function Navbar() {
 
             {/* Mobile menu button */}
             <button
-              className="md:hidden p-2 rounded-lg"
-              style={{ color: 'var(--color-text)' }}
+              className={`md:hidden p-2 rounded-lg ${theme === 'dark' ? 'text-white' : 'text-slate-900'}`}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -106,17 +104,15 @@ function Navbar() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div 
-            className="md:hidden py-4 border-t"
-            style={{ borderColor: 'var(--color-border)' }}
-          >
+          <div className={`md:hidden py-4 border-t ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}`}>
             {navLinks.map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
                 onClick={() => handleNavClick(link.href)}
-                className="block py-3 text-sm font-medium transition-colors hover:text-[var(--color-primary)]"
-                style={{ color: 'var(--color-text-secondary)' }}
+                className={`block py-3 text-sm font-medium transition-colors hover:text-indigo-500 ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                }`}
               >
                 {link.name}
               </Link>

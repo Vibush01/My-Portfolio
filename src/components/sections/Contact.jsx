@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import SectionTitle from '../ui/SectionTitle'
-import Button from '../ui/Button'
+import useTheme from '../../hooks/useTheme'
 
 function Contact() {
+  const { theme } = useTheme()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -10,24 +10,23 @@ function Contact() {
   })
   const [status, setStatus] = useState('')
 
-  const handleChange = (e) => {
-    setFormData(prev => ({
-      ...prev,
-      [e.target.name]: e.target.value
-    }))
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
     
-    // For now, just show a success message
-    // You can integrate with Formspree, EmailJS, or your own backend later
+    // Simulate form submission
     setTimeout(() => {
       setStatus('success')
       setFormData({ name: '', email: '', message: '' })
       setTimeout(() => setStatus(''), 3000)
     }, 1000)
+  }
+
+  const handleChange = (e) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
   }
 
   const contactInfo = [
@@ -38,18 +37,8 @@ function Contact() {
         </svg>
       ),
       label: 'Email',
-      value: 'vibush01@gmail.com',
-      href: 'mailto:vibush01@gmail.com'
-    },
-    {
-      icon: (
-        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-        </svg>
-      ),
-      label: 'Phone',
-      value: '+91 7018235639',
-      href: 'tel:+917018235639'
+      value: 'vibushkumar99@gmail.com',
+      href: 'mailto:vibushkumar99@gmail.com'
     },
     {
       icon: (
@@ -60,60 +49,71 @@ function Contact() {
       label: 'LinkedIn',
       value: 'linkedin.com/in/vibush01',
       href: 'https://linkedin.com/in/vibush01'
+    },
+    {
+      icon: (
+        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+        </svg>
+      ),
+      label: 'GitHub',
+      value: 'github.com/Vibush01',
+      href: 'https://github.com/Vibush01'
     }
   ]
 
   return (
-    <section id="contact" className="section" style={{ backgroundColor: 'var(--color-surface)' }}>
-      <div className="container mx-auto px-6">
-        <SectionTitle 
-          title="Get In Touch" 
-          subtitle="Have a project in mind? Let's work together!"
-        />
+    <section 
+      id="contact" 
+      className={`py-20 ${theme === 'dark' ? 'bg-slate-800/50' : 'bg-white'}`}
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section Title */}
+        <div className="text-center mb-12">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
+            theme === 'dark' ? 'text-white' : 'text-slate-900'
+          }`}>
+            Get In Touch
+          </h2>
+          <p className={`text-lg max-w-2xl mx-auto ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            Have a project in mind? Let's work together!
+          </p>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-12 max-w-4xl mx-auto">
           {/* Contact Info */}
           <div>
-            <h3 
-              className="text-xl font-semibold mb-6"
-              style={{ color: 'var(--color-text)' }}
-            >
+            <h3 className={`text-xl font-bold mb-6 ${
+              theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
               Contact Information
             </h3>
-            <div className="space-y-6">
-              {contactInfo.map((info, index) => (
+            <div className="space-y-4">
+              {contactInfo.map((item, index) => (
                 <a
                   key={index}
-                  href={info.href}
-                  target={info.href.startsWith('http') ? '_blank' : undefined}
-                  rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-4 p-4 rounded-lg transition-all hover:scale-105"
-                  style={{ 
-                    backgroundColor: 'var(--color-bg)',
-                    border: '1px solid var(--color-border)'
-                  }}
+                  href={item.href}
+                  target={item.href.startsWith('http') ? '_blank' : undefined}
+                  rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  className={`flex items-center gap-4 p-4 rounded-xl transition-all hover:-translate-y-0.5 ${
+                    theme === 'dark' 
+                      ? 'bg-slate-800 hover:bg-slate-700 text-slate-300' 
+                      : 'bg-slate-50 hover:bg-slate-100 text-slate-600'
+                  }`}
                 >
-                  <div 
-                    className="p-3 rounded-lg"
-                    style={{ 
-                      background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))',
-                      color: 'white'
-                    }}
-                  >
-                    {info.icon}
-                  </div>
+                  <span className="text-indigo-500">{item.icon}</span>
                   <div>
-                    <p 
-                      className="text-sm font-medium"
-                      style={{ color: 'var(--color-text-muted)' }}
-                    >
-                      {info.label}
+                    <p className={`text-sm ${
+                      theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                    }`}>
+                      {item.label}
                     </p>
-                    <p 
-                      className="font-medium"
-                      style={{ color: 'var(--color-text)' }}
-                    >
-                      {info.value}
+                    <p className={`font-medium ${
+                      theme === 'dark' ? 'text-white' : 'text-slate-900'
+                    }`}>
+                      {item.value}
                     </p>
                   </div>
                 </a>
@@ -123,117 +123,79 @@ function Contact() {
 
           {/* Contact Form */}
           <div>
-            <h3 
-              className="text-xl font-semibold mb-6"
-              style={{ color: 'var(--color-text)' }}
-            >
+            <h3 className={`text-xl font-bold mb-6 ${
+              theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}>
               Send a Message
             </h3>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label 
-                  htmlFor="name" 
-                  className="block text-sm font-medium mb-2"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+                }`}>
                   Name
                 </label>
                 <input
                   type="text"
-                  id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg outline-none transition-all focus:ring-2"
-                  style={{ 
-                    backgroundColor: 'var(--color-bg)',
-                    border: '1px solid var(--color-border)',
-                    color: 'var(--color-text)',
-                    '--tw-ring-color': 'var(--color-primary)'
-                  }}
+                  className={`w-full px-4 py-3 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/50 ${
+                    theme === 'dark' 
+                      ? 'bg-slate-800 border-slate-700 text-white focus:border-indigo-500' 
+                      : 'bg-white border-slate-200 text-slate-900 focus:border-indigo-500'
+                  }`}
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label 
-                  htmlFor="email" 
-                  className="block text-sm font-medium mb-2"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+                }`}>
                   Email
                 </label>
                 <input
                   type="email"
-                  id="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-3 rounded-lg outline-none transition-all focus:ring-2"
-                  style={{ 
-                    backgroundColor: 'var(--color-bg)',
-                    border: '1px solid var(--color-border)',
-                    color: 'var(--color-text)'
-                  }}
+                  className={`w-full px-4 py-3 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/50 ${
+                    theme === 'dark' 
+                      ? 'bg-slate-800 border-slate-700 text-white focus:border-indigo-500' 
+                      : 'bg-white border-slate-200 text-slate-900 focus:border-indigo-500'
+                  }`}
                   placeholder="your.email@example.com"
                 />
               </div>
               <div>
-                <label 
-                  htmlFor="message" 
-                  className="block text-sm font-medium mb-2"
-                  style={{ color: 'var(--color-text-secondary)' }}
-                >
+                <label className={`block text-sm font-medium mb-2 ${
+                  theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+                }`}>
                   Message
                 </label>
                 <textarea
-                  id="message"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
                   required
                   rows={5}
-                  className="w-full px-4 py-3 rounded-lg outline-none transition-all focus:ring-2 resize-none"
-                  style={{ 
-                    backgroundColor: 'var(--color-bg)',
-                    border: '1px solid var(--color-border)',
-                    color: 'var(--color-text)'
-                  }}
+                  className={`w-full px-4 py-3 rounded-lg border outline-none transition-all resize-none focus:ring-2 focus:ring-indigo-500/50 ${
+                    theme === 'dark' 
+                      ? 'bg-slate-800 border-slate-700 text-white focus:border-indigo-500' 
+                      : 'bg-white border-slate-200 text-slate-900 focus:border-indigo-500'
+                  }`}
                   placeholder="Tell me about your project..."
                 />
               </div>
-              <Button 
-                type="submit" 
-                variant="primary" 
-                size="lg" 
-                className="w-full"
+              <button
+                type="submit"
                 disabled={status === 'sending'}
+                className="w-full py-3 rounded-lg font-medium text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-90 transition-all disabled:opacity-50"
               >
-                {status === 'sending' ? (
-                  <>
-                    <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Sending...
-                  </>
-                ) : status === 'success' ? (
-                  <>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Message Sent!
-                  </>
-                ) : (
-                  <>
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
-                    Send Message
-                  </>
-                )}
-              </Button>
+                {status === 'sending' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Send Message'}
+              </button>
             </form>
           </div>
         </div>
