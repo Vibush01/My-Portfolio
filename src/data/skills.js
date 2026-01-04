@@ -1,57 +1,63 @@
+// Technical skills as simple strings (for About section)
 export const skills = {
-  languages: [
-    { name: "JavaScript (ES6+)", icon: "js" },
-    { name: "TypeScript", icon: "ts" },
-    { name: "Java", icon: "java" },
-    { name: "C++", icon: "cpp" }
+  languages: ["JavaScript (ES6+)", "TypeScript", "Java", "C++"],
+  frontend: ["React.js (v19)", "Redux Toolkit", "TailwindCSS", "Gridstack.js"],
+  backend: ["Node.js", "Express.js", "Hono", "REST APIs"],
+  database: ["MongoDB", "MySQL", "Firebase"],
+  tools: ["Git", "GitHub", "Postman", "AWS", "Infisical", "pnpm"],
+  other: ["JWT Auth", "Chrome Extension API", "TanStack Query", "React Hook Form"]
+}
+
+// Tools with icons for the Tools section (categorized)
+export const toolsWithIcons = {
+  "Design & Collaboration": [
+    { name: "Figma", icon: "🎨", color: "#F24E1E" },
+    { name: "Framer", icon: "⚡", color: "#0055FF" },
+    { name: "Notion", icon: "📝", color: "#000000" },
+    { name: "Canva", icon: "🖼️", color: "#00C4CC" }
   ],
-  frontend: [
-    { name: "React.js (v19)", icon: "react" },
-    { name: "Redux Toolkit", icon: "redux" },
-    { name: "TailwindCSS", icon: "tailwind" },
-    { name: "Gridstack.js", icon: "grid" }
+  "Project Management": [
+    { name: "Jira", icon: "📋", color: "#0052CC" },
+    { name: "ClickUp", icon: "✅", color: "#7B68EE" },
+    { name: "Slack", icon: "💬", color: "#4A154B" },
+    { name: "Zoho", icon: "🔧", color: "#C8202B" }
   ],
-  backend: [
-    { name: "Node.js", icon: "node" },
-    { name: "Express.js", icon: "express" },
-    { name: "Hono", icon: "hono" },
-    { name: "REST APIs", icon: "api" }
+  "Development": [
+    { name: "VS Code", icon: "💻", color: "#007ACC" },
+    { name: "React", icon: "⚛️", color: "#61DAFB" },
+    { name: "Node.js", icon: "🟢", color: "#339933" },
+    { name: "MongoDB", icon: "🍃", color: "#47A248" },
+    { name: "TailwindCSS", icon: "🎨", color: "#06B6D4" },
+    { name: "Hono", icon: "🔥", color: "#FF6B35" },
+    { name: "TypeScript", icon: "📘", color: "#3178C6" },
+    { name: "Express", icon: "⚡", color: "#000000" }
   ],
-  database: [
-    { name: "MongoDB", icon: "mongodb" },
-    { name: "MySQL", icon: "mysql" },
-    { name: "Firebase", icon: "firebase" }
+  "Cloud & DevOps": [
+    { name: "Firebase", icon: "🔥", color: "#FFCA28" },
+    { name: "AWS", icon: "☁️", color: "#FF9900" },
+    { name: "Vercel", icon: "▲", color: "#000000" },
+    { name: "GitHub", icon: "🐙", color: "#181717" }
   ],
-  tools: [
-    { name: "Git", icon: "git" },
-    { name: "GitHub", icon: "github" },
-    { name: "Postman", icon: "postman" },
-    { name: "AWS", icon: "aws" },
-    { name: "Infisical", icon: "infisical" },
-    { name: "pnpm", icon: "pnpm" }
-  ],
-  other: [
-    { name: "JWT Authentication", icon: "jwt" },
-    { name: "Chrome Extension API", icon: "chrome" },
-    { name: "TanStack Query", icon: "tanstack" },
-    { name: "React Hook Form", icon: "form" }
+  "AI & Analytics": [
+    { name: "Claude AI", icon: "🤖", color: "#8B5CF6" },
+    { name: "Gemini", icon: "✨", color: "#4285F4" },
+    { name: "ChatGPT", icon: "💡", color: "#10A37F" },
+    { name: "Google Analytics", icon: "📊", color: "#E37400" }
   ]
 }
 
 export const education = [
   {
     degree: "B.E. Computer Science & Engineering",
-    institution: "Chitkara University",
-    location: "Himachal Pradesh",
-    year: "2022 - 2026",
-    description: "Specializing in software development and web technologies"
+    school: "Chitkara University, Himachal Pradesh",
+    year: "2022 - 2026"
   }
 ]
 
 export const certifications = [
-  "MERN Stack Development, Java Programming - Apna College",
-  "Full Stack Web Development, Programming in C, C++ - Udemy",
-  "Introduction to Linux, DBMS, MySQL, Computer Networks, OOSE - Infosys Springboard"
+  "MERN Stack Development - Apna College",
+  "Full Stack Web Development - Udemy",
+  "Introduction to Linux - Infosys Springboard"
 ]
 
-export default { skills, education, certifications }
+export default { skills, toolsWithIcons, education, certifications }

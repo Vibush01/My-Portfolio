@@ -11,6 +11,7 @@ function Navbar() {
     { name: 'Home', href: '/' },
     { name: 'About', href: '/#about' },
     { name: 'Experience', href: '/#experience' },
+    { name: 'Tools', href: '/#tools' },
     { name: 'Projects', href: '/#projects' },
     { name: 'Blog', href: '/#blog' },
     { name: 'Contact', href: '/#contact' },
