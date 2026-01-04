@@ -15,12 +15,38 @@ function Contact() {
     e.preventDefault()
     setStatus('sending')
     
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-      setTimeout(() => setStatus(''), 3000)
-    }, 1000)
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '16f6357b-f2f2-4c33-ac7b-3241fe825235',
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'New Contact Form Submission',
+          message: formData.message,
+          from_name: 'Portfolio Contact Form'
+        })
+      })
+
+      const result = await response.json()
+      
+      if (result.success) {
+        setStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+        setTimeout(() => setStatus(''), 5000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus(''), 5000)
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+      setStatus('error')
+      setTimeout(() => setStatus(''), 5000)
+    }
   }
 
   const handleChange = (e) => {
@@ -42,26 +68,26 @@ function Contact() {
             <p className={`text-sm font-medium uppercase tracking-widest mb-2 ${
               theme === 'dark' ? 'text-indigo-400' : 'text-indigo-600'
             }`}>
-              Contact Me
+              Get In Touch
             </p>
             <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${
               theme === 'dark' ? 'text-white' : 'text-slate-900'
             }`}>
-              LET'S TALK ABOUT<br />
-              YOUR PROJECT
+              LET'S CONNECT &<br />
+              BUILD TOGETHER
             </h2>
             <p className={`text-lg mb-8 leading-relaxed ${
               theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
             }`}>
-              Let's embark on a creative journey together by shaping a visual
-              narrative of your brand in the crowded digital space.
+              I'm actively looking for full-time opportunities where I can contribute,
+              learn, and grow. If you think I'd be a good fit for your team, I'd love to hear from you!
             </p>
 
             {/* Contact Cards */}
             <div className="space-y-4">
               {/* Phone */}
               <a
-                href="tel:+917876408738"
+                href="tel:+917018235639"
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
                   theme === 'dark' 
                     ? 'bg-slate-800 border border-slate-700 hover:border-slate-600' 
@@ -79,19 +105,19 @@ function Contact() {
                   <p className={`text-xs uppercase tracking-wide ${
                     theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
                   }`}>
-                    Book a Call
+                    Schedule a Call
                   </p>
                   <p className={`font-semibold ${
                     theme === 'dark' ? 'text-white' : 'text-slate-900'
                   }`}>
-                    +91 7876408738
+                    +91 7018235639
                   </p>
                 </div>
               </a>
 
               {/* Email */}
               <a
-                href="mailto:vibushkumar99@gmail.com"
+                href="mailto:vibush01@gmail.com"
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
                   theme === 'dark' 
                     ? 'bg-slate-800 border border-slate-700 hover:border-slate-600' 
@@ -105,16 +131,16 @@ function Contact() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <div>
+                <div >
                   <p className={`text-xs uppercase tracking-wide ${
                     theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
                   }`}>
-                    Prefer Email Communication
+                    Email Me
                   </p>
                   <p className={`font-semibold ${
                     theme === 'dark' ? 'text-white' : 'text-slate-900'
                   }`}>
-                    vibushkumar99@gmail.com
+                    vibush01@gmail.com
                   </p>
                 </div>
               </a>
@@ -134,7 +160,7 @@ function Contact() {
                 value={formData.name}
                 onChange={handleChange}
                 required
-                placeholder="John Doe"
+                placeholder="Your Name"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
                     ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
@@ -147,7 +173,7 @@ function Contact() {
                 value={formData.email}
                 onChange={handleChange}
                 required
-                placeholder="hello@example.com"
+                placeholder="Your Email"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
                     ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
@@ -159,7 +185,7 @@ function Contact() {
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                placeholder="Subject"
+                placeholder="Subject (Optional)"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
                     ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
@@ -172,7 +198,7 @@ function Contact() {
                 onChange={handleChange}
                 required
                 rows={5}
-                placeholder="Message in brief..."
+                placeholder="Your Message"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all resize-none focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
                     ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
@@ -183,12 +209,16 @@ function Contact() {
                 type="submit"
                 disabled={status === 'sending'}
                 className={`w-full py-4 rounded-xl font-semibold uppercase tracking-wide transition-all disabled:opacity-50 ${
-                  theme === 'dark' 
+                  status === 'success'
+                    ? 'bg-green-500 text-white'
+                    : status === 'error'
+                    ? 'bg-red-500 text-white'
+                    : theme === 'dark' 
                     ? 'bg-white text-slate-900 hover:bg-slate-100' 
                     : 'bg-slate-900 text-white hover:bg-slate-800'
                 }`}
               >
-                {status === 'sending' ? 'Sending...' : status === 'success' ? 'Message Sent!' : 'Send Message'}
+                {status === 'sending' ? 'Sending...' : status === 'success' ? '✓ Message Sent!' : status === 'error' ? 'Failed - Try Again' : 'Send Message'}
               </button>
             </form>
           </div>

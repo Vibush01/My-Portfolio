@@ -46,7 +46,7 @@ function About() {
               </p>
               <p>
                 When I'm not coding, you'll find me exploring new technologies, writing technical blog 
-                posts, or contributing to open-source projects.
+                posts.
               </p>
             </div>
 
