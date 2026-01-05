@@ -85,7 +85,6 @@ function Contact() {
 
             {/* Contact Cards */}
             <div className="space-y-4">
-              {/* Phone */}
               <a
                 href="tel:+917018235639"
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
@@ -96,7 +95,7 @@ function Contact() {
               >
                 <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                   <img 
-                    src="/profile.svg" 
+                    src="/profile.webp" 
                     alt="Vivek Kumar" 
                     className="w-full h-full object-cover"
                   />

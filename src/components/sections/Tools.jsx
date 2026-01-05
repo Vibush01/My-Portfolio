@@ -55,10 +55,17 @@ function Tools() {
     'Google Analytics': SiGoogleanalytics
   }
 
+  // Tools that need black color in light mode (white icons)
+  const whiteIcons = ['Vercel', 'GitHub', 'Notion']
+
   const getIcon = (tool) => {
     const IconComponent = iconComponents[tool.name]
     if (IconComponent) {
-      return <IconComponent className="w-10 h-10" style={{ color: tool.color }} />
+      // Use black color for white icons in light mode
+      const iconColor = whiteIcons.includes(tool.name) && theme === 'light' 
+        ? '#1e293b' 
+        : tool.color
+      return <IconComponent className="w-10 h-10" style={{ color: iconColor }} />
     }
     return <span className="text-4xl">{tool.icon}</span>
   }
