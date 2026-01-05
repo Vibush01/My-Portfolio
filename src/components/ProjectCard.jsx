@@ -11,19 +11,27 @@ function ProjectCard({ project }) {
           : 'bg-white border border-slate-200 hover:border-indigo-400 shadow-sm'
       }`}
     >
-      {/* Project Image with gradient */}
+      {/* Project Image */}
       <div 
         className="h-44 relative overflow-hidden"
         style={{ 
-          background: `linear-gradient(135deg, ${project.gradient?.[0] || '#6366f1'}, ${project.gradient?.[1] || '#22d3ee'})`
+          background: project.image ? 'transparent' : `linear-gradient(135deg, ${project.gradient?.[0] || '#6366f1'}, ${project.gradient?.[1] || '#22d3ee'})`
         }}
       >
-        {/* Letter Icon */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-6xl font-bold text-white/20 select-none">
-            {project.title.charAt(0)}
-          </span>
-        </div>
+        {/* Show image if available, otherwise show letter */}
+        {project.image ? (
+          <img 
+            src={project.image} 
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-6xl font-bold text-white/20 select-none">
+              {project.title.charAt(0)}
+            </span>
+          </div>
+        )}
         
         {/* Hover overlay with links */}
         <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center gap-4 backdrop-blur-sm">

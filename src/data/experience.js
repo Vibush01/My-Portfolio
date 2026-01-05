@@ -15,7 +15,7 @@ export const experience = [
       "Integrated Google Calendar API and GitHub REST API to build interactive widgets, allowing users to join meetings and track Pull Requests directly from the new tab page",
       "Modernized the development workflow by implementing pnpm for efficient dependency management and Infisical for encrypted secret management across the team"
     ],
-    technologies: ["React", "Gridstack.js", "Hono", "Google Calendar API", "GitHub API", "pnpm", "Infisical"]
+    technologies: ["React", "Gridstack.js", "Hono", "Google Calendar API", "GitHub API", "pnpm", "Infisical", "Firebase", "Jira Integration", "Chrome extension API"]
   },
   {
     id: 2,

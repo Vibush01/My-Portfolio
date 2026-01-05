@@ -1,8 +1,67 @@
 import useTheme from '../../hooks/useTheme'
 import { toolsWithIcons } from '../../data/skills'
+import { 
+  SiFigma, 
+  SiFramer, 
+  SiNotion, 
+  SiCanva,
+  SiJira,
+  SiClickup,
+  SiSlack,
+  SiZoho,
+  SiReact,
+  SiNodedotjs,
+  SiMongodb,
+  SiTailwindcss,
+  SiTypescript,
+  SiExpress,
+  SiFirebase,
+  SiVercel,
+  SiGithub,
+  SiOpenai,
+  SiGoogleanalytics
+} from 'react-icons/si'
+import { VscVscode } from 'react-icons/vsc'
+import { FaAws, FaBolt, FaRobot, FaStar } from 'react-icons/fa'
 
 function Tools() {
   const { theme } = useTheme()
+
+  // Map all tools to their real icons
+  const iconComponents = {
+    'Figma': SiFigma,
+    'Framer': SiFramer,
+    'Notion': SiNotion,
+    'Canva': SiCanva,
+    'Jira': SiJira,
+    'ClickUp': SiClickup,
+    'Slack': SiSlack,
+    'Zoho': SiZoho,
+    'VS Code': VscVscode,
+    'React': SiReact,
+    'Node.js': SiNodedotjs,
+    'MongoDB': SiMongodb,
+    'TailwindCSS': SiTailwindcss,
+    'Hono': FaBolt,
+    'TypeScript': SiTypescript,
+    'Express': SiExpress,
+    'Firebase': SiFirebase,
+    'AWS': FaAws,
+    'Vercel': SiVercel,
+    'GitHub': SiGithub,
+    'Claude AI': FaRobot,
+    'Gemini': FaStar,
+    'ChatGPT': SiOpenai,
+    'Google Analytics': SiGoogleanalytics
+  }
+
+  const getIcon = (tool) => {
+    const IconComponent = iconComponents[tool.name]
+    if (IconComponent) {
+      return <IconComponent className="w-10 h-10" style={{ color: tool.color }} />
+    }
+    return <span className="text-4xl">{tool.icon}</span>
+  }
 
   return (
     <section 
@@ -50,8 +109,8 @@ function Tools() {
                     }`}
                   >
                     {/* Icon */}
-                    <div className="text-4xl mb-3 text-center group-hover:scale-110 transition-transform">
-                      {tool.icon}
+                    <div className="flex justify-center mb-3 group-hover:scale-110 transition-transform">
+                      {getIcon(tool)}
                     </div>
                     
                     {/* Tool Name */}

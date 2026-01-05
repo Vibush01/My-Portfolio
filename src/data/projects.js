@@ -4,6 +4,7 @@ export const projects = [
     title: "EasyFitTrack",
     subtitle: "Gym & Fitness Management Platform",
     description: "A full-featured fitness tracking platform with Role-Based Access Control (RBAC) for Admin and User roles. Comprehensive SaaS platform for gym owners to manage members, trainers, and finances in real-time.",
+    image: "/images/projects/easyfittrack.webp",
     gradient: ["#10b981", "#3b82f6"],
     tags: ["React", "Node.js", "MongoDB", "Express", "JWT", "Socket.io"],
     features: [
@@ -22,6 +23,7 @@ export const projects = [
     title: "Employee Management Dashboard",
     subtitle: "HR Management System",
     description: "A scalable HR dashboard supporting advanced filtering (Department, Salary, Joining Date) and multi-field search (Name, Email, UID) for efficient workforce management.",
+    image: "/images/projects/EmploymentManagement.webp",
     gradient: ["#6366f1", "#8b5cf6"],
     tags: ["React", "Node.js", "MongoDB", "React Hook Form", "TanStack Query"],
     features: [
@@ -40,6 +42,7 @@ export const projects = [
     title: "Headstart Dashboard",
     subtitle: "Customizable Widget Ecosystem",
     description: "High-performance, customizable dashboard using Gridstack.js enabling seamless drag-and-drop and widget resizing. Integrated with Google Calendar API and GitHub REST API.",
+    image: "/images/projects/easyfittrack.webp",
     gradient: ["#0ea5e9", "#22d3ee"],
     tags: ["React", "Gridstack.js", "Hono", "Google Calendar API", "GitHub API"],
     features: [
@@ -58,6 +61,7 @@ export const projects = [
     title: "Company Registration Module",
     subtitle: "Bluestock Fintech Onboarding Platform",
     description: "Secure onboarding platform for corporate clients featuring a complex multi-step registration wizard using React 19, React Hook Form, and Redux Toolkit.",
+    image: "/images/projects/EmploymentManagement.webp",
     gradient: ["#f97316", "#facc15"],
     tags: ["React 19", "Redux Toolkit", "React Hook Form", "TanStack Query", "Firebase"],
     features: [
@@ -76,6 +80,7 @@ export const projects = [
     title: "Portfolio Website",
     subtitle: "Personal Developer Portfolio",
     description: "Modern, responsive portfolio website built with React, Vite, and TailwindCSS v4. Features dark/light theme, blog with MDX support, and smooth animations.",
+    image: "/images/projects/easyfittrack.webp",
     gradient: ["#ec4899", "#f43f5e"],
     tags: ["React", "Vite", "TailwindCSS v4", "MDX", "React Router"],
     features: [
@@ -94,6 +99,7 @@ export const projects = [
     title: "Chrome Extension Toolkit",
     subtitle: "Browser Productivity Tools",
     description: "Collection of Chrome extensions for productivity enhancement, built with modern JavaScript and Chrome Extension API.",
+    image: "/images/projects/EmploymentManagement.webp",
     gradient: ["#14b8a6", "#06b6d4"],
     tags: ["JavaScript", "Chrome Extension API", "HTML", "CSS"],
     features: [

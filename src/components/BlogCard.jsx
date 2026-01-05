@@ -17,10 +17,18 @@ function BlogCard({ post }) {
         <div 
           className="h-40 relative overflow-hidden flex items-center justify-center"
           style={{ 
-            background: `linear-gradient(135deg, ${post.color || '#6366f1'}, ${post.colorEnd || '#22d3ee'})`
+            background: post.image ? 'transparent' : `linear-gradient(135deg, ${post.color || '#6366f1'}, ${post.colorEnd || '#22d3ee'})`
           }}
         >
-          <span className="text-6xl">{post.emoji}</span>
+          {post.image ? (
+            <img 
+              src={post.image} 
+              alt={post.title}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <span className="text-6xl">{post.emoji}</span>
+          )}
         </div>
 
         {/* Content */}
