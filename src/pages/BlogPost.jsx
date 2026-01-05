@@ -111,6 +111,9 @@ const createMdxComponents = (theme) => ({
   thead: (props) => (
     <thead className={theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'} {...props} />
   ),
+  tbody: (props) => (
+    <tbody {...props} />
+  ),
   tr: (props) => (
     <tr className={`border-b ${
       theme === 'dark' ? 'border-slate-700' : 'border-slate-200'
