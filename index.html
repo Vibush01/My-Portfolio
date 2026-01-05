@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/profile.svg" />
-    <link rel="apple-touch-icon" href="/profile.svg" />
+    <link rel="icon" type="image/webp" href="/profile.webp" />
+    <link rel="apple-touch-icon" href="/profile.webp" />
 
     <!-- Theme Color -->
     <meta name="theme-color" content="#0f172a" />
@@ -27,7 +27,7 @@
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://vivek-kumar.dev/" />
+    <meta property="og:url" content="https://vibush01.netlify.app/" />
     <meta property="og:title" content="Vivek Kumar | Full Stack Developer" />
     <meta
       property="og:description"
@@ -51,13 +51,26 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://vivek-kumar.dev/" />
 
-    <!-- Google Fonts - Inter -->
+    <!-- Google Fonts - Inter (async loading for better performance) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <title>Vivek Kumar | Full Stack Developer</title>
   </head>

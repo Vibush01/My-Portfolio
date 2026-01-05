@@ -80,7 +80,7 @@ function Navbar() {
               className="flex items-center gap-2"
             >
               <img 
-                src="/profile.svg" 
+                src="/profile.webp" 
                 alt="Vivek Kumar"
                 className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500 hover:scale-110 transition-transform cursor-pointer"
               />
@@ -182,7 +182,7 @@ function Navbar() {
               </svg>
             </button>
             <img 
-              src="/profile.svg" 
+              src="/profile.webp" 
               alt="Vivek Kumar"
               className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover border-4 border-indigo-500 shadow-2xl shadow-indigo-500/30"
             />
