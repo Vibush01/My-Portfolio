@@ -46,19 +46,27 @@ function About() {
             <div className={`space-y-4 leading-relaxed ${
               theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
             }`}>
-              <p>
-                I'm a passionate Full Stack Developer with expertise in building scalable web applications 
-                using modern technologies like React 19, TypeScript, Hono, and the MERN stack.
-              </p>
-              <p>
-                With experience at HeadStart, Bluestock Fintech, and Agami Technologies, I've developed 
-                high-performance dashboards, real-time systems, secure authentication flows, and enterprise 
-                loan management systems. I love solving complex problems and creating intuitive user experiences.
-              </p>
-              <p>
-                When I'm not coding, you'll find me exploring new technologies and writing technical blog 
-                posts.
-              </p>
+              {data?.general?.bio ? (
+                data.general.bio.split('\n').map((paragraph, index) => (
+                  paragraph.trim() ? <p key={index}>{paragraph}</p> : null
+                ))
+              ) : (
+                <>
+                  <p>
+                    I'm a passionate Full Stack Developer with expertise in building scalable web applications 
+                    using modern technologies like React 19, TypeScript, Hono, and the MERN stack.
+                  </p>
+                  <p>
+                    With experience at HeadStart, Bluestock Fintech, and Agami Technologies, I've developed 
+                    high-performance dashboards, real-time systems, secure authentication flows, and enterprise 
+                    loan management systems. I love solving complex problems and creating intuitive user experiences.
+                  </p>
+                  <p>
+                    When I'm not coding, you'll find me exploring new technologies and writing technical blog 
+                    posts.
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Education */}

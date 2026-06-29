@@ -19,16 +19,16 @@ function ManageGeneral() {
   });
 
   useEffect(() => {
-    if (data?.general) {
+    if (data) {
       setFormData({
-        bio: data.general.bio || '',
-        contactEmail: data.general.contactEmail || '',
-        contactPhone: data.general.contactPhone || '',
-        linkedinUrl: data.general.linkedinUrl || '',
-        githubUrl: data.general.githubUrl || '',
-        twitterUrl: data.general.twitterUrl || '',
-        whatsappUrl: data.general.whatsappUrl || '',
-        footerText: data.general.footerText || ''
+        bio: data.general?.bio || "I'm a passionate Full Stack Developer with expertise in building scalable web applications \nusing modern technologies like React 19, TypeScript, Hono, and the MERN stack.\n\nWith experience at HeadStart, Bluestock Fintech, and Agami Technologies, I've developed \nhigh-performance dashboards, real-time systems, secure authentication flows, and enterprise \nloan management systems. I love solving complex problems and creating intuitive user experiences.\n\nWhen I'm not coding, you'll find me exploring new technologies and writing technical blog \nposts.",
+        contactEmail: data.general?.contactEmail || 'vibush01@gmail.com',
+        contactPhone: data.general?.contactPhone || '+91 7018235639',
+        linkedinUrl: data.general?.linkedinUrl || 'https://linkedin.com/in/vibush01',
+        githubUrl: data.general?.githubUrl || 'https://github.com/Vibush01',
+        twitterUrl: data.general?.twitterUrl || 'https://twitter.com/vibush01',
+        whatsappUrl: data.general?.whatsappUrl || 'https://wa.me/917018235639',
+        footerText: data.general?.footerText || 'Full Stack Developer with expertise in React, TypeScript, and the MERN stack. I build scalable web applications with a focus on performance and user experience.'
       });
     }
   }, [data]);

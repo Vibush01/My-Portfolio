@@ -13,6 +13,9 @@ function Contact() {
   })
   const [status, setStatus] = useState('')
 
+  const contactPhone = data?.general?.contactPhone || '+91 7018235639';
+  const contactEmail = data?.general?.contactEmail || 'vibush01@gmail.com';
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setStatus('sending')
@@ -88,7 +91,7 @@ function Contact() {
             {/* Contact Cards */}
             <div className="space-y-4">
               <a
-                href="tel:+917018235639"
+                href={`tel:${contactPhone.replace(/[\s-]/g, '')}`}
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
                   theme === 'dark' 
                     ? 'bg-slate-800 border border-slate-700 hover:border-slate-600' 
@@ -112,14 +115,14 @@ function Contact() {
                   <p className={`font-semibold ${
                     theme === 'dark' ? 'text-white' : 'text-slate-900'
                   }`}>
-                    +91 7018235639
+                    {contactPhone}
                   </p>
                 </div>
               </a>
 
               {/* Email */}
               <a
-                href="mailto:vibush01@gmail.com"
+                href={`mailto:${contactEmail}`}
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
                   theme === 'dark' 
                     ? 'bg-slate-800 border border-slate-700 hover:border-slate-600' 
@@ -142,7 +145,7 @@ function Contact() {
                   <p className={`font-semibold ${
                     theme === 'dark' ? 'text-white' : 'text-slate-900'
                   }`}>
-                    vibush01@gmail.com
+                    {contactEmail}
                   </p>
                 </div>
               </a>
