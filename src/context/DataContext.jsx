@@ -80,11 +80,24 @@ export function DataProvider({ children }) {
 
   // Global update function for the CMS
   const updateData = async (section, newData) => {
+    if (error) {
+      return { success: false, error: 'Cannot save changes while in offline mode. Check Firebase connection.' };
+    }
+    
     try {
       const docRef = doc(db, 'portfolio', 'data');
-      await setDoc(docRef, {
+      
+      // Wrap Firebase write in a timeout to prevent UI hanging
+      const savePromise = setDoc(docRef, {
         [section]: newData
       }, { merge: true });
+      
+      const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error("Database write timed out. Connection is unstable or database is not initialized.")), 8000);
+      });
+      
+      await Promise.race([savePromise, timeoutPromise]);
+      
       return { success: true };
     } catch (err) {
       console.error(`Error updating ${section}:`, err);
