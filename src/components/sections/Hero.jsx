@@ -62,9 +62,12 @@ function Hero() {
               theme === "dark" ? "text-slate-400" : "text-slate-600"
             }`}
           >
-            With expertise in MERN Stack, TypeScript, Hono, Firebase and AWS. I
-            build scalable web applications, real-time systems, and browser
-            extensions with a focus on performance and user experience.
+            Full Stack Developer with hands-on experience building
+            production-ready web applications through multiple internships.
+            Skilled in React.js, Node.js, Express.js, TypeScript, MongoDB, SQL,
+            Firebase, and AWS. Experienced in developing responsive user
+            interfaces, scalable REST APIs, secure authentication systems, and
+            cloud-based applications in Agile environments.
           </p>
 
           {/* CTA Buttons */}
@@ -76,8 +79,8 @@ function Hero() {
               Get In Touch
             </a>
             <a
-              href="/Vivek_Kumar_FullStack_Developer.pdf"
-              download="Vivek_Kumar_FullStack_Developer.pdf"
+              href="/Vivek_Full_Stack_Developer.pdf"
+              download="Vivek_Full_Stack_Developer.pdf"
               className={`px-8 py-3 rounded-lg font-medium border transition-all hover:-translate-y-0.5 ${
                 theme === "dark"
                   ? "border-slate-600 text-white hover:bg-slate-800"

@@ -1,19 +1,19 @@
 export const experience = [
   {
     id: 1,
-    role: "Full Stack Developer",
+    role: "Web Developer",
     company: "Headstart",
     companyUrl: "https://useheadstart.app",
     location: "Remote",
-    type: "Full-time",
+    type: "Internship",
     startDate: "Nov 2025",
-    endDate: "Present",
+    endDate: "Feb 2026",
     description: "Building high-performance, customizable dashboard applications with modern web technologies.",
     responsibilities: [
-      "Engineered a high-performance, customizable dashboard using Gridstack.js, enabling seamless drag-and-drop and widget resizing for a personalized user workspace",
-      "Developed lightweight, low-latency RESTful APIs using Hono, optimizing response times and reducing server overhead compared to traditional Express.js architectures",
-      "Integrated Google Calendar API and GitHub REST API to build interactive widgets, allowing users to join meetings and track Pull Requests directly from the new tab page",
-      "Modernized the development workflow by implementing pnpm for efficient dependency management and Infisical for encrypted secret management across the team"
+      "Developed a production-ready developer workspace integrating OAuth authentication for GitHub, Google Calendar, Jira, Linear, Figma, and Notion.",
+      "Built a customizable drag-and-drop dashboard, improving workflow flexibility for developers.",
+      "Integrated Firebase Authentication, real-time synchronization, and Dodo Payments.",
+      "Collaborated in Agile teams using Git, Jira, Slack, and modern development workflows."
     ],
     technologies: ["React", "Gridstack.js", "Hono", "Google Calendar API", "GitHub API", "pnpm", "Infisical", "Firebase", "Jira Integration", "Chrome extension API"]
   },
@@ -28,11 +28,29 @@ export const experience = [
     endDate: "Oct 2025",
     description: "Developed secure onboarding platform for corporate clients with complex registration workflows.",
     responsibilities: [
-      "Developed the 'Company Registration & Verification Module,' a secure onboarding platform for corporate clients",
-      "Built a complex multi-step registration wizard using React 19, React Hook Form, and Redux Toolkit",
-      "Optimized API data fetching using TanStack Query and implemented JWT Authentication (90-day validity) with Firebase OTP"
+      "Developed a Company Registration & Verification module for enterprise onboarding.",
+      "Built responsive multi-step forms using React Hook Form, Redux Toolkit, and TanStack Query.",
+      "Implemented JWT authentication and Firebase OTP verification.",
+      "Optimized application performance using TanStack Query for efficient API caching and state management."
     ],
     technologies: ["React 19", "Redux Toolkit", "React Hook Form", "TanStack Query", "JWT", "Firebase"]
+  },
+  {
+    id: 2,
+    role: "Developer Intern",
+    company: "Agami Technologies",
+    companyUrl: "https://www.agamitechnologies.com/",
+    location: "Remote",
+    type: "Internship",
+    startDate: "May 2025",
+    endDate: "August 2025",
+    description: "Developed secure onboarding platform for corporate clients with complex registration workflows.",
+    responsibilities: [
+      "Completed training in React.js, SQL, Linux, and enterprise software development.",
+      "Contributed to a production Loan Management System for customer profiling and lead generation.",
+      "Assisted in SQL database operations, UI development, and REST API integration within a large enterprise application."
+    ],
+    technologies: ["React 19", "Tailwindcss", "React Hook Form", "Agile practices", "Linux", "SQL"]
   }
 ]
 
