@@ -98,6 +98,7 @@ function Contact() {
                     src="/profile.webp" 
                     alt="Vivek Kumar" 
                     className="w-full h-full object-cover"
+                    loading="lazy"
                   />
                 </div>
                 <div>

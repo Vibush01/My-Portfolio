@@ -25,6 +25,7 @@ function BlogCard({ post }) {
               src={post.image} 
               alt={post.title}
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           ) : (
             <span className="text-6xl">{post.emoji}</span>
