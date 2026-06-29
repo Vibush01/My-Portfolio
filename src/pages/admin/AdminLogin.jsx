@@ -8,7 +8,7 @@ function AdminLogin() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login } = useAuth();
+  const { login, loginAsGuest } = useAuth();
   const navigate = useNavigate();
   const { theme } = useTheme();
 
@@ -104,7 +104,21 @@ function AdminLogin() {
           </button>
         </form>
         
-        <div className="mt-8 text-center">
+        <div className="mt-6 flex flex-col gap-4 text-center">
+          <button
+            onClick={() => {
+              loginAsGuest();
+              navigate('/admin/dashboard');
+            }}
+            className={`w-full py-3.5 rounded-xl font-semibold uppercase tracking-wide border-2 transition-all ${
+              theme === 'dark'
+                ? 'border-indigo-500/50 text-indigo-400 hover:bg-indigo-500/10'
+                : 'border-indigo-500/30 text-indigo-600 hover:bg-indigo-50'
+            }`}
+          >
+            Explore Admin Panel (Guest)
+          </button>
+          
           <button 
             onClick={() => navigate('/')}
             className={`text-sm font-medium hover:underline ${

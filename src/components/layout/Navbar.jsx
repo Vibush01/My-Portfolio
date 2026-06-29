@@ -130,6 +130,17 @@ function Navbar() {
                   </a>
                 )
               })}
+              
+              <Link
+                to="/admin/login"
+                className={`text-sm font-medium px-4 py-2 rounded-lg border transition-all ${
+                  theme === 'dark'
+                    ? 'border-indigo-500/50 text-indigo-400 hover:bg-indigo-500/10'
+                    : 'border-indigo-500/30 text-indigo-600 hover:bg-indigo-50'
+                }`}
+              >
+                Admin Login
+              </Link>
             </div>
 
             {/* Theme Toggle & Mobile Menu Button */}
@@ -197,6 +208,18 @@ function Navbar() {
                   </a>
                 )
               })}
+              
+              <Link
+                to="/admin/login"
+                onClick={() => setIsMenuOpen(false)}
+                className={`block py-3 px-4 mt-2 text-sm font-medium transition-all rounded-lg border text-center ${
+                  theme === 'dark'
+                    ? 'border-indigo-500/50 text-indigo-400 hover:bg-indigo-500/10'
+                    : 'border-indigo-500/30 text-indigo-600 hover:bg-indigo-50'
+                }`}
+              >
+                Admin Login
+              </Link>
             </div>
           )}
         </div>
