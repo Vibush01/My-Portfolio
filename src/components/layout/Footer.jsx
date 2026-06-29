@@ -140,9 +140,10 @@ function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className={`pt-8 border-t text-center ${
-          theme === 'dark' ? 'border-slate-700' : 'border-slate-200'
-        }`}>
+        <div className="pt-8 relative text-center">
+          {/* Subtle gradient divider */}
+          <div className={`absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent`} />
+          
           <p className={`text-sm ${theme === 'dark' ? 'text-slate-500' : 'text-slate-500'}`}>
             ©{currentYear} Vivek Kumar. All rights reserved.
           </p>

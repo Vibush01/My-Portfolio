@@ -18,6 +18,15 @@ function ProjectCard({ project }) {
           background: project.image ? 'transparent' : `linear-gradient(135deg, ${project.gradient?.[0] || '#6366f1'}, ${project.gradient?.[1] || '#22d3ee'})`
         }}
       >
+        {/* Featured Badge */}
+        {project.featured && (
+          <div className="absolute top-3 right-3 z-10">
+            <span className="px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-white bg-indigo-500/80 backdrop-blur-md rounded-md shadow-sm border border-indigo-400/30">
+              Featured
+            </span>
+          </div>
+        )}
+
         {/* Show image if available, otherwise show letter */}
         {project.image ? (
           <img 
