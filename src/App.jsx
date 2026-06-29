@@ -7,6 +7,7 @@ import BlogPost from './pages/BlogPost'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import ProtectedRoute from './components/auth/ProtectedRoute'
+import AdminLayout from './components/admin/AdminLayout'
 
 function App() {
   return (
@@ -20,13 +21,22 @@ function App() {
       {/* Admin Routes */}
       <Route path="/admin/login" element={<AdminLogin />} />
       <Route 
-        path="/admin/dashboard" 
+        path="/admin" 
         element={
           <ProtectedRoute>
-            <AdminDashboard />
+            <AdminLayout />
           </ProtectedRoute>
         } 
-      />
+      >
+        <Route path="dashboard" element={<AdminDashboard />} />
+        {/* Placeholder routes for the other sections */}
+        <Route path="hero" element={<div className="p-8">Hero Management Coming Soon</div>} />
+        <Route path="experience" element={<div className="p-8">Experience Management Coming Soon</div>} />
+        <Route path="projects" element={<div className="p-8">Projects Management Coming Soon</div>} />
+        <Route path="skills" element={<div className="p-8">Skills Management Coming Soon</div>} />
+        <Route path="education" element={<div className="p-8">Education Management Coming Soon</div>} />
+        <Route path="blog" element={<div className="p-8">Blog Management Coming Soon</div>} />
+      </Route>
     </Routes>
   )
 }
