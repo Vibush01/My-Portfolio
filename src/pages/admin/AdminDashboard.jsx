@@ -16,7 +16,7 @@ function AdminDashboard() {
     }, 0))) : 0;
     
   // Views could come from a stats document in Firebase
-  const profileViews = data?.stats?.views || 1248;
+  const profileViews = data?.stats?.views ?? 1248;
 
   return (
     <div className="max-w-6xl mx-auto">

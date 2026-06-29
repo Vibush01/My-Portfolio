@@ -7,6 +7,7 @@ import BlogPage from './pages/BlogPage'
 import BlogPost from './pages/BlogPost'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
+import ManageGeneral from './pages/admin/ManageGeneral'
 import ManageHero from './pages/admin/ManageHero'
 import ManageExperience from './pages/admin/ManageExperience'
 import ManageProjects from './pages/admin/ManageProjects'
@@ -21,9 +22,13 @@ function App() {
   const { error, incrementViews } = useData();
 
   useEffect(() => {
-    // Only increment views if not in admin routes (optional, but we'll do it globally for simplicity)
+    // Only increment views once per session, and ignore admin routes
     if (!window.location.pathname.startsWith('/admin')) {
-      incrementViews();
+      const hasVisited = sessionStorage.getItem('portfolio_visited');
+      if (!hasVisited) {
+        incrementViews();
+        sessionStorage.setItem('portfolio_visited', 'true');
+      }
     }
   }, [incrementViews]);
 
@@ -52,6 +57,7 @@ function App() {
         } 
       >
         <Route path="dashboard" element={<AdminDashboard />} />
+        <Route path="general" element={<ManageGeneral />} />
         <Route path="hero" element={<ManageHero />} />
         <Route path="experience" element={<ManageExperience />} />
         <Route path="projects" element={<ManageProjects />} />

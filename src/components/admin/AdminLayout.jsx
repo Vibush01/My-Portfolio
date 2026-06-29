@@ -11,6 +11,7 @@ function AdminLayout() {
 
   const menuItems = [
     { name: 'Overview', path: '/admin/dashboard', icon: '📊' },
+    { name: 'General Settings', path: '/admin/general', icon: '⚙️' },
     { name: 'Hero & Bio', path: '/admin/hero', icon: '👋' },
     { name: 'Experience', path: '/admin/experience', icon: '💼' },
     { name: 'Projects', path: '/admin/projects', icon: '🚀' },
