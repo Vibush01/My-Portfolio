@@ -6,6 +6,7 @@ import BlogPage from './pages/BlogPage'
 import BlogPost from './pages/BlogPost'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
+import ManageHero from './pages/admin/ManageHero'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminLayout from './components/admin/AdminLayout'
 
@@ -29,8 +30,7 @@ function App() {
         } 
       >
         <Route path="dashboard" element={<AdminDashboard />} />
-        {/* Placeholder routes for the other sections */}
-        <Route path="hero" element={<div className="p-8">Hero Management Coming Soon</div>} />
+        <Route path="hero" element={<ManageHero />} />
         <Route path="experience" element={<div className="p-8">Experience Management Coming Soon</div>} />
         <Route path="projects" element={<div className="p-8">Projects Management Coming Soon</div>} />
         <Route path="skills" element={<div className="p-8">Skills Management Coming Soon</div>} />
