@@ -90,7 +90,7 @@ export const projects = [
       "Collaborative filtering algorithm",
       "Personalized user experience"
     ],
-    github: "https://github.com/Vibush01/My-Portfolio",
+    github: null,
     live: null,
     featured: true
   },

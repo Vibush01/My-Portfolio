@@ -1,4 +1,4 @@
-// Technical skills as simple strings (for About section)
+
 export const skills = {
   languages: ["JavaScript (ES6+)", "TypeScript", "Java", "C++"],
   frontend: ["React.js (v19)", "Redux Toolkit", "TailwindCSS", "Gridstack.js"],
@@ -8,7 +8,7 @@ export const skills = {
   other: ["JWT Auth", "Chrome Extension API", "TanStack Query", "React Hook Form"]
 }
 
-// Tools with icons for the Tools section (categorized)
+
 export const toolsWithIcons = {
   "Design & Collaboration": [
     { name: "Figma", icon: "🎨", color: "#F24E1E" },
