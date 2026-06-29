@@ -1,0 +1,18 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Resume Data - Anyone can read, only admin can write
+    match /portfolio/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+    
+    // Blog Posts - Anyone can read, only admin can write
+    match /blogs/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+  }
+}
