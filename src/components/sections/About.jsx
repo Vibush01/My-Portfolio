@@ -200,21 +200,21 @@ function About() {
               Technical Skills
             </h3>
             <div className="space-y-6">
-              {Object.entries(skills).map(([category, skillList]) => (
-                <div key={category}>
-                  <h4 className={`text-sm font-medium uppercase tracking-wide mb-3 ${
-                    theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+              {skills.map((skillCategory) => (
+                <div key={skillCategory.id}>
+                  <h4 className={`text-sm font-bold uppercase tracking-wider mb-4 ${
+                    theme === 'dark' ? 'text-indigo-400' : 'text-indigo-600'
                   }`}>
-                    {category}
+                    {skillCategory.category}
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {skillList.map((skill, index) => (
-                      <span 
+                    {skillCategory.items.map((skill, index) => (
+                      <span
                         key={index}
-                        className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                        className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
                           theme === 'dark' 
-                            ? 'bg-slate-900 text-slate-300 hover:bg-slate-700' 
-                            : 'bg-white text-slate-700 hover:bg-slate-100 shadow-sm'
+                            ? 'bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700' 
+                            : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                         }`}
                       >
                         {skill}

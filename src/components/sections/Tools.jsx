@@ -59,6 +59,7 @@ function Tools() {
   const whiteIcons = ['Vercel', 'GitHub', 'Notion']
 
   const getIcon = (tool) => {
+    // 1. Check if it's a known react-icon mapping
     const IconComponent = iconComponents[tool.name]
     if (IconComponent) {
       // Use black color for white icons in light mode
@@ -67,6 +68,13 @@ function Tools() {
         : tool.color
       return <IconComponent className="w-10 h-10" style={{ color: iconColor }} />
     }
+    
+    // 2. Check if the user provided an Image URL (starts with http or /)
+    if (tool.icon.startsWith('http') || tool.icon.startsWith('/')) {
+      return <img src={tool.icon} alt={tool.name} className="w-10 h-10 object-contain" />
+    }
+    
+    // 3. Fallback to emoji/text
     return <span className="text-4xl">{tool.icon}</span>
   }
 
@@ -90,20 +98,19 @@ function Tools() {
           </p>
         </div>
 
-        {/* Tools Grid by Category */}
         <div className="space-y-16">
-          {Object.entries(toolsWithIcons).map(([category, tools]) => (
-            <div key={category}>
+          {toolsWithIcons.map((toolCategory) => (
+            <div key={toolCategory.id}>
               {/* Category Title */}
               <h3 className={`text-sm font-medium uppercase tracking-widest mb-6 ${
                 theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
               }`}>
-                {category}
+                {toolCategory.category}
               </h3>
               
               {/* Tools Row */}
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {tools.map((tool, index) => (
+                {toolCategory.items.map((tool, index) => (
                   <div
                     key={index}
                     className={`group relative p-6 rounded-xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default ${

@@ -9,6 +9,8 @@ import AdminDashboard from './pages/admin/AdminDashboard'
 import ManageHero from './pages/admin/ManageHero'
 import ManageExperience from './pages/admin/ManageExperience'
 import ManageProjects from './pages/admin/ManageProjects'
+import ManageSkills from './pages/admin/ManageSkills'
+import ManageEducation from './pages/admin/ManageEducation'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminLayout from './components/admin/AdminLayout'
 
@@ -35,8 +37,8 @@ function App() {
         <Route path="hero" element={<ManageHero />} />
         <Route path="experience" element={<ManageExperience />} />
         <Route path="projects" element={<ManageProjects />} />
-        <Route path="skills" element={<div className="p-8">Skills Management Coming Soon</div>} />
-        <Route path="education" element={<div className="p-8">Education Management Coming Soon</div>} />
+        <Route path="skills" element={<ManageSkills />} />
+        <Route path="education" element={<ManageEducation />} />
         <Route path="blog" element={<div className="p-8">Blog Management Coming Soon</div>} />
       </Route>
     </Routes>

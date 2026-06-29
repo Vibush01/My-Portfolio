@@ -72,6 +72,19 @@ function ManageProjects() {
     setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
+  const handleMove = (index, direction) => {
+    if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
+    if (
+      (direction === 'up' && index === 0) || 
+      (direction === 'down' && index === projects.length - 1)
+    ) return;
+
+    const newProjects = [...projects];
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    [newProjects[index], newProjects[targetIndex]] = [newProjects[targetIndex], newProjects[index]];
+    setProjects(newProjects);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isGuest) {
@@ -236,16 +249,34 @@ function ManageProjects() {
 
       {/* Projects List */}
       <div className="grid md:grid-cols-2 gap-6">
-        {projects.map((project) => (
+        {projects.map((project, index) => (
           <div key={project.id} className={`p-5 rounded-xl border flex flex-col justify-between ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
-            <div className="mb-4">
-              <div className="flex justify-between items-start mb-2">
-                <h3 className="text-xl font-bold">{project.title}</h3>
-                {project.featured && <span className="px-2.5 py-1 text-xs font-bold bg-indigo-500/10 text-indigo-500 rounded-full border border-indigo-500/20">Featured</span>}
+            <div className="mb-4 flex gap-4">
+              <div className="flex flex-col gap-1">
+                <button 
+                  onClick={() => handleMove(index, 'up')} 
+                  disabled={index === 0}
+                  className={`p-1.5 rounded-lg border flex items-center justify-center transition-colors ${index === 0 ? 'opacity-30 cursor-not-allowed' : theme === 'dark' ? 'hover:bg-slate-700 border-slate-700' : 'hover:bg-slate-100 border-slate-200'}`}
+                >
+                  ↑
+                </button>
+                <button 
+                  onClick={() => handleMove(index, 'down')} 
+                  disabled={index === projects.length - 1}
+                  className={`p-1.5 rounded-lg border flex items-center justify-center transition-colors ${index === projects.length - 1 ? 'opacity-30 cursor-not-allowed' : theme === 'dark' ? 'hover:bg-slate-700 border-slate-700' : 'hover:bg-slate-100 border-slate-200'}`}
+                >
+                  ↓
+                </button>
               </div>
-              <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
-                {project.subtitle}
-              </p>
+              <div className="flex-1">
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  {project.featured && <span className="px-2.5 py-1 text-xs font-bold bg-indigo-500/10 text-indigo-500 rounded-full border border-indigo-500/20">Featured</span>}
+                </div>
+                <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
+                  {project.subtitle}
+                </p>
+              </div>
             </div>
             <div className="flex gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-slate-700">
               <button 
