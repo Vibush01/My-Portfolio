@@ -1,8 +1,11 @@
 import useTheme from '../../hooks/useTheme'
-import { experience } from '../../data/experience'
+import { useData } from '../../context/DataContext'
 
 function Experience() {
   const { theme } = useTheme()
+  const { data } = useData()
+  const experience = data?.experience || []
+
 
   return (
     <section 

@@ -1,5 +1,5 @@
 import useTheme from '../../hooks/useTheme'
-import { toolsWithIcons } from '../../data/skills'
+import { useData } from '../../context/DataContext'
 import { 
   SiFigma, 
   SiFramer, 
@@ -26,6 +26,8 @@ import { FaAws, FaBolt, FaRobot, FaStar } from 'react-icons/fa'
 
 function Tools() {
   const { theme } = useTheme()
+  const { data } = useData()
+  const toolsWithIcons = data?.tools || []
 
   // Map all tools to their real icons
   const iconComponents = {

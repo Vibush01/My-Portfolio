@@ -1,171 +1,187 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
-import { education as initialEducation } from '../../data/skills';
-import { certifications as initialCerts } from '../../data/certifications';
+import { useData } from '../../context/DataContext';
 
 function ManageEducation() {
   const { theme } = useTheme();
   const { isGuest } = useAuth();
+  const { data, updateData } = useData();
   
-  const [education, setEducation] = useState(initialEducation);
-  const [certs, setCerts] = useState(initialCerts);
-  
-  const [editingEdu, setEditingEdu] = useState(null);
-  const [editingCert, setEditingCert] = useState(null);
+  const [education, setEducation] = useState([]);
+  const [certs, setCerts] = useState([]);
   const [status, setStatus] = useState({ type: '', message: '' });
-  
-  const [eduForm, setEduForm] = useState({ degree: '', school: '', year: '' });
-  const [certForm, setCertForm] = useState({ name: '', source: '', icon: '' });
 
-  // Handle Education
-  const handleEditEdu = (edu, index) => {
-    setEditingEdu(index);
-    setEduForm(edu);
-  };
-  const handleCancelEdu = () => {
-    setEditingEdu(null);
-    setEduForm({ degree: '', school: '', year: '' });
-  };
-  const handleDeleteEdu = (index) => {
-    if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
-    setEducation(education.filter((_, i) => i !== index));
-  };
-  const handleSubmitEdu = (e) => {
-    e.preventDefault();
-    if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
-    
-    if (editingEdu !== null && editingEdu !== 'new') {
-      const newEdu = [...education];
-      newEdu[editingEdu] = eduForm;
-      setEducation(newEdu);
-    } else {
-      setEducation([...education, eduForm]);
+  useEffect(() => {
+    if (data) {
+      if (data.education) setEducation(data.education);
+      if (data.certifications) setCerts(data.certifications);
     }
-    handleCancelEdu();
-    setStatus({ type: 'success', message: 'Education saved!' });
+  }, [data]);
+
+  // Generic Reorder Function
+  const handleMove = async (list, type, index, direction) => {
+    if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
+    if (
+      (direction === 'up' && index === 0) || 
+      (direction === 'down' && index === list.length - 1)
+    ) return;
+    
+    setStatus({ type: 'loading', message: 'Reordering...' });
+    const newList = [...list];
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    [newList[index], newList[targetIndex]] = [newList[targetIndex], newList[index]];
+    
+    const result = await updateData(type, newList);
+    if (result.success) {
+      if (type === 'education') setEducation(newList);
+      else setCerts(newList);
+      setStatus({ type: 'success', message: 'Reordered successfully!' });
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
     setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
-  // Handle Certifications
-  const handleEditCert = (cert) => {
-    setEditingCert(cert.id);
-    setCertForm(cert);
-  };
-  const handleCancelCert = () => {
-    setEditingCert(null);
-    setCertForm({ name: '', source: '', icon: '' });
-  };
-  const handleDeleteCert = (id) => {
+  const handleDelete = async (list, type, index) => {
     if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
-    setCerts(certs.filter(c => c.id !== id));
+    
+    setStatus({ type: 'loading', message: 'Deleting...' });
+    const newList = list.filter((_, i) => i !== index);
+    
+    const result = await updateData(type, newList);
+    if (result.success) {
+      if (type === 'education') setEducation(newList);
+      else setCerts(newList);
+      setStatus({ type: 'success', message: 'Deleted successfully!' });
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
+    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
-  const handleSubmitCert = (e) => {
+
+  const handleAddEdu = async (e) => {
     e.preventDefault();
     if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
     
-    if (editingCert !== null && editingCert !== 'new') {
-      setCerts(certs.map(c => c.id === editingCert ? { ...certForm, id: editingCert } : c));
-    } else {
-      setCerts([...certs, { ...certForm, id: Date.now() }]);
+    const degree = e.target.degree.value.trim();
+    const school = e.target.school.value.trim();
+    const year = e.target.year.value.trim();
+    
+    if (degree && school && year) {
+      setStatus({ type: 'loading', message: 'Adding...' });
+      const newList = [{ degree, school, year }, ...education];
+      
+      const result = await updateData('education', newList);
+      if (result.success) {
+        setEducation(newList);
+        setStatus({ type: 'success', message: 'Education added!' });
+        e.target.reset();
+      } else {
+        setStatus({ type: 'error', message: result.error });
+      }
+      setTimeout(() => setStatus({ type: '', message: '' }), 3000);
     }
-    handleCancelCert();
-    setStatus({ type: 'success', message: 'Certification saved!' });
-    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
+  };
+
+  const handleAddCert = async (e) => {
+    e.preventDefault();
+    if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
+    
+    const name = e.target.name.value.trim();
+    const source = e.target.source.value.trim();
+    const icon = e.target.icon.value.trim();
+    
+    if (name && source && icon) {
+      setStatus({ type: 'loading', message: 'Adding...' });
+      const newList = [{ id: Date.now(), name, source, icon }, ...certs];
+      
+      const result = await updateData('certifications', newList);
+      if (result.success) {
+        setCerts(newList);
+        setStatus({ type: 'success', message: 'Certification added!' });
+        e.target.reset();
+      } else {
+        setStatus({ type: 'error', message: result.error });
+      }
+      setTimeout(() => setStatus({ type: '', message: '' }), 3000);
+    }
   };
 
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Education & Certifications</h1>
+        <h1 className="text-3xl font-bold mb-2">Manage Education & Certifications</h1>
         <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
-          Manage your academic background and professional certificates.
+          Update your academic background and professional certificates.
         </p>
       </div>
 
       {status.message && (
-        <div className={`p-4 rounded-xl mb-6 font-medium ${status.type === 'error' ? 'bg-red-500/10 text-red-500' : 'bg-green-500/10 text-green-500'}`}>
+        <div className={`p-4 rounded-xl mb-6 font-medium ${status.type === 'error' ? 'bg-red-500/10 text-red-500' : status.type === 'loading' ? 'bg-indigo-500/10 text-indigo-500' : 'bg-green-500/10 text-green-500'}`}>
           {status.message}
         </div>
       )}
 
-      {/* Education Section */}
-      <div className={`p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold">Formal Education</h2>
-          {!editingEdu && (
-            <button onClick={() => setEditingEdu('new')} className="text-sm font-medium text-indigo-500 hover:underline">+ Add Education</button>
-          )}
-        </div>
-
-        {editingEdu && (
-          <form onSubmit={handleSubmitEdu} className="space-y-4 mb-6 p-4 rounded-xl border border-indigo-500/30 bg-indigo-500/5">
-            <div className="grid md:grid-cols-2 gap-4">
-              <input type="text" placeholder="Degree / Course Name" value={eduForm.degree} onChange={e => setEduForm({...eduForm, degree: e.target.value})} required className={`w-full px-4 py-2 rounded-lg border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-200'}`} />
-              <input type="text" placeholder="School / University" value={eduForm.school} onChange={e => setEduForm({...eduForm, school: e.target.value})} required className={`w-full px-4 py-2 rounded-lg border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-200'}`} />
-              <input type="text" placeholder="Years (e.g. 2022 - 2026)" value={eduForm.year} onChange={e => setEduForm({...eduForm, year: e.target.value})} required className={`w-full px-4 py-2 rounded-lg border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-200'}`} />
-            </div>
-            <div className="flex justify-end gap-2">
-              <button type="button" onClick={handleCancelEdu} className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-500/30">Cancel</button>
-              <button type="submit" disabled={isGuest} className="px-4 py-2 rounded-lg text-sm font-medium bg-indigo-500 text-white">Save</button>
-            </div>
+      <div className="grid lg:grid-cols-2 gap-8">
+        
+        {/* Education Section */}
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <h2 className="text-xl font-bold mb-6">Education</h2>
+          
+          <form onSubmit={handleAddEdu} className="flex flex-col gap-3 mb-6 p-4 rounded-xl border border-dashed border-indigo-500/30 bg-indigo-500/5">
+            <input type="text" name="degree" placeholder="Degree / Course" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="school" placeholder="School / University" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="year" placeholder="Year (e.g. 2022 - 2026)" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <button type="submit" disabled={isGuest} className="mt-1 px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50">+ Add Education</button>
           </form>
-        )}
 
-        <div className="space-y-3">
-          {education.map((edu, idx) => (
-            <div key={idx} className={`p-4 rounded-xl border flex justify-between items-center ${theme === 'dark' ? 'border-slate-700 bg-slate-900/50' : 'border-slate-200 bg-slate-50'}`}>
-              <div>
-                <h4 className="font-bold">{edu.degree}</h4>
-                <p className="text-sm opacity-70">{edu.school} • {edu.year}</p>
+          <div className="flex flex-col gap-4">
+            {education.map((edu, index) => (
+              <div key={index} className={`p-4 rounded-xl border flex gap-4 ${theme === 'dark' ? 'bg-slate-900/50 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
+                <div className="flex flex-col gap-1">
+                  <button onClick={() => handleMove(education, 'education', index, 'up')} disabled={index === 0} className="text-xs hover:text-indigo-500 disabled:opacity-30">▲</button>
+                  <button onClick={() => handleMove(education, 'education', index, 'down')} disabled={index === education.length - 1} className="text-xs hover:text-indigo-500 disabled:opacity-30">▼</button>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-bold">{edu.degree}</h3>
+                  <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>{edu.school} • {edu.year}</p>
+                </div>
+                <button onClick={() => handleDelete(education, 'education', index)} className="text-red-500 hover:text-red-600 text-sm font-medium">Delete</button>
               </div>
-              <div className="flex gap-2">
-                <button onClick={() => handleEditEdu(edu, idx)} className="text-sm font-medium text-indigo-500 hover:underline">Edit</button>
-                <button onClick={() => handleDeleteEdu(idx)} className="text-sm font-medium text-red-500 hover:underline">Delete</button>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Certifications Section */}
-      <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-bold">Certifications</h2>
-          {!editingCert && (
-            <button onClick={() => setEditingCert('new')} className="text-sm font-medium text-indigo-500 hover:underline">+ Add Certificate</button>
-          )}
+            ))}
+          </div>
         </div>
 
-        {editingCert && (
-          <form onSubmit={handleSubmitCert} className="space-y-4 mb-6 p-4 rounded-xl border border-indigo-500/30 bg-indigo-500/5">
-            <div className="grid md:grid-cols-2 gap-4">
-              <input type="text" placeholder="Certificate Name" value={certForm.name} onChange={e => setCertForm({...certForm, name: e.target.value})} required className={`w-full px-4 py-2 rounded-lg border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-200'}`} />
-              <input type="text" placeholder="Source (e.g. Coursera)" value={certForm.source} onChange={e => setCertForm({...certForm, source: e.target.value})} required className={`w-full px-4 py-2 rounded-lg border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-200'}`} />
-              <input type="text" placeholder="Emoji Icon (e.g. 🚀)" value={certForm.icon} onChange={e => setCertForm({...certForm, icon: e.target.value})} required className={`w-full px-4 py-2 rounded-lg border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-200'}`} />
-            </div>
-            <div className="flex justify-end gap-2">
-              <button type="button" onClick={handleCancelCert} className="px-4 py-2 rounded-lg text-sm font-medium border border-slate-500/30">Cancel</button>
-              <button type="submit" disabled={isGuest} className="px-4 py-2 rounded-lg text-sm font-medium bg-indigo-500 text-white">Save</button>
-            </div>
+        {/* Certifications Section */}
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <h2 className="text-xl font-bold mb-6">Certifications</h2>
+          
+          <form onSubmit={handleAddCert} className="flex flex-col gap-3 mb-6 p-4 rounded-xl border border-dashed border-indigo-500/30 bg-indigo-500/5">
+            <input type="text" name="name" placeholder="Certificate Name" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="source" placeholder="Issuer (e.g. Meta)" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="icon" placeholder="Emoji Icon (e.g. ♾️)" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <button type="submit" disabled={isGuest} className="mt-1 px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50">+ Add Certification</button>
           </form>
-        )}
 
-        <div className="grid md:grid-cols-2 gap-4">
-          {certs.map((cert) => (
-            <div key={cert.id} className={`p-4 rounded-xl border flex gap-3 items-center ${theme === 'dark' ? 'border-slate-700 bg-slate-900/50' : 'border-slate-200 bg-slate-50'}`}>
-              <div className="w-10 h-10 rounded-lg flex items-center justify-center text-xl bg-indigo-500/10">{cert.icon}</div>
-              <div className="flex-1">
-                <h4 className="font-bold text-sm">{cert.name}</h4>
-                <p className="text-xs opacity-70">{cert.source}</p>
+          <div className="flex flex-col gap-4">
+            {certs.map((cert, index) => (
+              <div key={cert.id || index} className={`p-4 rounded-xl border flex gap-4 items-center ${theme === 'dark' ? 'bg-slate-900/50 border-slate-700' : 'bg-slate-50 border-slate-200'}`}>
+                <div className="flex flex-col gap-1">
+                  <button onClick={() => handleMove(certs, 'certifications', index, 'up')} disabled={index === 0} className="text-xs hover:text-indigo-500 disabled:opacity-30">▲</button>
+                  <button onClick={() => handleMove(certs, 'certifications', index, 'down')} disabled={index === certs.length - 1} className="text-xs hover:text-indigo-500 disabled:opacity-30">▼</button>
+                </div>
+                <div className="text-2xl">{cert.icon}</div>
+                <div className="flex-1">
+                  <h3 className="font-bold">{cert.name}</h3>
+                  <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>{cert.source}</p>
+                </div>
+                <button onClick={() => handleDelete(certs, 'certifications', index)} className="text-red-500 hover:text-red-600 text-sm font-medium">Delete</button>
               </div>
-              <div className="flex flex-col gap-1">
-                <button onClick={() => handleEditCert(cert)} className="text-xs font-medium text-indigo-500 hover:underline">Edit</button>
-                <button onClick={() => handleDeleteCert(cert.id)} className="text-xs font-medium text-red-500 hover:underline">Delete</button>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
       </div>
     </div>
   );

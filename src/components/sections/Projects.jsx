@@ -1,11 +1,15 @@
 import { Link } from 'react-router-dom'
 import useTheme from '../../hooks/useTheme'
 import ProjectCard from '../ProjectCard'
-import { projects } from '../../data/projects'
+import { useData } from '../../context/DataContext'
 
 function Projects() {
   const { theme } = useTheme()
-  const featuredProjects = projects.filter(p => p.featured).slice(0, 6)
+  const { data } = useData()
+  const projects = data?.projects || []
+  
+  // Only show featured projects on homepage
+  const featuredProjects = projects.filter(p => p.featured).slice(0, 4)
 
   return (
     <section 

@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
-import { experience as initialData } from '../../data/experience';
+import { useData } from '../../context/DataContext';
 
 function ManageExperience() {
   const { theme } = useTheme();
   const { isGuest } = useAuth();
+  const { data, updateData } = useData();
   
-  // Local state for mocking data until Firebase is connected
-  const [experiences, setExperiences] = useState(initialData);
+  const [experiences, setExperiences] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [status, setStatus] = useState({ type: '', message: '' });
   
@@ -17,12 +17,16 @@ function ManageExperience() {
     startDate: '', endDate: '', description: '', responsibilities: [''], technologies: ''
   });
 
+  useEffect(() => {
+    if (data && data.experience) setExperiences(data.experience);
+  }, [data]);
+
   const handleEdit = (exp) => {
     setEditingId(exp.id);
     setFormData({
       ...exp,
-      responsibilities: exp.responsibilities.length ? [...exp.responsibilities] : [''],
-      technologies: exp.technologies.join(', ')
+      responsibilities: exp.responsibilities?.length ? [...exp.responsibilities] : [''],
+      technologies: exp.technologies?.join(', ') || ''
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -55,46 +59,59 @@ function ManageExperience() {
     setFormData(prev => ({ ...prev, responsibilities: newResp.length ? newResp : [''] }));
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (isGuest) {
       setStatus({ type: 'error', message: 'Guest Mode: You cannot delete entries.' });
       return;
     }
-    setExperiences(experiences.filter(exp => exp.id !== id));
-    setStatus({ type: 'success', message: 'Experience deleted successfully!' });
+    
+    setStatus({ type: 'loading', message: 'Deleting...' });
+    const newExperiences = experiences.filter(exp => exp.id !== id);
+    
+    const result = await updateData('experience', newExperiences);
+    if (result.success) {
+      setStatus({ type: 'success', message: 'Experience deleted successfully!' });
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
     setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isGuest) {
       setStatus({ type: 'error', message: 'Guest Mode: You cannot save changes.' });
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Saving changes...' });
+    setStatus({ type: 'loading', message: 'Saving changes to Firebase...' });
     
-    setTimeout(() => {
-      const techArray = formData.technologies.split(',').map(t => t.trim()).filter(t => t);
-      const respArray = formData.responsibilities.filter(r => r.trim());
+    const techArray = formData.technologies.split(',').map(t => t.trim()).filter(t => t);
+    const respArray = formData.responsibilities.filter(r => r.trim());
 
-      const finalData = {
-        ...formData,
-        technologies: techArray,
-        responsibilities: respArray,
-        id: editingId || Date.now()
-      };
+    const finalData = {
+      ...formData,
+      technologies: techArray,
+      responsibilities: respArray,
+      id: editingId === 'new' || !editingId ? Date.now() : editingId
+    };
 
-      if (editingId) {
-        setExperiences(experiences.map(exp => exp.id === editingId ? finalData : exp));
-      } else {
-        setExperiences([finalData, ...experiences]);
-      }
+    let newExperiences;
+    if (editingId && editingId !== 'new') {
+      newExperiences = experiences.map(exp => exp.id === editingId ? finalData : exp);
+    } else {
+      newExperiences = [finalData, ...experiences];
+    }
 
+    const result = await updateData('experience', newExperiences);
+    
+    if (result.success) {
       setStatus({ type: 'success', message: 'Experience saved successfully!' });
       handleCancel();
-      setTimeout(() => setStatus({ type: '', message: '' }), 3000);
-    }, 800);
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
+    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
   return (

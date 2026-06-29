@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom'
 import useTheme from '../hooks/useTheme'
+import { FiArrowLeft, FiClock, FiCalendar } from 'react-icons/fi'
+import { useData } from '../context/DataContext'
 import BlogCard from '../components/BlogCard'
-import { blogPosts } from '../data/blog'
 
 function BlogPage() {
   const { theme } = useTheme()
+  const { data } = useData()
+  const blogPosts = data?.blog || []
 
   return (
     <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>

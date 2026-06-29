@@ -1,22 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
+import { useData } from '../../context/DataContext';
 
 function ManageHero() {
   const { theme } = useTheme();
   const { isGuest } = useAuth();
+  const { data, updateData } = useData();
   
-  // Local state for the form (mocking data for now until Firebase is connected)
   const [formData, setFormData] = useState({
-    name: 'Vivek Kumar',
-    roles: 'Full Stack Developer, MERN Stack Developer, React Developer',
-    bio: 'I\'m a passionate Full Stack Developer with expertise in building scalable web applications. I love turning complex problems into simple, beautiful, and intuitive designs.',
-    email: 'hello@vivekkumar.com',
-    github: 'https://github.com/Vibush01',
-    linkedin: 'https://linkedin.com/in/vibush01'
+    name: '', roles: '', bio: '', email: '', github: '', linkedin: ''
   });
 
   const [status, setStatus] = useState({ type: '', message: '' });
+
+  // Sync with global data
+  useEffect(() => {
+    if (data && data.hero) {
+      setFormData(data.hero);
+    }
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,19 +28,21 @@ function ManageHero() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
     if (isGuest) {
       setStatus({ type: 'error', message: 'Guest Mode: You cannot save changes.' });
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Saving changes...' });
+    setStatus({ type: 'loading', message: 'Saving changes to Firebase...' });
     
-    // Simulate API call
-    setTimeout(() => {
+    const result = await updateData('hero', formData);
+    
+    if (result.success) {
       setStatus({ type: 'success', message: 'Hero & Bio updated successfully!' });
       setTimeout(() => setStatus({ type: '', message: '' }), 3000);
-    }, 1000);
+    } else {
+      setStatus({ type: 'error', message: result.error || 'Failed to save data.' });
+    }
   };
 
   return (

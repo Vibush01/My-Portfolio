@@ -1,10 +1,15 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import useTheme from '../hooks/useTheme'
 import ProjectCard from '../components/ProjectCard'
-import { projects } from '../data/projects'
+import { useData } from '../context/DataContext'
 
 function ProjectsPage() {
   const { theme } = useTheme()
+  const { data } = useData()
+  const projects = data?.projects || []
+
+  const [filter, setFilter] = useState('All')
 
   return (
     <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>

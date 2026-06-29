@@ -1,10 +1,15 @@
 import { useState } from 'react'
 import useTheme from '../../hooks/useTheme'
-import { skills, education } from '../../data/skills'
-import { certifications } from '../../data/certifications'
+import { useData } from '../../context/DataContext'
 
 function About() {
   const { theme } = useTheme()
+  const { data } = useData()
+  
+  const skills = data?.skills || []
+  const education = data?.education || []
+  const certifications = data?.certifications || []
+  
   const [certPage, setCertPage] = useState(0)
   const certsPerPage = 2
   const totalPages = Math.ceil(certifications.length / certsPerPage)

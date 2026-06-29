@@ -11,10 +11,18 @@ import ManageExperience from './pages/admin/ManageExperience'
 import ManageProjects from './pages/admin/ManageProjects'
 import ManageSkills from './pages/admin/ManageSkills'
 import ManageEducation from './pages/admin/ManageEducation'
+import ManageBlog from './pages/admin/ManageBlog'
 import ProtectedRoute from './components/auth/ProtectedRoute'
 import AdminLayout from './components/admin/AdminLayout'
+import { useData } from './context/DataContext'
 
 function App() {
+  const { error } = useData();
+
+  if (error) {
+    console.warn("App starting in offline mode: ", error);
+  }
+
   return (
     <Routes>
       {/* Public Routes */}
@@ -39,7 +47,7 @@ function App() {
         <Route path="projects" element={<ManageProjects />} />
         <Route path="skills" element={<ManageSkills />} />
         <Route path="education" element={<ManageEducation />} />
-        <Route path="blog" element={<div className="p-8">Blog Management Coming Soon</div>} />
+        <Route path="blog" element={<ManageBlog />} />
       </Route>
     </Routes>
   )

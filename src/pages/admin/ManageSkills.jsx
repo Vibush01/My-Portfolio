@@ -1,15 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
-import { skills as initialSkills, toolsWithIcons as initialTools } from '../../data/skills';
+import { useData } from '../../context/DataContext';
 
 function ManageSkills() {
   const { theme } = useTheme();
   const { isGuest } = useAuth();
+  const { data, updateData } = useData();
   
-  const [skills, setSkills] = useState(initialSkills);
-  const [tools, setTools] = useState(initialTools);
+  const [skills, setSkills] = useState([]);
+  const [tools, setTools] = useState([]);
   const [status, setStatus] = useState({ type: '', message: '' });
+
+  useEffect(() => {
+    if (data) {
+      if (data.skills) setSkills(data.skills);
+      if (data.tools) setTools(data.tools);
+    }
+  }, [data]);
 
   // Generic Reorder Function
   const moveItem = (list, index, direction) => {
@@ -122,13 +130,19 @@ function ManageSkills() {
   };
 
   // ----- SAVE -----
-  const handleSaveAll = () => {
+  const handleSaveAll = async () => {
     if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active. Cannot save.' });
-    setStatus({ type: 'loading', message: 'Saving skills and tools...' });
-    setTimeout(() => {
+    setStatus({ type: 'loading', message: 'Saving skills and tools to Firebase...' });
+    
+    const r1 = await updateData('skills', skills);
+    const r2 = await updateData('tools', tools);
+    
+    if (r1.success && r2.success) {
       setStatus({ type: 'success', message: 'Skills and Tools saved successfully!' });
-      setTimeout(() => setStatus({ type: '', message: '' }), 3000);
-    }, 800);
+    } else {
+      setStatus({ type: 'error', message: r1.error || r2.error });
+    }
+    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
   return (

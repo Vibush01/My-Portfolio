@@ -1,19 +1,24 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
-import { projects as initialData } from '../../data/projects';
+import { useData } from '../../context/DataContext';
 
 function ManageProjects() {
   const { theme } = useTheme();
   const { isGuest } = useAuth();
+  const { data, updateData } = useData();
   
-  const [projects, setProjects] = useState(initialData);
+  const [projects, setProjects] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [status, setStatus] = useState({ type: '', message: '' });
+
+  useEffect(() => {
+    if (data && data.projects) setProjects(data.projects);
+  }, [data]);
   
   const [formData, setFormData] = useState({
     title: '', subtitle: '', description: '', image: '', 
-    gradientStart: '#10b981', gradientEnd: '#3b82f6',
+    gradientStart: '#3b82f6', gradientEnd: '#2563eb',
     tags: '', features: [''], github: '', live: '', featured: false
   });
 
@@ -24,8 +29,7 @@ function ManageProjects() {
       gradientStart: project.gradient[0],
       gradientEnd: project.gradient[1],
       tags: project.tags.join(', '),
-      features: project.features.length ? [...project.features] : [''],
-      github: project.github || ''
+      features: project.features?.length ? [...project.features] : ['']
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -34,7 +38,7 @@ function ManageProjects() {
     setEditingId(null);
     setFormData({
       title: '', subtitle: '', description: '', image: '', 
-      gradientStart: '#10b981', gradientEnd: '#3b82f6',
+      gradientStart: '#3b82f6', gradientEnd: '#2563eb',
       tags: '', features: [''], github: '', live: '', featured: false
     });
   };
@@ -62,66 +66,87 @@ function ManageProjects() {
     setFormData(prev => ({ ...prev, features: newFeatures.length ? newFeatures : [''] }));
   };
 
-  const handleDelete = (id) => {
+  const handleDelete = async (id) => {
     if (isGuest) {
       setStatus({ type: 'error', message: 'Guest Mode: You cannot delete entries.' });
       return;
     }
-    setProjects(projects.filter(p => p.id !== id));
-    setStatus({ type: 'success', message: 'Project deleted successfully!' });
+    
+    setStatus({ type: 'loading', message: 'Deleting...' });
+    const newProjects = projects.filter(p => p.id !== id);
+    
+    const result = await updateData('projects', newProjects);
+    if (result.success) {
+      setStatus({ type: 'success', message: 'Project deleted successfully!' });
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
     setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
-  const handleMove = (index, direction) => {
+  const handleMove = async (index, direction) => {
     if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active.' });
     if (
       (direction === 'up' && index === 0) || 
       (direction === 'down' && index === projects.length - 1)
     ) return;
 
+    setStatus({ type: 'loading', message: 'Reordering...' });
     const newProjects = [...projects];
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     [newProjects[index], newProjects[targetIndex]] = [newProjects[targetIndex], newProjects[index]];
-    setProjects(newProjects);
+    
+    const result = await updateData('projects', newProjects);
+    if (result.success) {
+      setStatus({ type: 'success', message: 'Projects reordered!' });
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
+    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isGuest) {
       setStatus({ type: 'error', message: 'Guest Mode: You cannot save changes.' });
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Saving changes...' });
+    setStatus({ type: 'loading', message: 'Saving changes to Firebase...' });
     
-    setTimeout(() => {
-      const tagsArray = formData.tags.split(',').map(t => t.trim()).filter(t => t);
-      const featuresArray = formData.features.filter(f => f.trim());
+    const tagsArray = formData.tags.split(',').map(t => t.trim()).filter(t => t);
+    const featuresArray = formData.features.filter(f => f.trim());
 
-      const finalData = {
-        id: editingId || Date.now(),
-        title: formData.title,
-        subtitle: formData.subtitle,
-        description: formData.description,
-        image: formData.image,
-        gradient: [formData.gradientStart, formData.gradientEnd],
-        tags: tagsArray,
-        features: featuresArray,
-        github: formData.github || null,
-        live: formData.live,
-        featured: formData.featured
-      };
+    const finalData = {
+      id: editingId === 'new' || !editingId ? Date.now() : editingId,
+      title: formData.title,
+      subtitle: formData.subtitle,
+      description: formData.description,
+      image: formData.image,
+      gradient: [formData.gradientStart, formData.gradientEnd],
+      tags: tagsArray,
+      features: featuresArray,
+      github: formData.github || null,
+      live: formData.live,
+      featured: formData.featured
+    };
 
-      if (editingId) {
-        setProjects(projects.map(p => p.id === editingId ? finalData : p));
-      } else {
-        setProjects([finalData, ...projects]);
-      }
+    let newProjects;
+    if (editingId && editingId !== 'new') {
+      newProjects = projects.map(p => p.id === editingId ? finalData : p);
+    } else {
+      newProjects = [finalData, ...projects];
+    }
 
+    const result = await updateData('projects', newProjects);
+    
+    if (result.success) {
       setStatus({ type: 'success', message: 'Project saved successfully!' });
       handleCancel();
-      setTimeout(() => setStatus({ type: '', message: '' }), 3000);
-    }, 800);
+    } else {
+      setStatus({ type: 'error', message: result.error });
+    }
+    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
   };
 
   return (

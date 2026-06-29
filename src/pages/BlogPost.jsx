@@ -1,8 +1,8 @@
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useNavigate } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/react'
 import { Suspense, lazy, useMemo } from 'react'
 import useTheme from '../hooks/useTheme'
-import { blogPosts } from '../data/blog'
+import { useData } from '../context/DataContext'
 
 // MDX Components for styling
 const createMdxComponents = (theme) => ({
@@ -149,10 +149,12 @@ const blogModules = import.meta.glob('../content/blog/*.mdx')
 
 function BlogPost() {
   const { slug } = useParams()
+  const navigate = useNavigate()
   const { theme } = useTheme()
+  const { data } = useData()
   
   // Find the post metadata
-  const post = blogPosts.find(p => p.slug === slug)
+  const post = data?.blog?.find(p => p.slug === slug)
   
   // Create themed MDX components
   const mdxComponents = useMemo(() => createMdxComponents(theme), [theme])

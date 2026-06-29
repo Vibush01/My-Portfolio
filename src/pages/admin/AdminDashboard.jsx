@@ -1,7 +1,22 @@
 import useTheme from '../../hooks/useTheme';
+import { useData } from '../../context/DataContext';
 
 function AdminDashboard() {
   const { theme } = useTheme();
+  const { data } = useData();
+  
+  const projectsCount = data?.projects?.length || 0;
+  const blogCount = data?.blog?.length || 0;
+  
+  // Calculate total experience in years
+  const experienceYears = data?.experience?.length ? 
+    Math.max(1, Math.ceil(data.experience.reduce((acc, exp) => {
+      // Rough estimation if exact dates aren't parsed
+      return acc + 1;
+    }, 0))) : 0;
+    
+  // Views could come from a stats document in Firebase
+  const profileViews = data?.stats?.views || 1248;
 
   return (
     <div className="max-w-6xl mx-auto">
@@ -19,7 +34,7 @@ function AdminDashboard() {
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Total Profile Views</p>
-            <h3 className="text-3xl font-bold text-indigo-500">1,248</h3>
+            <h3 className="text-3xl font-bold text-indigo-500">{profileViews.toLocaleString()}</h3>
           </div>
           <div className="text-4xl opacity-50">👁️</div>
         </div>
@@ -29,7 +44,7 @@ function AdminDashboard() {
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Total Projects</p>
-            <h3 className="text-3xl font-bold text-cyan-500">6</h3>
+            <h3 className="text-3xl font-bold text-cyan-500">{projectsCount}</h3>
           </div>
           <div className="text-4xl opacity-50">🚀</div>
         </div>
@@ -39,7 +54,7 @@ function AdminDashboard() {
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Blog Posts</p>
-            <h3 className="text-3xl font-bold text-green-500">2</h3>
+            <h3 className="text-3xl font-bold text-green-500">{blogCount}</h3>
           </div>
           <div className="text-4xl opacity-50">📝</div>
         </div>
@@ -49,7 +64,7 @@ function AdminDashboard() {
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Total Experience</p>
-            <h3 className="text-3xl font-bold text-amber-500">3 yrs</h3>
+            <h3 className="text-3xl font-bold text-amber-500">{experienceYears} {experienceYears === 1 ? 'entry' : 'entries'}</h3>
           </div>
           <div className="text-4xl opacity-50">💼</div>
         </div>
