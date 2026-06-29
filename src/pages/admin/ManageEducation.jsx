@@ -32,10 +32,11 @@ function ManageEducation() {
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     [newList[index], newList[targetIndex]] = [newList[targetIndex], newList[index]];
     
+    if (type === 'education') setEducation(newList);
+    else setCerts(newList);
+
     const result = await updateData(type, newList);
     if (result.success) {
-      if (type === 'education') setEducation(newList);
-      else setCerts(newList);
       setStatus({ type: 'success', message: 'Reordered successfully!' });
     } else {
       setStatus({ type: 'error', message: result.error });

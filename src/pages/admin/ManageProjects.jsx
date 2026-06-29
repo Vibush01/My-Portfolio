@@ -107,6 +107,8 @@ function ManageProjects() {
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     [newProjects[index], newProjects[targetIndex]] = [newProjects[targetIndex], newProjects[index]];
     
+    setProjects(newProjects); // Optimistic UI update
+
     const result = await updateData('projects', newProjects);
     if (result.success) {
       setStatus({ type: 'success', message: 'Projects reordered!' });

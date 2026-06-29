@@ -70,6 +70,8 @@ function ManageBlog() {
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     [newBlogs[index], newBlogs[targetIndex]] = [newBlogs[targetIndex], newBlogs[index]];
     
+    setBlogs(newBlogs); // Optimistic UI update
+    
     const result = await updateData('blog', newBlogs);
     if (result.success) {
       setStatus({ type: 'success', message: 'Blogs reordered!' });

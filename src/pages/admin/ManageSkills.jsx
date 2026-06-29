@@ -8,14 +8,24 @@ function ManageSkills() {
   const { isGuest } = useAuth();
   const { data, updateData } = useData();
   
-  const [skills, setSkills] = useState([]);
-  const [tools, setTools] = useState([]);
+  const [skills, _setSkills] = useState([]);
+  const [tools, _setTools] = useState([]);
   const [status, setStatus] = useState({ type: '', message: '' });
+
+  const setSkills = (newSkills) => {
+    _setSkills(newSkills);
+    if (!isGuest) updateData('skills', newSkills);
+  };
+
+  const setTools = (newTools) => {
+    _setTools(newTools);
+    if (!isGuest) updateData('tools', newTools);
+  };
 
   useEffect(() => {
     if (data) {
-      if (data.skills) setSkills(data.skills);
-      if (data.tools) setTools(data.tools);
+      if (data.skills) _setSkills(data.skills);
+      if (data.tools) _setTools(data.tools);
     }
   }, [data]);
 
@@ -155,15 +165,10 @@ function ManageSkills() {
           </p>
         </div>
         <button 
-          onClick={handleSaveAll}
-          disabled={isGuest}
-          className={`px-8 py-3 rounded-xl font-semibold text-white transition-all ${
-            isGuest 
-              ? 'bg-slate-500 cursor-not-allowed opacity-50' 
-              : 'bg-indigo-500 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30'
-          }`}
+          disabled={true}
+          className={`px-8 py-3 rounded-xl font-semibold text-white transition-all bg-green-500/80 cursor-default shadow-lg shadow-green-500/30`}
         >
-          {isGuest ? 'Disabled (Guest)' : 'Save All Changes'}
+          {isGuest ? 'Disabled (Guest)' : '✓ Auto-Saved'}
         </button>
       </div>
 
