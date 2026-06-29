@@ -38,6 +38,17 @@ body {
   overflow-x: hidden;
 }
 
+/* Custom Text Selection Styling (Solid Theme Colors) */
+::selection {
+  background-color: #F9FAFC; /* Visible light indigo background */
+  color: #6162FF; /* Deep vibrant indigo text */
+}
+
+.dark ::selection {
+  background-color: #1C293C; /* Solid dark indigo (indigo-900) */
+  color: #0da4be; /* Bright light indigo (indigo-300) */
+}
+
 /* Dark mode default - using .dark class */
 .dark body,
 body.dark {
@@ -52,11 +63,7 @@ body:not(.dark),
   color: var(--color-text-light);
 }
 
-/* Selection styling */
-::selection {
-  background-color: var(--color-primary);
-  color: white;
-}
+
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
