@@ -30,7 +30,9 @@ function Blog() {
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {featuredPosts.map((post) => (
-            <BlogCard key={post.id} post={post} />
+            <div key={post.id} className="h-full">
+              <BlogCard post={post} />
+            </div>
           ))}
         </div>
 

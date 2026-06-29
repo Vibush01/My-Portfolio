@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import useTheme from '../../hooks/useTheme'
-import { skills, education, certifications } from '../../data/skills'
+import { skills, education } from '../../data/skills'
+import { certifications } from '../../data/certifications'
 
 function About() {
   const { theme } = useTheme()

@@ -54,10 +54,5 @@ export const education = [
   }
 ]
 
-export const certifications = [
-  "MERN Stack Development - Apna College",
-  "Full Stack Web Development - Udemy",
-  "Introduction to Linux - Infosys Springboard"
-]
 
-export default { skills, toolsWithIcons, education, certifications }
+export default { skills, toolsWithIcons, education }

@@ -30,7 +30,9 @@ function Projects() {
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
           {featuredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <div key={project.id} className="h-full">
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
 

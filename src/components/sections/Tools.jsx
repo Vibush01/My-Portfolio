@@ -76,25 +76,22 @@ function Tools() {
       className={`py-20 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-16">
-          <div>
-            <p className={`text-sm font-medium uppercase tracking-widest mb-2 ${
-              theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
-            }`}>
-              Tools
-            </p>
-            <h2 className={`text-3xl md:text-4xl font-bold ${
-              theme === 'dark' ? 'text-white' : 'text-slate-900'
-            }`}>
-              THE KEY DESIGN AND<br />
-              DEVELOPMENT TOOLS I USE
-            </h2>
-          </div>
+        {/* Section Title */}
+        <div className="text-center mb-16">
+          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
+            theme === 'dark' ? 'text-white' : 'text-slate-900'
+          }`}>
+            Tools & Tech Stack
+          </h2>
+          <p className={`text-lg max-w-2xl mx-auto ${
+            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          }`}>
+            Software and technologies I use on a daily basis
+          </p>
         </div>
 
-        {/* Tools Grid */}
-        <div className="space-y-12">
+        {/* Tools Grid by Category */}
+        <div className="space-y-16">
           {Object.entries(toolsWithIcons).map(([category, tools]) => (
             <div key={category}>
               {/* Category Title */}

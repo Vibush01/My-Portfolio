@@ -1,8 +1,16 @@
 import { Link } from "react-router-dom";
 import useTheme from "../../hooks/useTheme";
+import useTypingEffect from "../../hooks/useTypingEffect";
 
 function Hero() {
   const { theme } = useTheme();
+  
+  const typingText = useTypingEffect([
+    "Full Stack Developer",
+    "MERN Stack Developer",
+    "React Developer",
+    "Node.js Backend Developer"
+  ], 100, 50, 2500);
 
   return (
     <section
@@ -14,14 +22,16 @@ function Hero() {
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
-          className={`absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl ${
+          className={`absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl animate-float ${
             theme === "dark" ? "bg-indigo-500/20" : "bg-indigo-500/10"
           }`}
+          style={{ animationDuration: '8s' }}
         />
         <div
-          className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl ${
+          className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl animate-float ${
             theme === "dark" ? "bg-cyan-500/20" : "bg-cyan-500/10"
           }`}
+          style={{ animationDuration: '6s', animationDelay: '2s' }}
         />
       </div>
 
@@ -49,11 +59,12 @@ function Hero() {
 
           {/* Role */}
           <h2
-            className={`text-2xl md:text-3xl font-semibold mb-6 ${
+            className={`text-2xl md:text-3xl font-semibold mb-6 h-10 ${
               theme === "dark" ? "text-slate-300" : "text-slate-700"
             }`}
           >
-            Full Stack Developer
+            {typingText}
+            <span className="animate-pulse">|</span>
           </h2>
 
           {/* Description */}

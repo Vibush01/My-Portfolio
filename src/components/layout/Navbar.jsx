@@ -6,9 +6,29 @@ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showProfileModal, setShowProfileModal] = useState(false)
   const [showBackToTop, setShowBackToTop] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
   const { theme, toggleTheme } = useTheme()
   const location = useLocation()
   const navigate = useNavigate()
+
+  // Active section tracker
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-20% 0px -79% 0px', threshold: 0 } // Triggers when section is in top 20%
+    )
+
+    const sections = document.querySelectorAll('section[id]')
+    sections.forEach((section) => observer.observe(section))
+
+    return () => sections.forEach((section) => observer.unobserve(section))
+  }, [location.pathname])
 
   // Check scroll position for back to top button
   useEffect(() => {
@@ -88,18 +108,28 @@ function Navbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-8">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`text-sm font-medium transition-colors hover:text-indigo-500 ${
-                    theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace('/#', '')
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`text-sm font-medium transition-all ${
+                      isActive
+                        ? 'text-indigo-500 scale-105'
+                        : theme === 'dark' 
+                          ? 'text-slate-300 hover:text-indigo-400' 
+                          : 'text-slate-600 hover:text-indigo-600'
+                    }`}
+                  >
+                    {link.name}
+                    {isActive && (
+                      <div className="h-0.5 w-full bg-indigo-500 mt-1 rounded-full animate-fadeInUp"></div>
+                    )}
+                  </a>
+                )
+              })}
             </div>
 
             {/* Theme Toggle & Mobile Menu Button */}
@@ -146,18 +176,27 @@ function Navbar() {
           {/* Mobile Navigation */}
           {isMenuOpen && (
             <div className={`md:hidden py-4 border-t ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}`}>
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className={`block py-3 text-sm font-medium transition-colors hover:text-indigo-500 ${
-                    theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.replace('/#', '')
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`block py-3 px-4 text-sm font-medium transition-all rounded-lg mb-1 ${
+                      isActive
+                        ? theme === 'dark'
+                          ? 'bg-indigo-500/20 text-indigo-400'
+                          : 'bg-indigo-50 text-indigo-600'
+                        : theme === 'dark' 
+                          ? 'text-slate-300 hover:bg-slate-800' 
+                          : 'text-slate-600 hover:bg-slate-100'
+                    }`}
+                  >
+                    {link.name}
+                  </a>
+                )
+              })}
             </div>
           )}
         </div>
