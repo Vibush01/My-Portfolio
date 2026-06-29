@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import useTheme from "../../hooks/useTheme";
 import { useData } from "../../context/DataContext";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
@@ -94,8 +93,8 @@ function Hero() {
               Get In Touch
             </a>
             <a
-              href="/Vivek_Full_Stack_Developer.pdf"
-              download="Vivek_Full_Stack_Developer.pdf"
+              href={heroData.resumeUrl || "#"}
+              download
               className={`px-8 py-3 rounded-lg font-medium border transition-all hover:-translate-y-0.5 ${
                 theme === "dark"
                   ? "border-slate-600 text-white hover:bg-slate-800"

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import useTheme from '../hooks/useTheme'
 import ProjectCard from '../components/ProjectCard'
 import { useData } from '../context/DataContext'
@@ -9,10 +10,12 @@ function ProjectsPage() {
   const { data } = useData()
   const projects = data?.projects || []
 
-  const [filter, setFilter] = useState('All')
-
   return (
     <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
+      <Helmet>
+        <title>All Projects | Vivek Kumar</title>
+        <meta name="description" content="A complete collection of my web development projects and work." />
+      </Helmet>
       <div className="max-w-6xl mx-auto px-6">
         {/* Back Link */}
         <Link 

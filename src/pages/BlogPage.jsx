@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 import useTheme from '../hooks/useTheme'
 import { FiArrowLeft, FiClock, FiCalendar } from 'react-icons/fi'
 import { useData } from '../context/DataContext'
@@ -11,6 +12,10 @@ function BlogPage() {
 
   return (
     <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
+      <Helmet>
+        <title>Blog | Vivek Kumar</title>
+        <meta name="description" content="Articles about web development, engineering, and technology." />
+      </Helmet>
       <div className="max-w-6xl mx-auto px-6">
         {/* Back Link */}
         <Link 

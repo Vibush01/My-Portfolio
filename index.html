@@ -73,6 +73,20 @@
     </noscript>
 
     <title>Vivek Kumar | Full Stack Developer</title>
+    
+    <script>
+      (function() {
+        try {
+          var localTheme = localStorage.getItem('theme');
+          var themeToSet = localTheme || 'dark';
+          if (themeToSet === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import useTheme from '../../hooks/useTheme'
+import { useData } from '../../context/DataContext'
 
 function Contact() {
   const { theme } = useTheme()
+  const { data } = useData()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -95,7 +97,7 @@ function Contact() {
               >
                 <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
                   <img 
-                    src="/profile.webp" 
+                    src={data?.hero?.profileImageUrl || "/profile.webp"} 
                     alt="Vivek Kumar" 
                     className="w-full h-full object-cover"
                     loading="lazy"

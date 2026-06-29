@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
+import { uploadToCloudinary } from '../../utils/uploadFile';
 
 function ManageHero() {
   const { theme } = useTheme();
@@ -9,21 +10,30 @@ function ManageHero() {
   const { data, updateData } = useData();
   
   const [formData, setFormData] = useState({
-    name: '', roles: '', bio: '', email: '', github: '', linkedin: ''
+    name: '', roles: '', bio: '', email: '', github: '', linkedin: '', resumeUrl: '', profileImageUrl: ''
   });
+  
+  const [resumeFile, setResumeFile] = useState(null);
+  const [profileImageFile, setProfileImageFile] = useState(null);
 
   const [status, setStatus] = useState({ type: '', message: '' });
 
   // Sync with global data
   useEffect(() => {
     if (data && data.hero) {
-      setFormData(data.hero);
+      setFormData(prev => ({ ...prev, ...data.hero }));
     }
   }, [data]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleFileChange = (e, setFile) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -33,12 +43,29 @@ function ManageHero() {
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Saving changes to Firebase...' });
+    setStatus({ type: 'loading', message: 'Saving changes and uploading files (this may take a moment)...' });
     
-    const result = await updateData('hero', formData);
+    let updatedData = { ...formData };
+
+    try {
+      if (resumeFile) {
+        updatedData.resumeUrl = await uploadToCloudinary(resumeFile);
+      }
+      if (profileImageFile) {
+        updatedData.profileImageUrl = await uploadToCloudinary(profileImageFile);
+      }
+    } catch (err) {
+      setStatus({ type: 'error', message: 'File upload failed: ' + err.message });
+      return;
+    }
+    
+    const result = await updateData('hero', updatedData);
     
     if (result.success) {
       setStatus({ type: 'success', message: 'Hero & Bio updated successfully!' });
+      setResumeFile(null);
+      setProfileImageFile(null);
+      // reset file inputs visually if needed, though they are uncontrolled.
       setTimeout(() => setStatus({ type: '', message: '' }), 3000);
     } else {
       setStatus({ type: 'error', message: result.error || 'Failed to save data.' });
@@ -157,6 +184,45 @@ function ManageHero() {
                   theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
               />
+            </div>
+          </div>
+        </div>
+
+        {/* Assets Section */}
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <h2 className="text-xl font-bold mb-6">Assets (Uploads)</h2>
+          
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium mb-2 opacity-80">
+                Upload New Resume (PDF)
+                {formData.resumeUrl && <span className="text-green-500 ml-2 text-xs">(Currently uploaded)</span>}
+              </label>
+              <input
+                type="file"
+                accept=".pdf"
+                onChange={(e) => handleFileChange(e, setResumeFile)}
+                className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
+                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                } file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100`}
+              />
+              <p className="text-xs mt-2 opacity-60">Leave empty to keep existing resume.</p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium mb-2 opacity-80">
+                Upload Profile Image (PNG/JPG/WEBP)
+                {formData.profileImageUrl && <span className="text-green-500 ml-2 text-xs">(Currently uploaded)</span>}
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleFileChange(e, setProfileImageFile)}
+                className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
+                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                } file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100`}
+              />
+              <p className="text-xs mt-2 opacity-60">Leave empty to keep existing image.</p>
             </div>
           </div>
         </div>

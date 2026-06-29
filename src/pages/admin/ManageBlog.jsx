@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
+import { uploadToCloudinary } from '../../utils/uploadFile';
 
 function ManageBlog() {
   const { theme } = useTheme();
@@ -11,6 +12,7 @@ function ManageBlog() {
   const [blogs, setBlogs] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [status, setStatus] = useState({ type: '', message: '' });
+  const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     if (data && data.blog) setBlogs(data.blog);
@@ -48,6 +50,12 @@ function ManageBlog() {
       ...prev, 
       [name]: type === 'checkbox' ? checked : value 
     }));
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+    }
   };
 
   const handleMove = async (index, direction) => {
@@ -96,10 +104,21 @@ function ManageBlog() {
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Saving changes to Firebase...' });
+    setStatus({ type: 'loading', message: 'Saving changes and uploading image...' });
+    
+    let uploadedImageUrl = formData.image;
+    try {
+      if (imageFile) {
+        uploadedImageUrl = await uploadToCloudinary(imageFile);
+      }
+    } catch (err) {
+      setStatus({ type: 'error', message: 'Image upload failed: ' + err.message });
+      return;
+    }
     
     const finalData = {
       ...formData,
+      image: uploadedImageUrl,
       id: editingId === 'new' || !editingId ? Date.now() : editingId
     };
 
@@ -109,6 +128,9 @@ function ManageBlog() {
     } else {
       newBlogs = [finalData, ...blogs];
     }
+
+    // Sort by date descending
+    newBlogs.sort((a, b) => new Date(b.date) - new Date(a.date));
 
     const result = await updateData('blog', newBlogs);
     
@@ -167,11 +189,40 @@ function ManageBlog() {
               </div>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Category</label>
                 <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="e.g. React" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
               </div>
+              
+              <div>
+                <label className="block text-sm font-medium mb-2 opacity-80">
+                  Featured Image
+                  {formData.image && !imageFile && <span className="text-green-500 ml-2 text-xs">(Uploaded)</span>}
+                </label>
+                <div className="space-y-2">
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className={`w-full px-4 py-2 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
+                  />
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs opacity-60">OR</span>
+                    <input 
+                      type="text" 
+                      name="image" 
+                      value={formData.image} 
+                      onChange={handleChange} 
+                      placeholder="Paste Image URL" 
+                      className={`flex-1 px-3 py-1.5 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} 
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Date</label>
                 <input type="text" name="date" value={formData.date} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
@@ -188,11 +239,6 @@ function ManageBlog() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium mb-2 opacity-80">Cover Image URL</label>
-                <input type="text" name="image" value={formData.image} onChange={handleChange} placeholder="/images/blog/post.webp" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
-              </div>
-              
               <div className="flex gap-4">
                 <div className="w-24">
                   <label className="block text-sm font-medium mb-2 opacity-80">Emoji</label>

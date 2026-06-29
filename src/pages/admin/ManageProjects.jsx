@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
 import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
+import { uploadToCloudinary } from '../../utils/uploadFile';
 
 function ManageProjects() {
   const { theme } = useTheme();
@@ -22,6 +23,8 @@ function ManageProjects() {
     tags: '', features: [''], github: '', live: '', featured: false
   });
 
+  const [imageFile, setImageFile] = useState(null);
+
   const handleEdit = (project) => {
     setEditingId(project.id);
     setFormData({
@@ -31,6 +34,7 @@ function ManageProjects() {
       tags: project.tags.join(', '),
       features: project.features?.length ? [...project.features] : ['']
     });
+    setImageFile(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -41,6 +45,7 @@ function ManageProjects() {
       gradientStart: '#3b82f6', gradientEnd: '#2563eb',
       tags: '', features: [''], github: '', live: '', featured: false
     });
+    setImageFile(null);
   };
 
   const handleChange = (e) => {
@@ -49,6 +54,12 @@ function ManageProjects() {
       ...prev, 
       [name]: type === 'checkbox' ? checked : value 
     }));
+  };
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+    }
   };
 
   const handleFeatureChange = (index, value) => {
@@ -112,7 +123,17 @@ function ManageProjects() {
       return;
     }
 
-    setStatus({ type: 'loading', message: 'Saving changes to Firebase...' });
+    setStatus({ type: 'loading', message: 'Saving changes and uploading image...' });
+    
+    let uploadedImageUrl = formData.image;
+    try {
+      if (imageFile) {
+        uploadedImageUrl = await uploadToCloudinary(imageFile);
+      }
+    } catch (err) {
+      setStatus({ type: 'error', message: 'Image upload failed: ' + err.message });
+      return;
+    }
     
     const tagsArray = formData.tags.split(',').map(t => t.trim()).filter(t => t);
     const featuresArray = formData.features.filter(f => f.trim());
@@ -122,7 +143,7 @@ function ManageProjects() {
       title: formData.title,
       subtitle: formData.subtitle,
       description: formData.description,
-      image: formData.image,
+      image: uploadedImageUrl,
       gradient: [formData.gradientStart, formData.gradientEnd],
       tags: tagsArray,
       features: featuresArray,
@@ -202,8 +223,29 @@ function ManageProjects() {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2 opacity-80">Image URL or Path</label>
-                <input type="text" name="image" value={formData.image} onChange={handleChange} placeholder="/images/projects/name.webp" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <label className="block text-sm font-medium mb-2 opacity-80">
+                  Project Image
+                  {formData.image && !imageFile && <span className="text-green-500 ml-2 text-xs">(Uploaded)</span>}
+                </label>
+                <div className="space-y-2">
+                  <input 
+                    type="file" 
+                    accept="image/*"
+                    onChange={handleFileChange}
+                    className={`w-full px-4 py-2 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
+                  />
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs opacity-60">OR</span>
+                    <input 
+                      type="text" 
+                      name="image" 
+                      value={formData.image} 
+                      onChange={handleChange} 
+                      placeholder="Paste Image URL" 
+                      className={`flex-1 px-3 py-1.5 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} 
+                    />
+                  </div>
+                </div>
               </div>
               
               <div className="flex gap-4">

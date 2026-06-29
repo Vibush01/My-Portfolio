@@ -1,8 +1,10 @@
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { MDXProvider } from '@mdx-js/react'
 import { Suspense, lazy, useMemo } from 'react'
+import { Helmet } from 'react-helmet-async'
 import useTheme from '../hooks/useTheme'
 import { useData } from '../context/DataContext'
+import { FiArrowLeft, FiClock, FiCalendar } from 'react-icons/fi'
 
 // MDX Components for styling
 const createMdxComponents = (theme) => ({
@@ -26,8 +28,8 @@ const createMdxComponents = (theme) => ({
   ),
   p: (props) => (
     <p 
-      className={`mb-4 leading-relaxed text-base ${
-        theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+      className={`mb-6 leading-relaxed ${
+        theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
       }`}
       {...props} 
     />
@@ -149,7 +151,6 @@ const blogModules = import.meta.glob('../content/blog/*.mdx')
 
 function BlogPost() {
   const { slug } = useParams()
-  const navigate = useNavigate()
   const { theme } = useTheme()
   const { data } = useData()
   

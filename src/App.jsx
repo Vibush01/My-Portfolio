@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
 import Home from './pages/Home'
@@ -17,11 +18,20 @@ import AdminLayout from './components/admin/AdminLayout'
 import { useData } from './context/DataContext'
 
 function App() {
-  const { error } = useData();
+  const { error, incrementViews } = useData();
 
-  if (error) {
-    console.warn("App starting in offline mode: ", error);
-  }
+  useEffect(() => {
+    // Only increment views if not in admin routes (optional, but we'll do it globally for simplicity)
+    if (!window.location.pathname.startsWith('/admin')) {
+      incrementViews();
+    }
+  }, [incrementViews]);
+
+  useEffect(() => {
+    if (error) {
+      console.warn("App starting in offline mode: ", error);
+    }
+  }, [error]);
 
   return (
     <Routes>

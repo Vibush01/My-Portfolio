@@ -10,7 +10,7 @@ function AdminDashboard() {
   
   // Calculate total experience in years
   const experienceYears = data?.experience?.length ? 
-    Math.max(1, Math.ceil(data.experience.reduce((acc, exp) => {
+    Math.max(1, Math.ceil(data.experience.reduce((acc) => {
       // Rough estimation if exact dates aren't parsed
       return acc + 1;
     }, 0))) : 0;

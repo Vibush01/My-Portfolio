@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
-import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
+import { doc, setDoc, updateDoc, increment, onSnapshot } from 'firebase/firestore';
 import { db } from '../config/firebase';
 
 // Initial Seed Data (Fallbacks if Firebase is empty)
@@ -82,7 +82,9 @@ export function DataProvider({ children }) {
   const updateData = async (section, newData) => {
     try {
       const docRef = doc(db, 'portfolio', 'data');
-      await setDoc(docRef, { [section]: newData }, { merge: true });
+      await setDoc(docRef, {
+        [section]: newData
+      }, { merge: true });
       return { success: true };
     } catch (err) {
       console.error(`Error updating ${section}:`, err);
@@ -90,8 +92,32 @@ export function DataProvider({ children }) {
     }
   };
 
+  // Custom view tracking (Simple analytics)
+  const incrementViews = async () => {
+    // Only count once per session
+    if (sessionStorage.getItem('view_counted')) return;
+    
+    try {
+      const docRef = doc(db, 'portfolio', 'data');
+      await updateDoc(docRef, {
+        'stats.views': increment(1)
+      });
+      sessionStorage.setItem('view_counted', 'true');
+    } catch (err) {
+      console.error("Error updating views:", err);
+    }
+  };
+
+  const value = {
+    data,
+    loading,
+    error,
+    updateData,
+    incrementViews
+  };
+
   return (
-    <DataContext.Provider value={{ data, loading, error, updateData }}>
+    <DataContext.Provider value={value}>
       {children}
     </DataContext.Provider>
   );

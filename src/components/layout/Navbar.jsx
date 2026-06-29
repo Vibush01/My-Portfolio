@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import useTheme from '../../hooks/useTheme'
+import { useData } from '../../context/DataContext'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -8,6 +9,7 @@ function Navbar() {
   const [showBackToTop, setShowBackToTop] = useState(false)
   const [activeSection, setActiveSection] = useState('hero')
   const { theme, toggleTheme } = useTheme()
+  const { data } = useData()
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -100,7 +102,7 @@ function Navbar() {
               className="flex items-center gap-2"
             >
               <img 
-                src="/profile.webp" 
+                src={data?.hero?.profileImageUrl || "/profile.webp"} 
                 alt="Vivek Kumar"
                 className="w-10 h-10 rounded-full object-cover border-2 border-indigo-500 hover:scale-110 transition-transform cursor-pointer"
               />
@@ -244,9 +246,9 @@ function Navbar() {
               </svg>
             </button>
             <img 
-              src="/profile.webp" 
+              src={data?.hero?.profileImageUrl || "/profile.webp"} 
               alt="Vivek Kumar"
-              className="w-72 h-72 md:w-96 md:h-96 rounded-full object-cover border-4 border-indigo-500 shadow-2xl shadow-indigo-500/30"
+              className="w-24 h-24 rounded-full object-cover border-4 border-indigo-500 shadow-2xl shadow-indigo-500/30"
             />
             <div className="text-center mt-6">
               <h3 className="text-2xl font-bold text-white">Vivek Kumar</h3>
