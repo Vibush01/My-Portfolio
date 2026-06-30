@@ -46,7 +46,7 @@ function Tools() {
     'Slack': SiSlack,
     'Zoho': SiZoho,
     'VS Code': VscVscode,
-    'React.Js': SiReact,
+    'React.js': SiReact,
     'Node.js': SiNodedotjs,
     'MongoDB': SiMongodb,
     'Tailwind CSS': SiTailwindcss,
