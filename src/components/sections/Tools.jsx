@@ -19,10 +19,16 @@ import {
   SiVercel,
   SiGithub,
   SiOpenai,
-  SiGoogleanalytics
+  SiGoogleanalytics,
+  SiGooglegemini,
+  SiClaude,
+  SiJavascript,
+  SiDocker,
+  SiPostman,
+  SiMysql
 } from 'react-icons/si'
 import { VscVscode } from 'react-icons/vsc'
-import { FaAws, FaBolt, FaRobot, FaStar } from 'react-icons/fa'
+import { FaAws, FaBolt, FaLinux, FaGitAlt } from 'react-icons/fa'
 
 function Tools() {
   const { theme } = useTheme()
@@ -40,21 +46,28 @@ function Tools() {
     'Slack': SiSlack,
     'Zoho': SiZoho,
     'VS Code': VscVscode,
-    'React': SiReact,
+    'React.Js': SiReact,
     'Node.js': SiNodedotjs,
     'MongoDB': SiMongodb,
-    'TailwindCSS': SiTailwindcss,
+    'Tailwind CSS': SiTailwindcss,
     'Hono': FaBolt,
     'TypeScript': SiTypescript,
-    'Express': SiExpress,
+    'Express.js': SiExpress,
     'Firebase': SiFirebase,
     'AWS': FaAws,
     'Vercel': SiVercel,
     'GitHub': SiGithub,
-    'Claude AI': FaRobot,
-    'Gemini': FaStar,
+    'Claude AI': SiClaude,
+    'Gemini': SiGooglegemini,
     'ChatGPT': SiOpenai,
-    'Google Analytics': SiGoogleanalytics
+    'Google Analytics': SiGoogleanalytics,
+    'JavaScript': SiJavascript,
+    'Redux Toolkit': SiReact,
+    'Docker': SiDocker,
+    'Linux': FaLinux,
+    'Git': FaGitAlt,
+    'Postman':SiPostman,
+    'MySQL' : SiMysql
   }
 
   // Tools that need black color in light mode (white icons)
