@@ -70,8 +70,8 @@ function Experience() {
                   : 'bg-slate-50 border border-slate-200 hover:border-indigo-400/50'
               }`}>
                 {/* Type badge + Timeline dates */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <div className="flex items-center gap-2">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <div className="flex flex-wrap items-center gap-2">
                     <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
                       theme === 'dark' 
                         ? 'bg-indigo-500/20 text-indigo-400' 

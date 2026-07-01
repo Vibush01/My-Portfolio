@@ -159,7 +159,7 @@ function About() {
                 {visibleCerts.map((cert, index) => (
                   <div 
                     key={certPage * certsPerPage + index}
-                    className={`p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 ${
+                    className={`p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 h-[96px] flex items-center ${
                       theme === 'dark' 
                         ? 'bg-slate-900 border-slate-700 hover:border-indigo-500/40' 
                         : 'bg-white border-slate-200 hover:border-indigo-400/40 shadow-sm'
@@ -182,7 +182,7 @@ function About() {
                         {cert.icon}
                       </div>
                       <div style={{ flex: 1 }}>
-                        <p style={{ 
+                        <p className="line-clamp-2" style={{ 
                           fontWeight: 600, 
                           fontSize: '14px', 
                           lineHeight: 1.4,

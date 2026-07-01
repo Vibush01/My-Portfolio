@@ -72,7 +72,7 @@ function AdminLayout() {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 lg:ml-64 flex flex-col min-h-screen">
+      <main className="flex-1 lg:ml-64 flex flex-col min-h-screen w-full max-w-full overflow-x-hidden">
         {/* Header */}
         <header className={`h-16 flex items-center justify-between px-6 border-b ${
           theme === 'dark' ? 'bg-slate-900/80 border-slate-800' : 'bg-white/80 border-slate-200'
@@ -91,7 +91,7 @@ function AdminLayout() {
             >
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
-            <div className={`px-3 py-1.5 rounded-full text-xs font-medium border ${
+            <div className={`px-3 py-1.5 rounded-full text-xs font-medium border truncate max-w-[120px] sm:max-w-xs ${
               theme === 'dark' ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-600'
             }`}>
               {currentUser?.email}

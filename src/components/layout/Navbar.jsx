@@ -234,7 +234,7 @@ function Navbar() {
           onClick={() => setShowProfileModal(false)}
         >
           <div 
-            className="relative max-w-md mx-4"
+            className="relative max-w-md mx-4 flex flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <button
@@ -248,7 +248,7 @@ function Navbar() {
             <img 
               src={data?.hero?.profileImageUrl || "/profile.webp"} 
               alt="Vivek Kumar"
-              className="w-24 h-24 rounded-full object-cover border-4 border-indigo-500 shadow-2xl shadow-indigo-500/30"
+              className="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border-4 border-indigo-500 shadow-2xl shadow-indigo-500/30"
             />
             <div className="text-center mt-6">
               <h3 className="text-2xl font-bold text-white">Vivek Kumar</h3>

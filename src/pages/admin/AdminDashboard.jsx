@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import useTheme from '../../hooks/useTheme';
 import { useData } from '../../context/DataContext';
 
@@ -72,38 +73,37 @@ function AdminDashboard() {
 
       <h2 className="text-2xl font-bold mb-6">Quick Management</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        {/* Placeholder cards for now */}
-        <div className={`p-6 rounded-2xl border ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+        <Link to="/admin/hero" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Hero & Bio</h3>
           <p className="text-sm opacity-70 mb-4">Edit main landing content</p>
           <span className="text-indigo-500 font-medium text-sm">Manage &rarr;</span>
-        </div>
+        </Link>
         
-        <div className={`p-6 rounded-2xl border ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+        <Link to="/admin/experience" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Experience</h3>
           <p className="text-sm opacity-70 mb-4">Manage work history</p>
           <span className="text-indigo-500 font-medium text-sm">Manage &rarr;</span>
-        </div>
+        </Link>
         
-        <div className={`p-6 rounded-2xl border ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+        <Link to="/admin/projects" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Projects</h3>
           <p className="text-sm opacity-70 mb-4">Manage portfolio projects</p>
           <span className="text-indigo-500 font-medium text-sm">Manage &rarr;</span>
-        </div>
+        </Link>
         
-        <div className={`p-6 rounded-2xl border ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+        <Link to="/admin/blog" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
+          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Blog Posts</h3>
           <p className="text-sm opacity-70 mb-4">Manage technical articles</p>
           <span className="text-indigo-500 font-medium text-sm">Manage &rarr;</span>
-        </div>
+        </Link>
       </div>
     </div>
   );

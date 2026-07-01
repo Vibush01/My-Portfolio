@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import useTheme from '../../hooks/useTheme';
+import { useAuth } from '../../context/AuthContext';
 import { useData } from '../../context/DataContext';
 
 function ManageGeneral() {
   const { theme } = useTheme();
+  const { isGuest } = useAuth();
   const { data, updateData } = useData();
   const [status, setStatus] = useState({ type: '', message: '' });
 
@@ -42,6 +44,11 @@ function ManageGeneral() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isGuest) {
+      setStatus({ type: 'error', message: 'Guest Mode: You cannot save changes.' });
+      return;
+    }
+    
     setStatus({ type: 'loading', message: 'Saving changes...' });
 
     const result = await updateData('general', formData);
@@ -56,6 +63,10 @@ function ManageGeneral() {
   };
 
   const handleResetViews = async () => {
+    if (isGuest) {
+      setStatus({ type: 'error', message: 'Guest Mode: You cannot reset views.' });
+      return;
+    }
     if (confirm("Are you sure you want to reset profile views to 0?")) {
       setStatus({ type: 'loading', message: 'Resetting views...' });
       const result = await updateData('stats', { views: 0 });
@@ -79,7 +90,12 @@ function ManageGeneral() {
         </div>
         <button 
           onClick={handleResetViews}
-          className="px-4 py-2 bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white rounded-lg transition-colors font-medium border border-red-500/20"
+          disabled={isGuest}
+          className={`px-4 py-2 rounded-lg font-medium border border-red-500/30 text-red-500 transition-colors ${
+            isGuest 
+              ? 'opacity-50 cursor-not-allowed bg-slate-500/10' 
+              : 'hover:bg-red-500/10'
+          }`}
         >
           Reset Profile Views
         </button>
@@ -219,12 +235,16 @@ function ManageGeneral() {
 
         {/* Submit Button */}
         <div className="flex justify-end">
-          <button
-            type="submit"
-            disabled={status.type === 'loading'}
-            className="px-6 py-3 bg-indigo-500 hover:bg-indigo-600 disabled:opacity-50 text-white rounded-xl font-medium transition-all shadow-lg shadow-indigo-500/30"
+          <button 
+            type="submit" 
+            disabled={isGuest}
+            className={`px-8 py-3 rounded-xl font-semibold text-white transition-all ${
+              isGuest 
+                ? 'bg-slate-500 cursor-not-allowed opacity-50' 
+                : 'bg-indigo-500 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30'
+            }`}
           >
-            {status.type === 'loading' ? 'Saving...' : 'Save Changes'}
+            {isGuest ? 'Disabled (Guest)' : (status.type === 'loading' ? 'Saving...' : 'Save Changes')}
           </button>
         </div>
       </form>
