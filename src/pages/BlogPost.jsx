@@ -149,6 +149,12 @@ const createMdxComponents = (theme) => ({
 // Dynamic import for MDX files
 const blogModules = import.meta.glob('../content/blog/*.mdx')
 
+// Pre-create lazy components outside render to avoid "Cannot create components during render" error
+const lazyBlogPosts = {}
+for (const path in blogModules) {
+  lazyBlogPosts[path] = lazy(blogModules[path])
+}
+
 function BlogPost() {
   const { slug } = useParams()
   const { theme } = useTheme()
@@ -160,14 +166,9 @@ function BlogPost() {
   // Create themed MDX components
   const mdxComponents = useMemo(() => createMdxComponents(theme), [theme])
   
-  // Dynamically load the MDX component
-  const MDXContent = useMemo(() => {
-    const modulePath = `../content/blog/${slug}.mdx`
-    if (blogModules[modulePath]) {
-      return lazy(blogModules[modulePath])
-    }
-    return null
-  }, [slug])
+  // Get the pre-created lazy component for this slug
+  const modulePath = `../content/blog/${slug}.mdx`
+  const MDXContent = lazyBlogPosts[modulePath] || null
 
   if (!post) {
     return (

@@ -51,6 +51,7 @@ export function useScrollReveal(options = {}) {
         }
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options.staggerChildren, options.persist, options.threshold, options.rootMargin])
 
   return ref

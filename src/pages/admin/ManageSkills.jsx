@@ -139,21 +139,7 @@ function ManageSkills() {
     setTools(newTools);
   };
 
-  // ----- SAVE -----
-  const handleSaveAll = async () => {
-    if (isGuest) return setStatus({ type: 'error', message: 'Guest Mode active. Cannot save.' });
-    setStatus({ type: 'loading', message: 'Saving skills and tools to Firebase...' });
-    
-    const r1 = await updateData('skills', skills);
-    const r2 = await updateData('tools', tools);
-    
-    if (r1.success && r2.success) {
-      setStatus({ type: 'success', message: 'Skills and Tools saved successfully!' });
-    } else {
-      setStatus({ type: 'error', message: r1.error || r2.error });
-    }
-    setTimeout(() => setStatus({ type: '', message: '' }), 3000);
-  };
+  // Auto-save logic is handled elsewhere
 
   return (
     <div className="max-w-6xl mx-auto">
