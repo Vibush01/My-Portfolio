@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
+import ScrollToTop from './components/layout/ScrollToTop'
 import Home from './pages/Home'
 import ProjectsPage from './pages/ProjectsPage'
 import BlogPage from './pages/BlogPage'
@@ -39,33 +40,36 @@ function App() {
   }, [error]);
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<Layout><Home /></Layout>} />
-      <Route path="/projects" element={<Layout><ProjectsPage /></Layout>} />
-      <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
-      <Route path="/blog/:slug" element={<Layout><BlogPost /></Layout>} />
-      
-      {/* Admin Routes */}
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route 
-        path="/admin" 
-        element={
-          <ProtectedRoute>
-            <AdminLayout />
-          </ProtectedRoute>
-        } 
-      >
-        <Route path="dashboard" element={<AdminDashboard />} />
-        <Route path="general" element={<ManageGeneral />} />
-        <Route path="hero" element={<ManageHero />} />
-        <Route path="experience" element={<ManageExperience />} />
-        <Route path="projects" element={<ManageProjects />} />
-        <Route path="skills" element={<ManageSkills />} />
-        <Route path="education" element={<ManageEducation />} />
-        <Route path="blog" element={<ManageBlog />} />
-      </Route>
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/" element={<Layout><Home /></Layout>} />
+        <Route path="/projects" element={<Layout><ProjectsPage /></Layout>} />
+        <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
+        <Route path="/blog/:slug" element={<Layout><BlogPost /></Layout>} />
+        
+        {/* Admin Routes */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route 
+          path="/admin" 
+          element={
+            <ProtectedRoute>
+              <AdminLayout />
+            </ProtectedRoute>
+          } 
+        >
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="general" element={<ManageGeneral />} />
+          <Route path="hero" element={<ManageHero />} />
+          <Route path="experience" element={<ManageExperience />} />
+          <Route path="projects" element={<ManageProjects />} />
+          <Route path="skills" element={<ManageSkills />} />
+          <Route path="education" element={<ManageEducation />} />
+          <Route path="blog" element={<ManageBlog />} />
+        </Route>
+      </Routes>
+    </>
   )
 }
 
