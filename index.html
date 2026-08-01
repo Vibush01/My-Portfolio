@@ -9,8 +9,8 @@
     <link rel="apple-touch-icon" href="/profile.webp" />
 
     <!-- Theme Color -->
-    <meta name="theme-color" content="#0f172a" />
-    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#f8fafc" />
+    <meta name="color-scheme" content="light dark" />
 
     <!-- SEO Meta Tags -->
     <meta
@@ -78,7 +78,7 @@
       (function() {
         try {
           var localTheme = localStorage.getItem('theme');
-          var themeToSet = localTheme || 'dark';
+          var themeToSet = localTheme || 'light';
           if (themeToSet === 'dark') {
             document.documentElement.classList.add('dark');
           } else {

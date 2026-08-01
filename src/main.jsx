@@ -8,11 +8,15 @@ import { DataProvider } from './context/DataContext'
 import './styles/index.css'
 import App from './App.jsx'
 
-// Initialize dark mode as default before React hydration
+// Initialize light mode as default before React hydration
 if (!localStorage.getItem('theme')) {
-  localStorage.setItem('theme', 'dark')
+  localStorage.setItem('theme', 'light')
 }
-document.documentElement.classList.add(localStorage.getItem('theme') || 'dark')
+if (localStorage.getItem('theme') === 'dark') {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
+}
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
