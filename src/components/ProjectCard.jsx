@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom'
 import useTheme from '../hooks/useTheme'
 
 function ProjectCard({ project }) {
   const { theme } = useTheme()
 
   return (
+    <Link to={`/projects/${project.id}`} className="block h-full">
     <div 
-      className={`rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${
+      className={`rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group h-full flex flex-col ${
         theme === 'dark' 
           ? 'bg-neutral-950 border border-neutral-800 hover:border-indigo-500' 
           : 'bg-white border border-slate-200 hover:border-indigo-400 shadow-sm'
@@ -50,6 +52,7 @@ function ProjectCard({ project }) {
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="p-3 rounded-full bg-white/20 hover:bg-white/40 hover:scale-110 transition-all duration-200"
               title="View Source Code"
             >
@@ -63,6 +66,7 @@ function ProjectCard({ project }) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="p-3 rounded-full bg-white/20 hover:bg-white/40 hover:scale-110 transition-all duration-200"
               title="View Live Demo"
             >
@@ -75,7 +79,7 @@ function ProjectCard({ project }) {
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-5 flex-1 flex flex-col">
         <h3 className={`text-lg font-bold mb-1 group-hover:text-indigo-500 transition-colors ${
           theme === 'dark' ? 'text-white' : 'text-slate-900'
         }`}>
@@ -112,6 +116,7 @@ function ProjectCard({ project }) {
         </div>
       </div>
     </div>
+    </Link>
   )
 }
 

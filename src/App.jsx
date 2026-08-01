@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import ProjectsPage from './pages/ProjectsPage'
 import BlogPage from './pages/BlogPage'
 import BlogPost from './pages/BlogPost'
+import ProjectDetail from './pages/ProjectDetail'
 import AdminLogin from './pages/admin/AdminLogin'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import ManageGeneral from './pages/admin/ManageGeneral'
@@ -46,6 +47,7 @@ function App() {
         {/* Public Routes */}
         <Route path="/" element={<Layout><Home /></Layout>} />
         <Route path="/projects" element={<Layout><ProjectsPage /></Layout>} />
+        <Route path="/projects/:projectId" element={<Layout><ProjectDetail /></Layout>} />
         <Route path="/blog" element={<Layout><BlogPage /></Layout>} />
         <Route path="/blog/:slug" element={<Layout><BlogPost /></Layout>} />
         
