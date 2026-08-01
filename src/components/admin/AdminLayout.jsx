@@ -30,11 +30,11 @@ function AdminLayout() {
   }
 
   return (
-    <div className={`min-h-screen flex ${theme === 'dark' ? 'bg-slate-900 text-white' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`min-h-screen flex ${theme === 'dark' ? 'bg-black text-white' : 'bg-slate-50 text-slate-900'}`}>
       {/* Sidebar */}
       <aside className={`w-64 fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 ease-in-out border-r ${
         isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-      } ${theme === 'dark' ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'}`}>
+      } ${theme === 'dark' ? 'bg-black border-neutral-900' : 'bg-white border-slate-200'}`}>
         <div className="h-full flex flex-col">
           <div className="p-6">
             <h2 className="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent">
@@ -51,7 +51,7 @@ function AdminLayout() {
                 className={({ isActive }) => `flex items-center gap-3 px-4 py-3 rounded-lg transition-colors font-medium ${
                   isActive 
                     ? 'bg-indigo-500/10 text-indigo-500' 
-                    : theme === 'dark' ? 'hover:bg-slate-800 text-slate-400 hover:text-white' : 'hover:bg-slate-100 text-slate-600 hover:text-slate-900'
+                    : theme === 'dark' ? 'hover:bg-neutral-900 text-zinc-400 hover:text-white' : 'hover:bg-slate-100 text-slate-600 hover:text-slate-900'
                 }`}
               >
                 <span>{item.icon}</span>
@@ -60,7 +60,7 @@ function AdminLayout() {
             ))}
           </nav>
 
-          <div className="p-4 border-t border-slate-200 dark:border-slate-800">
+          <div className={`p-4 border-t ${theme === 'dark' ? 'border-neutral-900' : 'border-slate-200'}`}>
             <button 
               onClick={handleLogout}
               className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-500 hover:bg-red-500/10 transition-colors font-medium"
@@ -75,11 +75,11 @@ function AdminLayout() {
       <main className="flex-1 lg:ml-64 flex flex-col min-h-screen w-full max-w-full overflow-x-hidden">
         {/* Header */}
         <header className={`h-16 flex items-center justify-between px-6 border-b ${
-          theme === 'dark' ? 'bg-slate-900/80 border-slate-800' : 'bg-white/80 border-slate-200'
+          theme === 'dark' ? 'bg-black/80 border-neutral-900' : 'bg-white/80 border-slate-200'
         } backdrop-blur-md sticky top-0 z-40`}>
           <button 
             onClick={() => setIsMobileMenuOpen(true)}
-            className="lg:hidden p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800"
+            className={`lg:hidden p-2 rounded-md ${theme === 'dark' ? 'hover:bg-neutral-900' : 'hover:bg-slate-100'}`}
           >
             ☰
           </button>
@@ -87,12 +87,12 @@ function AdminLayout() {
           <div className="flex items-center gap-4 ml-auto">
             <button 
               onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className={`p-2 rounded-full transition-colors ${theme === 'dark' ? 'hover:bg-neutral-900' : 'hover:bg-slate-100'}`}
             >
               {theme === 'dark' ? '☀️' : '🌙'}
             </button>
             <div className={`px-3 py-1.5 rounded-full text-xs font-medium border truncate max-w-[120px] sm:max-w-xs ${
-              theme === 'dark' ? 'bg-slate-800 border-slate-700 text-slate-300' : 'bg-slate-100 border-slate-200 text-slate-600'
+              theme === 'dark' ? 'bg-neutral-950 border-neutral-800 text-neutral-200' : 'bg-slate-100 border-slate-200 text-slate-600'
             }`}>
               {currentUser?.email}
             </div>

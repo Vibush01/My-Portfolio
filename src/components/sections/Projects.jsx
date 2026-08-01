@@ -14,7 +14,7 @@ function Projects() {
   return (
     <section 
       id="projects" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-white'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -25,7 +25,7 @@ function Projects() {
             Projects
           </h2>
           <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
           }`}>
             A selection of my recent work
           </p>
@@ -46,7 +46,7 @@ function Projects() {
             to="/projects"
             className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium border transition-all hover:-translate-y-0.5 ${
               theme === 'dark' 
-                ? 'border-slate-700 text-white hover:bg-slate-800' 
+                ? 'border-neutral-800 text-white hover:bg-neutral-900' 
                 : 'border-slate-300 text-slate-900 hover:bg-slate-50'
             }`}
           >

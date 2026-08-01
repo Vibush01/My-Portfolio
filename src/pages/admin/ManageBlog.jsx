@@ -150,7 +150,7 @@ function ManageBlog() {
       <div className="mb-8 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-bold mb-2">Manage Blog Posts</h1>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
             Write, edit, and organize your technical articles.
           </p>
         </div>
@@ -176,25 +176,25 @@ function ManageBlog() {
 
       {/* Editor Form */}
       {editingId && (
-        <div className={`p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-6">{editingId === 'new' ? 'Create New Post' : 'Edit Post'}</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Title</label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="title" value={formData.title} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">URL Slug (e.g. my-first-post)</label>
-                <input type="text" name="slug" value={formData.slug} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="slug" value={formData.slug} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Category</label>
-                <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="e.g. React" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="e.g. React" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               
               <div>
@@ -207,7 +207,7 @@ function ManageBlog() {
                     type="file" 
                     accept="image/*"
                     onChange={handleFileChange}
-                    className={`w-full px-4 py-2 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
+                    className={`w-full px-4 py-2 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
                   />
                   <div className="flex items-center gap-2">
                     <span className="text-xs opacity-60">OR</span>
@@ -217,7 +217,7 @@ function ManageBlog() {
                       value={formData.image} 
                       onChange={handleChange} 
                       placeholder="Paste Image URL" 
-                      className={`flex-1 px-3 py-1.5 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} 
+                      className={`flex-1 px-3 py-1.5 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} 
                     />
                   </div>
                 </div>
@@ -227,39 +227,39 @@ function ManageBlog() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Date</label>
-                <input type="text" name="date" value={formData.date} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="date" value={formData.date} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Read Time</label>
-                <input type="text" name="readTime" value={formData.readTime} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="readTime" value={formData.readTime} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Short Excerpt</label>
-              <textarea name="excerpt" value={formData.excerpt} onChange={handleChange} rows="2" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+              <textarea name="excerpt" value={formData.excerpt} onChange={handleChange} rows="2" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="flex gap-4">
                 <div className="w-24">
                   <label className="block text-sm font-medium mb-2 opacity-80">Emoji</label>
-                  <input type="text" name="emoji" value={formData.emoji} onChange={handleChange} className={`w-full px-4 py-3 text-center rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="text" name="emoji" value={formData.emoji} onChange={handleChange} className={`w-full px-4 py-3 text-center rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
                 </div>
                 <div className="flex-1">
                   <label className="block text-sm font-medium mb-2 opacity-80">Gradient Start</label>
-                  <input type="color" name="color" value={formData.color} onChange={handleChange} className={`w-full h-[50px] px-2 rounded-xl border outline-none cursor-pointer ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="color" name="color" value={formData.color} onChange={handleChange} className={`w-full h-[50px] px-2 rounded-xl border outline-none cursor-pointer ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
                 </div>
                 <div className="flex-1">
                   <label className="block text-sm font-medium mb-2 opacity-80">Gradient End</label>
-                  <input type="color" name="colorEnd" value={formData.colorEnd} onChange={handleChange} className={`w-full h-[50px] px-2 rounded-xl border outline-none cursor-pointer ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="color" name="colorEnd" value={formData.colorEnd} onChange={handleChange} className={`w-full h-[50px] px-2 rounded-xl border outline-none cursor-pointer ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
                 </div>
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Markdown Content (Placeholder for MDX editor)</label>
-              <textarea name="content" value={formData.content} onChange={handleChange} rows="8" placeholder="## Write your markdown here..." className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600 font-mono text-sm' : 'bg-slate-50 border-slate-200 font-mono text-sm'}`} />
+              <textarea name="content" value={formData.content} onChange={handleChange} rows="8" placeholder="## Write your markdown here..." className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700 font-mono text-sm' : 'bg-slate-50 border-slate-200 font-mono text-sm'}`} />
             </div>
 
             <div className="flex items-center gap-3 py-2">
@@ -268,7 +268,7 @@ function ManageBlog() {
             </div>
 
             <div className="flex justify-end gap-4 pt-4">
-              <button type="button" onClick={handleCancel} className={`px-6 py-2.5 rounded-xl font-medium border ${theme === 'dark' ? 'border-slate-700 hover:bg-slate-700' : 'border-slate-300 hover:bg-slate-100'}`}>
+              <button type="button" onClick={handleCancel} className={`px-6 py-2.5 rounded-xl font-medium border ${theme === 'dark' ? 'border-neutral-800 hover:bg-neutral-800' : 'border-slate-300 hover:bg-slate-100'}`}>
                 Cancel
               </button>
               <button type="submit" disabled={isGuest} className={`px-8 py-2.5 rounded-xl font-semibold text-white transition-all ${isGuest ? 'bg-slate-500 cursor-not-allowed opacity-50' : 'bg-indigo-500 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30'}`}>
@@ -282,21 +282,21 @@ function ManageBlog() {
       {/* Blogs List */}
       <div className="flex flex-col gap-4">
         {blogs.map((blog, index) => (
-          <div key={blog.id} className={`p-4 rounded-xl border flex flex-col md:flex-row gap-4 justify-between items-start md:items-center ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <div key={blog.id} className={`p-4 rounded-xl border flex flex-col md:flex-row gap-4 justify-between items-start md:items-center ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
             
             <div className="flex gap-4 items-center">
               <div className="flex flex-col gap-1">
                 <button 
                   onClick={() => handleMove(index, 'up')} 
                   disabled={index === 0}
-                  className={`p-1 rounded border flex items-center justify-center transition-colors ${index === 0 ? 'opacity-30 cursor-not-allowed' : theme === 'dark' ? 'hover:bg-slate-700 border-slate-700' : 'hover:bg-slate-100 border-slate-200'}`}
+                  className={`p-1 rounded border flex items-center justify-center transition-colors ${index === 0 ? 'opacity-30 cursor-not-allowed' : theme === 'dark' ? 'hover:bg-neutral-800 border-neutral-800' : 'hover:bg-slate-100 border-slate-200'}`}
                 >
                   ↑
                 </button>
                 <button 
                   onClick={() => handleMove(index, 'down')} 
                   disabled={index === blogs.length - 1}
-                  className={`p-1 rounded border flex items-center justify-center transition-colors ${index === blogs.length - 1 ? 'opacity-30 cursor-not-allowed' : theme === 'dark' ? 'hover:bg-slate-700 border-slate-700' : 'hover:bg-slate-100 border-slate-200'}`}
+                  className={`p-1 rounded border flex items-center justify-center transition-colors ${index === blogs.length - 1 ? 'opacity-30 cursor-not-allowed' : theme === 'dark' ? 'hover:bg-neutral-800 border-neutral-800' : 'hover:bg-slate-100 border-slate-200'}`}
                 >
                   ↓
                 </button>
@@ -311,7 +311,7 @@ function ManageBlog() {
                   <h3 className="font-bold">{blog.title}</h3>
                   {blog.featured && <span className="px-2 py-0.5 text-[10px] font-bold bg-indigo-500/10 text-indigo-500 rounded border border-indigo-500/20">Featured</span>}
                 </div>
-                <p className={`text-sm ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
+                <p className={`text-sm ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}`}>
                   {blog.category} • {blog.date} • {blog.readTime}
                 </p>
               </div>
@@ -320,7 +320,7 @@ function ManageBlog() {
             <div className="flex gap-2 w-full md:w-auto">
               <button 
                 onClick={() => handleEdit(blog)}
-                className={`flex-1 md:flex-none px-4 py-2 rounded-lg font-medium border transition-colors ${theme === 'dark' ? 'border-slate-600 hover:bg-slate-700' : 'border-slate-300 hover:bg-slate-100'}`}
+                className={`flex-1 md:flex-none px-4 py-2 rounded-lg font-medium border transition-colors ${theme === 'dark' ? 'border-neutral-700 hover:bg-neutral-800' : 'border-slate-300 hover:bg-slate-100'}`}
               >
                 Edit
               </button>

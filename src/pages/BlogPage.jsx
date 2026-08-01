@@ -11,7 +11,7 @@ function BlogPage() {
   const blogPosts = data?.blog || []
 
   return (
-    <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
+    <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-black' : 'bg-slate-50'}`}>
       <Helmet>
         <title>Blog | Vivek Kumar</title>
         <meta name="description" content="Articles about web development, engineering, and technology." />
@@ -21,7 +21,7 @@ function BlogPage() {
         <Link 
           to="/#blog" 
           className={`inline-flex items-center gap-2 mb-8 text-sm hover:gap-3 transition-all ${
-            theme === 'dark' ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
+            theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
           }`}
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -37,7 +37,7 @@ function BlogPage() {
           }`}>
             Blog
           </h1>
-          <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-lg ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}`}>
             Thoughts, tutorials, and insights from my journey as a developer
           </p>
         </div>

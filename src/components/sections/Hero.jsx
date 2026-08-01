@@ -24,20 +24,20 @@ function Hero() {
     <section
       id="hero"
       className={`min-h-screen flex items-center justify-center relative overflow-hidden ${
-        theme === "dark" ? "bg-slate-900" : "bg-slate-50"
+        theme === "dark" ? "bg-black" : "bg-slate-50"
       }`}
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
           className={`absolute -top-40 -right-40 w-80 h-80 rounded-full blur-3xl animate-float ${
-            theme === "dark" ? "bg-indigo-500/20" : "bg-indigo-500/10"
+            theme === "dark" ? "bg-indigo-500/15" : "bg-indigo-500/10"
           }`}
           style={{ animationDuration: '8s' }}
         />
         <div
           className={`absolute -bottom-40 -left-40 w-80 h-80 rounded-full blur-3xl animate-float ${
-            theme === "dark" ? "bg-cyan-500/20" : "bg-cyan-500/10"
+            theme === "dark" ? "bg-cyan-500/15" : "bg-cyan-500/10"
           }`}
           style={{ animationDuration: '6s', animationDelay: '2s' }}
         />
@@ -68,7 +68,7 @@ function Hero() {
           {/* Role */}
           <h2
             className={`text-2xl md:text-3xl font-semibold mb-6 h-10 ${
-              theme === "dark" ? "text-slate-300" : "text-slate-700"
+              theme === "dark" ? "text-neutral-200" : "text-slate-700"
             }`}
           >
             {typingText}
@@ -78,7 +78,7 @@ function Hero() {
           {/* Description */}
           <p
             className={`text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed ${
-              theme === "dark" ? "text-slate-400" : "text-slate-600"
+              theme === "dark" ? "text-zinc-400" : "text-slate-600"
             }`}
           >
             {heroData.bio || 'Full Stack Developer with hands-on experience building production-ready web applications through multiple internships.'}
@@ -97,7 +97,7 @@ function Hero() {
               download
               className={`px-8 py-3 rounded-lg font-medium border transition-all hover:-translate-y-0.5 ${
                 theme === "dark"
-                  ? "border-slate-600 text-white hover:bg-slate-800"
+                  ? "border-neutral-700 text-white hover:bg-neutral-900"
                   : "border-slate-300 text-slate-900 hover:bg-slate-100"
               }`}
             >
@@ -113,7 +113,7 @@ function Hero() {
               rel="noopener noreferrer"
               className={`p-3 rounded-full transition-all hover:scale-110 ${
                 theme === "dark"
-                  ? "bg-slate-800 text-white hover:bg-slate-700"
+                  ? "bg-neutral-900 text-white hover:bg-neutral-800"
                   : "bg-white text-slate-700 hover:bg-slate-100 shadow-sm"
               }`}
               aria-label="GitHub"
@@ -126,7 +126,7 @@ function Hero() {
               rel="noopener noreferrer"
               className={`p-3 rounded-full transition-all hover:scale-110 ${
                 theme === "dark"
-                  ? "bg-slate-800 text-white hover:bg-slate-700"
+                  ? "bg-neutral-900 text-white hover:bg-neutral-800"
                   : "bg-white text-slate-700 hover:bg-slate-100 shadow-sm"
               }`}
               aria-label="LinkedIn"
@@ -137,7 +137,7 @@ function Hero() {
               href={`mailto:${heroData.email || 'hello@vivekkumar.com'}`}
               className={`p-3 rounded-full transition-all hover:scale-110 ${
                 theme === "dark"
-                  ? "bg-slate-800 text-white hover:bg-slate-700"
+                  ? "bg-neutral-900 text-white hover:bg-neutral-800"
                   : "bg-white text-slate-700 hover:bg-slate-100 shadow-sm"
               }`}
               aria-label="Email"

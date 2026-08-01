@@ -77,7 +77,7 @@ function ManageHero() {
       <div className="mb-8 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-bold mb-2">Manage Hero & Bio</h1>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
             Update your main landing page content and personal details.
           </p>
         </div>
@@ -94,7 +94,7 @@ function ManageHero() {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-6">Personal Information</h2>
           
           <div className="grid md:grid-cols-2 gap-6 mb-6">
@@ -106,7 +106,7 @@ function ManageHero() {
                 value={formData.name}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
                 required
               />
@@ -120,7 +120,7 @@ function ManageHero() {
                 value={formData.email}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
                 required
               />
@@ -135,7 +135,7 @@ function ManageHero() {
               value={formData.roles}
               onChange={handleChange}
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
               }`}
               required
             />
@@ -149,14 +149,14 @@ function ManageHero() {
               onChange={handleChange}
               rows="4"
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 resize-none ${
-                theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
               }`}
               required
             />
           </div>
         </div>
 
-        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-6">Social Links</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -168,7 +168,7 @@ function ManageHero() {
                 value={formData.github}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
               />
             </div>
@@ -181,7 +181,7 @@ function ManageHero() {
                 value={formData.linkedin}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
               />
             </div>
@@ -189,7 +189,7 @@ function ManageHero() {
         </div>
 
         {/* Assets Section */}
-        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-6">Assets (Uploads)</h2>
           
           <div className="grid md:grid-cols-2 gap-6">
@@ -203,7 +203,7 @@ function ManageHero() {
                 accept=".pdf"
                 onChange={(e) => handleFileChange(e, setResumeFile)}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 } file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100`}
               />
               <p className="text-xs mt-2 opacity-60">Leave empty to keep existing resume.</p>
@@ -219,7 +219,7 @@ function ManageHero() {
                 accept="image/*"
                 onChange={(e) => handleFileChange(e, setProfileImageFile)}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 } file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100`}
               />
               <p className="text-xs mt-2 opacity-60">Leave empty to keep existing image.</p>

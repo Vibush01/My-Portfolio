@@ -7,7 +7,7 @@ function ProjectCard({ project }) {
     <div 
       className={`rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${
         theme === 'dark' 
-          ? 'bg-slate-800 border border-slate-700 hover:border-indigo-500' 
+          ? 'bg-neutral-950 border border-neutral-800 hover:border-indigo-500' 
           : 'bg-white border border-slate-200 hover:border-indigo-400 shadow-sm'
       }`}
     >
@@ -85,7 +85,7 @@ function ProjectCard({ project }) {
           {project.subtitle}
         </p>
         <p className={`text-sm mb-4 leading-relaxed line-clamp-2 ${
-          theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+          theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
         }`}>
           {project.description}
         </p>
@@ -97,7 +97,7 @@ function ProjectCard({ project }) {
               key={index} 
               className={`px-2 py-0.5 text-xs rounded-full ${
                 theme === 'dark' 
-                  ? 'bg-slate-700 text-slate-300' 
+                  ? 'bg-neutral-800 text-neutral-200' 
                   : 'bg-slate-100 text-slate-600'
               }`}
             >

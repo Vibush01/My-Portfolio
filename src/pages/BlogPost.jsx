@@ -13,7 +13,7 @@ const createMdxComponents = (theme) => ({
   h2: (props) => (
     <h2 
       className={`text-2xl font-bold mb-4 mt-10 pb-2 border-b ${
-        theme === 'dark' ? 'text-white border-slate-700' : 'text-slate-900 border-slate-200'
+        theme === 'dark' ? 'text-white border-neutral-800' : 'text-slate-900 border-slate-200'
       }`}
       {...props} 
     />
@@ -29,7 +29,7 @@ const createMdxComponents = (theme) => ({
   p: (props) => (
     <p 
       className={`mb-6 leading-relaxed ${
-        theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+        theme === 'dark' ? 'text-neutral-200' : 'text-slate-700'
       }`}
       {...props} 
     />
@@ -37,7 +37,7 @@ const createMdxComponents = (theme) => ({
   ul: (props) => (
     <ul 
       className={`list-disc pl-6 mb-6 space-y-2 ${
-        theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+        theme === 'dark' ? 'text-neutral-200' : 'text-slate-600'
       }`}
       {...props} 
     />
@@ -45,7 +45,7 @@ const createMdxComponents = (theme) => ({
   ol: (props) => (
     <ol 
       className={`list-decimal pl-6 mb-6 space-y-2 ${
-        theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+        theme === 'dark' ? 'text-neutral-200' : 'text-slate-600'
       }`}
       {...props} 
     />
@@ -60,7 +60,7 @@ const createMdxComponents = (theme) => ({
         <code 
           className={`px-2 py-1 rounded text-sm font-mono ${
             theme === 'dark' 
-              ? 'bg-indigo-500/20 text-indigo-300' 
+              ? 'bg-indigo-500/15 text-indigo-300' 
               : 'bg-slate-100 text-indigo-600'
           }`}
           {...props} 
@@ -81,7 +81,7 @@ const createMdxComponents = (theme) => ({
     <pre 
       className={`p-5 rounded-xl overflow-x-auto mb-6 text-sm font-mono leading-relaxed ${
         theme === 'dark' 
-          ? 'bg-slate-950 border border-slate-800 text-slate-200' 
+          ? 'bg-black border border-neutral-800 text-neutral-200' 
           : 'bg-slate-50 border border-slate-200'
       }`}
       {...props} 
@@ -90,7 +90,7 @@ const createMdxComponents = (theme) => ({
   blockquote: (props) => (
     <blockquote 
       className={`border-l-4 pl-4 py-2 italic mb-6 border-indigo-500 ${
-        theme === 'dark' ? 'text-slate-400 bg-slate-800/50' : 'text-slate-500 bg-slate-50'
+        theme === 'dark' ? 'text-zinc-400 bg-neutral-900/50' : 'text-slate-500 bg-slate-50'
       }`}
       {...props} 
     />
@@ -105,20 +105,20 @@ const createMdxComponents = (theme) => ({
   ),
   table: (props) => (
     <div className={`overflow-x-auto mb-8 rounded-lg border ${
-      theme === 'dark' ? 'border-slate-700' : 'border-slate-200'
+      theme === 'dark' ? 'border-neutral-800' : 'border-slate-200'
     }`}>
       <table className="w-full border-collapse min-w-full" {...props} />
     </div>
   ),
   thead: (props) => (
-    <thead className={theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'} {...props} />
+    <thead className={theme === 'dark' ? 'bg-neutral-900' : 'bg-slate-50'} {...props} />
   ),
   tbody: (props) => (
     <tbody {...props} />
   ),
   tr: (props) => (
     <tr className={`border-b ${
-      theme === 'dark' ? 'border-slate-700' : 'border-slate-200'
+      theme === 'dark' ? 'border-neutral-800' : 'border-slate-200'
     }`} {...props} />
   ),
   th: (props) => (
@@ -128,7 +128,7 @@ const createMdxComponents = (theme) => ({
   ),
   td: (props) => (
     <td className={`p-4 text-sm ${
-      theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+      theme === 'dark' ? 'text-neutral-200' : 'text-slate-600'
     }`} {...props} />
   ),
   strong: (props) => (
@@ -137,11 +137,11 @@ const createMdxComponents = (theme) => ({
     }`} {...props} />
   ),
   em: (props) => (
-    <em className={theme === 'dark' ? 'text-slate-400' : 'text-slate-500'} {...props} />
+    <em className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'} {...props} />
   ),
-  hr: ({ theme }) => (
+  hr: () => (
     <hr className={`my-10 ${
-      theme === 'dark' ? 'border-slate-700' : 'border-slate-200'
+      theme === 'dark' ? 'border-neutral-800' : 'border-slate-200'
     }`} />
   ),
 })
@@ -172,14 +172,14 @@ function BlogPost() {
 
   if (!post) {
     return (
-      <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
+      <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-black' : 'bg-slate-50'}`}>
         <div className="max-w-6xl mx-auto px-6 text-center">
           <h1 className={`text-4xl font-bold mb-4 ${
             theme === 'dark' ? 'text-white' : 'text-slate-900'
           }`}>
             Post Not Found
           </h1>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
             The blog post you're looking for doesn't exist.
           </p>
           <Link 
@@ -194,13 +194,13 @@ function BlogPost() {
   }
 
   return (
-    <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
+    <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-black' : 'bg-slate-50'}`}>
       <div className="max-w-3xl mx-auto px-6">
         {/* Back Link */}
         <Link 
           to="/blog" 
           className={`inline-flex items-center gap-2 mb-8 text-sm hover:gap-3 transition-all ${
-            theme === 'dark' ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
+            theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
           }`}
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -228,7 +228,7 @@ function BlogPost() {
           </h1>
           
           <div className={`flex items-center gap-4 text-sm ${
-            theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+            theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'
           }`}>
             <span>{post.date}</span>
             <span>•</span>
@@ -243,13 +243,13 @@ function BlogPost() {
               fallback={
                 <div className="animate-pulse space-y-4">
                   <div className={`h-4 rounded w-3/4 ${
-                    theme === 'dark' ? 'bg-slate-700' : 'bg-slate-200'
+                    theme === 'dark' ? 'bg-neutral-800' : 'bg-slate-200'
                   }`} />
                   <div className={`h-4 rounded w-full ${
-                    theme === 'dark' ? 'bg-slate-700' : 'bg-slate-200'
+                    theme === 'dark' ? 'bg-neutral-800' : 'bg-slate-200'
                   }`} />
                   <div className={`h-4 rounded w-5/6 ${
-                    theme === 'dark' ? 'bg-slate-700' : 'bg-slate-200'
+                    theme === 'dark' ? 'bg-neutral-800' : 'bg-slate-200'
                   }`} />
                 </div>
               }
@@ -257,7 +257,7 @@ function BlogPost() {
               {MDXContent ? (
                 <MDXContent />
               ) : (
-                <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+                <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
                   Content coming soon...
                 </p>
               )}
@@ -267,12 +267,12 @@ function BlogPost() {
 
         {/* Post Footer */}
         <footer className={`mt-12 pt-8 border-t ${
-          theme === 'dark' ? 'border-slate-700' : 'border-slate-200'
+          theme === 'dark' ? 'border-neutral-800' : 'border-slate-200'
         }`}>
           <div className="flex items-center justify-between">
             <div>
               <p className={`text-sm font-medium ${
-                theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'
               }`}>
                 Written by
               </p>
@@ -286,7 +286,7 @@ function BlogPost() {
               to="/blog" 
               className={`px-4 py-2 rounded-lg font-medium border transition-all ${
                 theme === 'dark' 
-                  ? 'border-slate-600 text-white hover:bg-slate-800' 
+                  ? 'border-neutral-700 text-white hover:bg-neutral-900' 
                   : 'border-slate-300 text-slate-900 hover:bg-slate-100'
               }`}
             >

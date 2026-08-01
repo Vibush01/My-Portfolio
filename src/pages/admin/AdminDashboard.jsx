@@ -23,7 +23,7 @@ function AdminDashboard() {
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Dashboard Overview</h1>
-        <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+        <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
           Welcome to your portfolio admin panel. Manage all your content from here.
         </p>
       </div>
@@ -31,7 +31,7 @@ function AdminDashboard() {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {/* Dynamic Stats Cards */}
         <div className={`p-6 rounded-2xl border flex items-center justify-between ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Total Profile Views</p>
@@ -41,7 +41,7 @@ function AdminDashboard() {
         </div>
 
         <div className={`p-6 rounded-2xl border flex items-center justify-between ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Total Projects</p>
@@ -51,7 +51,7 @@ function AdminDashboard() {
         </div>
 
         <div className={`p-6 rounded-2xl border flex items-center justify-between ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Blog Posts</p>
@@ -61,7 +61,7 @@ function AdminDashboard() {
         </div>
 
         <div className={`p-6 rounded-2xl border flex items-center justify-between ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'
         }`}>
           <div>
             <p className="text-sm opacity-70 mb-1">Total Experience</p>
@@ -74,7 +74,7 @@ function AdminDashboard() {
       <h2 className="text-2xl font-bold mb-6">Quick Management</h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Link to="/admin/hero" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Hero & Bio</h3>
           <p className="text-sm opacity-70 mb-4">Edit main landing content</p>
@@ -82,7 +82,7 @@ function AdminDashboard() {
         </Link>
         
         <Link to="/admin/experience" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Experience</h3>
           <p className="text-sm opacity-70 mb-4">Manage work history</p>
@@ -90,7 +90,7 @@ function AdminDashboard() {
         </Link>
         
         <Link to="/admin/projects" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Projects</h3>
           <p className="text-sm opacity-70 mb-4">Manage portfolio projects</p>
@@ -98,7 +98,7 @@ function AdminDashboard() {
         </Link>
         
         <Link to="/admin/blog" className={`p-6 rounded-2xl border block transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${
-          theme === 'dark' ? 'bg-slate-800 border-slate-700 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
+          theme === 'dark' ? 'bg-neutral-950 border-neutral-800 hover:border-indigo-500' : 'bg-white border-slate-200 hover:border-indigo-400'
         }`}>
           <h3 className="text-xl font-semibold mb-2">Blog Posts</h3>
           <p className="text-sm opacity-70 mb-4">Manage technical articles</p>

@@ -90,7 +90,7 @@ function Navbar() {
       <nav 
         className={`fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b ${
           theme === 'dark' 
-            ? 'bg-slate-900/80 border-slate-700' 
+            ? 'bg-black/90 border-neutral-800' 
             : 'bg-slate-50/80 border-slate-200'
         }`}
       >
@@ -121,7 +121,7 @@ function Navbar() {
                       isActive
                         ? 'text-indigo-500 scale-105'
                         : theme === 'dark' 
-                          ? 'text-slate-300 hover:text-indigo-400' 
+                          ? 'text-neutral-200 hover:text-indigo-400' 
                           : 'text-slate-600 hover:text-indigo-600'
                     }`}
                   >
@@ -151,7 +151,7 @@ function Navbar() {
                 onClick={toggleTheme}
                 className={`p-2 rounded-lg transition-colors ${
                   theme === 'dark' 
-                    ? 'bg-slate-800 text-white hover:bg-slate-700' 
+                    ? 'bg-neutral-900 text-white hover:bg-neutral-800' 
                     : 'bg-white text-slate-900 hover:bg-slate-100'
                 }`}
                 aria-label="Toggle theme"
@@ -188,7 +188,7 @@ function Navbar() {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className={`md:hidden py-4 border-t ${theme === 'dark' ? 'border-slate-700' : 'border-slate-200'}`}>
+            <div className={`md:hidden py-4 border-t ${theme === 'dark' ? 'border-neutral-800' : 'border-slate-200'}`}>
               {navLinks.map((link) => {
                 const isActive = activeSection === link.href.replace('/#', '')
                 return (
@@ -199,10 +199,10 @@ function Navbar() {
                     className={`block py-3 px-4 text-sm font-medium transition-all rounded-lg mb-1 ${
                       isActive
                         ? theme === 'dark'
-                          ? 'bg-indigo-500/20 text-indigo-400'
+                          ? 'bg-indigo-500/15 text-indigo-400'
                           : 'bg-indigo-50 text-indigo-600'
                         : theme === 'dark' 
-                          ? 'text-slate-300 hover:bg-slate-800' 
+                          ? 'text-neutral-200 hover:bg-neutral-900' 
                           : 'text-slate-600 hover:bg-slate-100'
                     }`}
                   >
@@ -239,7 +239,7 @@ function Navbar() {
           >
             <button
               onClick={() => setShowProfileModal(false)}
-              className="absolute -top-12 right-0 text-white hover:text-slate-300 transition-colors"
+              className="absolute -top-12 right-0 text-white hover:text-neutral-300 transition-colors"
             >
               <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -252,7 +252,7 @@ function Navbar() {
             />
             <div className="text-center mt-6">
               <h3 className="text-2xl font-bold text-white">Vivek Kumar</h3>
-              <p className="text-slate-400">Full Stack Developer</p>
+              <p className="text-zinc-400">Full Stack Developer</p>
             </div>
           </div>
         </div>

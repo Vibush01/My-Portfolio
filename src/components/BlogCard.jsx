@@ -9,7 +9,7 @@ function BlogCard({ post }) {
       <div 
         className={`rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-xl group ${
           theme === 'dark' 
-            ? 'bg-slate-800 border border-slate-700 hover:border-indigo-500' 
+            ? 'bg-neutral-950 border border-neutral-800 hover:border-indigo-500' 
             : 'bg-white border border-slate-200 hover:border-indigo-400 shadow-sm'
         }`}
       >
@@ -41,7 +41,7 @@ function BlogCard({ post }) {
             >
               {post.category}
             </span>
-            <span className={`text-xs ${theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}`}>
+            <span className={`text-xs ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}`}>
               {post.date}
             </span>
           </div>
@@ -53,7 +53,7 @@ function BlogCard({ post }) {
           </h3>
 
           <p className={`text-sm mb-4 leading-relaxed line-clamp-2 ${
-            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
           }`}>
             {post.excerpt}
           </p>

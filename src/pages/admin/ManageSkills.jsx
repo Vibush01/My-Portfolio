@@ -146,7 +146,7 @@ function ManageSkills() {
       <div className="mb-8 flex flex-col md:flex-row gap-4 justify-between md:items-end">
         <div>
           <h1 className="text-3xl font-bold mb-2">Manage Skills & Tools</h1>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
             Customize categories, reorder items, and update your tech stack.
           </p>
         </div>
@@ -165,18 +165,18 @@ function ManageSkills() {
       )}
 
       {/* Skills Section */}
-      <div className={`p-4 sm:p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+      <div className={`p-4 sm:p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
         <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center mb-6">
           <h2 className="text-xl font-bold">Technical Skills Categories</h2>
           <form onSubmit={handleAddSkillCategory} className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0">
-            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
             <button type="submit" disabled={isGuest} className="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50 whitespace-nowrap">+ Add Category</button>
           </form>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {skills.map((cat, catIndex) => (
-            <div key={cat.id} className={`p-3 sm:p-4 rounded-xl border flex flex-col ${theme === 'dark' ? 'border-slate-700 bg-slate-900/50' : 'border-slate-200 bg-slate-50'}`}>
+            <div key={cat.id} className={`p-3 sm:p-4 rounded-xl border flex flex-col ${theme === 'dark' ? 'border-neutral-800 bg-black/50' : 'border-slate-200 bg-slate-50'}`}>
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
                   <div className="flex flex-col">
@@ -190,7 +190,7 @@ function ManageSkills() {
               
               <div className="flex flex-col gap-2 mb-4 flex-1">
                 {cat.items.map((skill, skillIndex) => (
-                  <div key={skill} className={`flex items-center justify-between px-2 sm:px-3 py-1.5 rounded-lg text-sm border ${theme === 'dark' ? 'bg-slate-800 border-slate-600' : 'bg-white border-slate-300'}`}>
+                  <div key={skill} className={`flex items-center justify-between px-2 sm:px-3 py-1.5 rounded-lg text-sm border ${theme === 'dark' ? 'bg-slate-800 border-neutral-700' : 'bg-white border-slate-300'}`}>
                     <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                       <div className="flex flex-col shrink-0">
                         <button onClick={() => handleMoveSkill(catIndex, skillIndex, 'up')} disabled={skillIndex === 0} className="text-[10px] hover:text-indigo-500 disabled:opacity-30">▲</button>
@@ -204,7 +204,7 @@ function ManageSkills() {
               </div>
 
               <form onSubmit={(e) => handleAddSkill(catIndex, e)} className="flex gap-2 mt-auto">
-                <input type="text" name="skill" placeholder="Add skill..." required className={`flex-1 px-2 sm:px-3 py-2 rounded-lg border outline-none text-xs sm:text-sm min-w-0 ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+                <input type="text" name="skill" placeholder="Add skill..." required className={`flex-1 px-2 sm:px-3 py-2 rounded-lg border outline-none text-xs sm:text-sm min-w-0 ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
                 <button type="submit" disabled={isGuest} className="px-3 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50 shrink-0">+</button>
               </form>
             </div>
@@ -213,18 +213,18 @@ function ManageSkills() {
       </div>
 
       {/* Tools Section */}
-      <div className={`p-4 sm:p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+      <div className={`p-4 sm:p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
         <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center mb-6">
           <h2 className="text-xl font-bold">Tools & Software Categories</h2>
           <form onSubmit={handleAddToolCategory} className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0">
-            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
             <button type="submit" disabled={isGuest} className="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50 whitespace-nowrap">+ Add Category</button>
           </form>
         </div>
 
         <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           {tools.map((cat, catIndex) => (
-            <div key={cat.id} className={`p-3 sm:p-4 rounded-xl border flex flex-col ${theme === 'dark' ? 'border-slate-700 bg-slate-900/50' : 'border-slate-200 bg-slate-50'}`}>
+            <div key={cat.id} className={`p-3 sm:p-4 rounded-xl border flex flex-col ${theme === 'dark' ? 'border-neutral-800 bg-black/50' : 'border-slate-200 bg-slate-50'}`}>
               <div className="flex justify-between items-center mb-4">
                 <div className="flex items-center gap-2">
                   <div className="flex flex-col">
@@ -238,7 +238,7 @@ function ManageSkills() {
               
               <div className="flex flex-col gap-2 mb-4 flex-1">
                 {cat.items.map((tool, toolIndex) => (
-                  <div key={tool.name} className={`flex items-center justify-between px-2 sm:px-3 py-1.5 rounded-lg border text-sm ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+                  <div key={tool.name} className={`flex items-center justify-between px-2 sm:px-3 py-1.5 rounded-lg border text-sm ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
                     <div className="flex items-center gap-2 sm:gap-3 overflow-hidden">
                       <div className="flex flex-col shrink-0">
                         <button onClick={() => handleMoveTool(catIndex, toolIndex, 'up')} disabled={toolIndex === 0} className="text-[10px] hover:text-indigo-500 disabled:opacity-30">▲</button>
@@ -260,8 +260,8 @@ function ManageSkills() {
 
               <form onSubmit={(e) => handleAddTool(catIndex, e)} className="flex flex-col sm:flex-row gap-2 mt-auto">
                 <div className="flex gap-2 w-full sm:flex-1">
-                  <input type="text" name="toolIcon" placeholder="URL/Emoji" required className={`w-20 sm:w-28 px-2 py-2 text-center rounded-lg border outline-none text-xs sm:text-sm shrink-0 ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
-                  <input type="text" name="toolName" placeholder="Name" required className={`flex-1 min-w-0 px-2 sm:px-3 py-2 rounded-lg border outline-none text-xs sm:text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-white border-slate-300'}`} />
+                  <input type="text" name="toolIcon" placeholder="URL/Emoji" required className={`w-20 sm:w-28 px-2 py-2 text-center rounded-lg border outline-none text-xs sm:text-sm shrink-0 ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
+                  <input type="text" name="toolName" placeholder="Name" required className={`flex-1 min-w-0 px-2 sm:px-3 py-2 rounded-lg border outline-none text-xs sm:text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
                 </div>
                 <div className="flex gap-2 w-full sm:w-auto">
                   <input type="color" name="toolColor" defaultValue="#3b82f6" className="w-12 sm:w-9 h-9 rounded-lg cursor-pointer shrink-0" />

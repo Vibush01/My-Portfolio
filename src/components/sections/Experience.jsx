@@ -10,7 +10,7 @@ function Experience() {
   return (
     <section 
       id="experience" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-white'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -21,7 +21,7 @@ function Experience() {
             Experience
           </h2>
           <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
           }`}>
             My professional journey
           </p>
@@ -31,7 +31,7 @@ function Experience() {
         <div className="relative max-w-3xl mx-auto">
           {/* Timeline line */}
           <div className={`absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 ${
-            theme === 'dark' ? 'bg-slate-700' : 'bg-slate-300'
+            theme === 'dark' ? 'bg-neutral-800' : 'bg-slate-300'
           }`} />
 
           {experience.map((exp, index) => (
@@ -45,7 +45,7 @@ function Experience() {
               <div 
                 className={`absolute left-2.5 md:hidden w-4 h-4 rounded-full border-4 z-10 ${
                   theme === 'dark' 
-                    ? 'bg-slate-900 border-indigo-500' 
+                    ? 'bg-black border-indigo-500' 
                     : 'bg-white border-indigo-500'
                 }`} 
                 style={{ top: '1.5rem' }}
@@ -54,7 +54,7 @@ function Experience() {
               <div 
                 className={`absolute hidden md:block w-4 h-4 rounded-full border-4 z-10 ${
                   theme === 'dark' 
-                    ? 'bg-slate-900 border-indigo-500' 
+                    ? 'bg-black border-indigo-500' 
                     : 'bg-white border-indigo-500'
                 }`} 
                 style={{ 
@@ -66,7 +66,7 @@ function Experience() {
               {/* Card */}
               <div className={`p-6 rounded-xl text-left transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg ${
                 theme === 'dark' 
-                  ? 'bg-slate-800 border border-slate-700 hover:border-indigo-500/50' 
+                  ? 'bg-neutral-950 border border-neutral-800 hover:border-indigo-500/50' 
                   : 'bg-slate-50 border border-slate-200 hover:border-indigo-400/50'
               }`}>
                 {/* Type badge + Timeline dates */}
@@ -74,14 +74,14 @@ function Experience() {
                   <div className="flex flex-wrap items-center gap-2">
                     <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
                       theme === 'dark' 
-                        ? 'bg-indigo-500/20 text-indigo-400' 
+                        ? 'bg-indigo-500/15 text-indigo-400' 
                         : 'bg-indigo-100 text-indigo-700'
                     }`}>
                       {exp.type}
                     </span>
                     <span className={`text-xs px-2 py-1 rounded-full ${
                       theme === 'dark'
-                        ? 'bg-slate-700 text-slate-400'
+                        ? 'bg-neutral-800 text-zinc-400'
                         : 'bg-slate-200 text-slate-500'
                     }`}>
                       {exp.location}
@@ -116,7 +116,7 @@ function Experience() {
 
                 {/* Responsibilities */}
                 <ul className={`space-y-2 text-sm ${
-                  theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+                  theme === 'dark' ? 'text-neutral-200' : 'text-slate-600'
                 }`}>
                   {exp.responsibilities.map((resp, i) => (
                     <li key={i} className="leading-relaxed flex gap-2">
@@ -133,7 +133,7 @@ function Experience() {
                       key={i}
                       className={`px-2 py-0.5 text-xs rounded-full ${
                         theme === 'dark' 
-                          ? 'bg-slate-700 text-slate-300' 
+                          ? 'bg-neutral-800 text-neutral-200' 
                           : 'bg-white text-slate-600 shadow-sm'
                       }`}
                     >

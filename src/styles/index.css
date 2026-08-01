@@ -14,14 +14,14 @@
   --color-text-muted-light: #64748b;
   --color-border-light: #e2e8f0;
   
-  /* Colors - Dark theme */
-  --color-bg-dark: #0f172a;
-  --color-surface-dark: #1e293b;
-  --color-surface-hover-dark: #334155;
-  --color-text-dark: #f1f5f9;
-  --color-text-secondary-dark: #cbd5e1;
-  --color-text-muted-dark: #94a3b8;
-  --color-border-dark: #334155;
+  /* Colors - Dark theme (Pure Black) */
+  --color-bg-dark: #000000;
+  --color-surface-dark: #0a0a0a;
+  --color-surface-hover-dark: #171717;
+  --color-text-dark: #fafafa;
+  --color-text-secondary-dark: #a1a1aa;
+  --color-text-muted-dark: #71717a;
+  --color-border-dark: #262626;
   
   /* Font Family */
   --font-sans: "Inter", system-ui, -apple-system, sans-serif;
@@ -45,8 +45,8 @@ body {
 }
 
 .dark ::selection {
-  background-color: #1C293C; /* Solid dark indigo (indigo-900) */
-  color: #0da4be; /* Bright light indigo (indigo-300) */
+  background-color: #1e1b4b; /* Deep indigo on black */
+  color: #a5b4fc; /* Bright indigo-300 for readability */
 }
 
 /* Dark mode default - using .dark class */
@@ -169,6 +169,6 @@ body:not(.dark),
 }
 
 .dark .glass {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 10, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }

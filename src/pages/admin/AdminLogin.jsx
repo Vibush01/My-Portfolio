@@ -30,11 +30,11 @@ function AdminLogin() {
 
   return (
     <div className={`min-h-screen flex items-center justify-center p-6 ${
-      theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'
+      theme === 'dark' ? 'bg-black' : 'bg-slate-50'
     }`}>
       <div className={`w-full max-w-md p-8 rounded-2xl shadow-2xl ${
         theme === 'dark' 
-          ? 'bg-slate-800 border border-slate-700' 
+          ? 'bg-neutral-950 border border-neutral-800' 
           : 'bg-white border border-slate-200'
       }`}>
         <div className="text-center mb-8">
@@ -43,7 +43,7 @@ function AdminLogin() {
           }`}>
             Admin Login
           </h2>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-500'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'}>
             Secure access to portfolio management
           </p>
         </div>
@@ -57,7 +57,7 @@ function AdminLogin() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className={`block text-sm font-medium mb-2 ${
-              theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+              theme === 'dark' ? 'text-neutral-200' : 'text-slate-700'
             }`}>
               Email Address
             </label>
@@ -68,7 +68,7 @@ function AdminLogin() {
               required
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                 theme === 'dark' 
-                  ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
+                  ? 'bg-black border-neutral-700 text-white placeholder:text-zinc-600 focus:border-indigo-500' 
                   : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500'
               }`}
               placeholder="admin@example.com"
@@ -77,7 +77,7 @@ function AdminLogin() {
 
           <div>
             <label className={`block text-sm font-medium mb-2 ${
-              theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+              theme === 'dark' ? 'text-neutral-200' : 'text-slate-700'
             }`}>
               Password
             </label>
@@ -88,7 +88,7 @@ function AdminLogin() {
               required
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                 theme === 'dark' 
-                  ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
+                  ? 'bg-black border-neutral-700 text-white placeholder:text-zinc-600 focus:border-indigo-500' 
                   : 'bg-slate-50 border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500'
               }`}
               placeholder="••••••••"
@@ -122,7 +122,7 @@ function AdminLogin() {
           <button 
             onClick={() => navigate('/')}
             className={`text-sm font-medium hover:underline ${
-              theme === 'dark' ? 'text-slate-400 hover:text-slate-300' : 'text-slate-500 hover:text-slate-700'
+              theme === 'dark' ? 'text-zinc-400 hover:text-neutral-200' : 'text-slate-500 hover:text-slate-700'
             }`}
           >
             ← Back to Portfolio

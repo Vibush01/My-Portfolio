@@ -119,7 +119,7 @@ function ManageExperience() {
       <div className="mb-8 flex justify-between items-end">
         <div>
           <h1 className="text-3xl font-bold mb-2">Manage Experience</h1>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
             Add, edit, or remove your work history.
           </p>
         </div>
@@ -145,46 +145,46 @@ function ManageExperience() {
 
       {/* Editor Form */}
       {editingId && (
-        <div className={`p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border mb-8 ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-6">{editingId === 'new' ? 'Add New Experience' : 'Edit Experience'}</h2>
           
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Job Role / Title</label>
-                <input type="text" name="role" value={formData.role} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="role" value={formData.role} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Company Name</label>
-                <input type="text" name="company" value={formData.company} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="company" value={formData.company} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Company URL</label>
-                <input type="url" name="companyUrl" value={formData.companyUrl} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="url" name="companyUrl" value={formData.companyUrl} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2 opacity-80">Location</label>
-                  <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="e.g. Remote" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="e.g. Remote" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2 opacity-80">Type</label>
-                  <input type="text" name="type" value={formData.type} onChange={handleChange} placeholder="e.g. Internship" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="text" name="type" value={formData.type} onChange={handleChange} placeholder="e.g. Internship" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Start Date</label>
-                <input type="text" name="startDate" value={formData.startDate} onChange={handleChange} placeholder="e.g. Sep 2023" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="startDate" value={formData.startDate} onChange={handleChange} placeholder="e.g. Sep 2023" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">End Date</label>
-                <input type="text" name="endDate" value={formData.endDate} onChange={handleChange} placeholder="e.g. Present" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="endDate" value={formData.endDate} onChange={handleChange} placeholder="e.g. Present" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Short Description</label>
-              <textarea name="description" value={formData.description} onChange={handleChange} rows="2" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+              <textarea name="description" value={formData.description} onChange={handleChange} rows="2" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
             </div>
 
             <div>
@@ -200,7 +200,7 @@ function ManageExperience() {
                       value={resp} 
                       onChange={(e) => handleResponsibilityChange(index, e.target.value)} 
                       placeholder="Bullet point description..."
-                      className={`flex-1 px-4 py-2.5 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} 
+                      className={`flex-1 px-4 py-2.5 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} 
                     />
                     <button type="button" onClick={() => removeResponsibility(index)} className="p-2.5 rounded-lg border border-red-500/30 text-red-500 hover:bg-red-500/10">🗑️</button>
                   </div>
@@ -210,11 +210,11 @@ function ManageExperience() {
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Technologies (Comma separated)</label>
-              <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} placeholder="React, Node.js, MongoDB..." className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-slate-900 border-slate-600' : 'bg-slate-50 border-slate-200'}`} />
+              <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} placeholder="React, Node.js, MongoDB..." className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
             </div>
 
             <div className="flex justify-end gap-4 pt-4">
-              <button type="button" onClick={handleCancel} className={`px-6 py-2.5 rounded-xl font-medium border ${theme === 'dark' ? 'border-slate-700 hover:bg-slate-700' : 'border-slate-300 hover:bg-slate-100'}`}>
+              <button type="button" onClick={handleCancel} className={`px-6 py-2.5 rounded-xl font-medium border ${theme === 'dark' ? 'border-neutral-800 hover:bg-neutral-800' : 'border-slate-300 hover:bg-slate-100'}`}>
                 Cancel
               </button>
               <button type="submit" disabled={isGuest} className={`px-8 py-2.5 rounded-xl font-semibold text-white transition-all ${isGuest ? 'bg-slate-500 cursor-not-allowed opacity-50' : 'bg-indigo-500 hover:bg-indigo-600 shadow-lg shadow-indigo-500/30'}`}>
@@ -228,17 +228,17 @@ function ManageExperience() {
       {/* Experience List */}
       <div className="space-y-4">
         {experiences.map((exp) => (
-          <div key={exp.id} className={`p-5 rounded-xl border flex flex-col md:flex-row gap-4 justify-between items-start md:items-center ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+          <div key={exp.id} className={`p-5 rounded-xl border flex flex-col md:flex-row gap-4 justify-between items-start md:items-center ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
             <div>
               <h3 className="text-xl font-bold">{exp.role}</h3>
-              <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+              <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
                 {exp.company} • {exp.startDate} - {exp.endDate}
               </p>
             </div>
             <div className="flex gap-2 w-full md:w-auto">
               <button 
                 onClick={() => handleEdit(exp)}
-                className={`flex-1 md:flex-none px-4 py-2 rounded-lg font-medium border transition-colors ${theme === 'dark' ? 'border-slate-600 hover:bg-slate-700' : 'border-slate-300 hover:bg-slate-100'}`}
+                className={`flex-1 md:flex-none px-4 py-2 rounded-lg font-medium border transition-colors ${theme === 'dark' ? 'border-neutral-700 hover:bg-neutral-800' : 'border-slate-300 hover:bg-slate-100'}`}
               >
                 Edit
               </button>

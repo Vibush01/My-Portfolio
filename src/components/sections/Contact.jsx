@@ -64,7 +64,7 @@ function Contact() {
   return (
     <section 
       id="contact" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-900' : 'bg-white'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -82,7 +82,7 @@ function Contact() {
               BUILD TOGETHER
             </h2>
             <p className={`text-lg mb-8 leading-relaxed ${
-              theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+              theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
             }`}>
               I'm actively looking for full-time opportunities where I can contribute,
               learn, and grow. If you think I'd be a good fit for your team, I'd love to hear from you!
@@ -94,7 +94,7 @@ function Contact() {
                 href={`tel:${contactPhone.replace(/[\s-]/g, '')}`}
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
                   theme === 'dark' 
-                    ? 'bg-slate-800 border border-slate-700 hover:border-slate-600' 
+                    ? 'bg-neutral-950 border border-neutral-800 hover:border-neutral-700' 
                     : 'bg-slate-50 border border-slate-200 hover:border-slate-300'
                 }`}
               >
@@ -108,7 +108,7 @@ function Contact() {
                 </div>
                 <div>
                   <p className={`text-xs uppercase tracking-wide ${
-                    theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
+                    theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'
                   }`}>
                     Schedule a Call
                   </p>
@@ -125,12 +125,12 @@ function Contact() {
                 href={`mailto:${contactEmail}`}
                 className={`flex items-center gap-4 p-4 rounded-2xl transition-all hover:-translate-y-0.5 ${
                   theme === 'dark' 
-                    ? 'bg-slate-800 border border-slate-700 hover:border-slate-600' 
+                    ? 'bg-neutral-950 border border-neutral-800 hover:border-neutral-700' 
                     : 'bg-slate-50 border border-slate-200 hover:border-slate-300'
                 }`}
               >
                 <div className={`w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0 ${
-                  theme === 'dark' ? 'bg-slate-700' : 'bg-white border border-slate-200'
+                  theme === 'dark' ? 'bg-neutral-800' : 'bg-white border border-slate-200'
                 }`}>
                   <svg className="w-5 h-5 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -138,7 +138,7 @@ function Contact() {
                 </div>
                 <div >
                   <p className={`text-xs uppercase tracking-wide ${
-                    theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
+                    theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'
                   }`}>
                     Email Me
                   </p>
@@ -155,7 +155,7 @@ function Contact() {
           {/* Right Side - Form */}
           <div className={`p-8 rounded-2xl ${
             theme === 'dark' 
-              ? 'bg-slate-800 border border-slate-700' 
+              ? 'bg-neutral-950 border border-neutral-800' 
               : 'bg-slate-50 border border-slate-200'
           }`}>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -168,7 +168,7 @@ function Contact() {
                 placeholder="Your Name"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
-                    ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
+                    ? 'bg-black border-neutral-700 text-white placeholder:text-zinc-600 focus:border-indigo-500' 
                     : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500'
                 }`}
               />
@@ -181,7 +181,7 @@ function Contact() {
                 placeholder="Your Email"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
-                    ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
+                    ? 'bg-black border-neutral-700 text-white placeholder:text-zinc-600 focus:border-indigo-500' 
                     : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500'
                 }`}
               />
@@ -193,7 +193,7 @@ function Contact() {
                 placeholder="Subject (Optional)"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
-                    ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
+                    ? 'bg-black border-neutral-700 text-white placeholder:text-zinc-600 focus:border-indigo-500' 
                     : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500'
                 }`}
               />
@@ -206,7 +206,7 @@ function Contact() {
                 placeholder="Your Message"
                 className={`w-full px-5 py-4 rounded-xl border outline-none transition-all resize-none focus:ring-2 focus:ring-indigo-500/30 ${
                   theme === 'dark' 
-                    ? 'bg-slate-900 border-slate-600 text-white placeholder:text-slate-500 focus:border-indigo-500' 
+                    ? 'bg-black border-neutral-700 text-white placeholder:text-zinc-600 focus:border-indigo-500' 
                     : 'bg-white border-slate-200 text-slate-900 placeholder:text-slate-400 focus:border-indigo-500'
                 }`}
               />
@@ -219,7 +219,7 @@ function Contact() {
                     : status === 'error'
                     ? 'bg-red-500 text-white'
                     : theme === 'dark' 
-                    ? 'bg-white text-slate-900 hover:bg-slate-100' 
+                    ? 'bg-white text-black hover:bg-neutral-200' 
                     : 'bg-slate-900 text-white hover:bg-slate-800'
                 }`}
               >

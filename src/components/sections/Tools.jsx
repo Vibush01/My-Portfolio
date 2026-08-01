@@ -96,7 +96,7 @@ function Tools() {
   return (
     <section 
       id="tools" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -107,7 +107,7 @@ function Tools() {
             Tools & Tech Stack
           </h2>
           <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
           }`}>
             Software and technologies I use on a daily basis
           </p>
@@ -118,7 +118,7 @@ function Tools() {
             <div key={toolCategory.id}>
               {/* Category Title */}
               <h3 className={`text-sm font-medium uppercase tracking-widest mb-6 ${
-                theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'
               }`}>
                 {toolCategory.category}
               </h3>
@@ -130,7 +130,7 @@ function Tools() {
                     key={index}
                     className={`group relative p-6 rounded-xl border transition-all duration-300 hover:-translate-y-1 hover:shadow-lg cursor-default ${
                       theme === 'dark' 
-                        ? 'bg-slate-900 border-slate-700 hover:border-slate-600' 
+                        ? 'bg-black border-neutral-800 hover:border-neutral-700' 
                         : 'bg-white border-slate-200 hover:border-slate-300 shadow-sm'
                     }`}
                   >
@@ -141,7 +141,7 @@ function Tools() {
                     
                     {/* Tool Name */}
                     <p className={`text-sm font-medium text-center ${
-                      theme === 'dark' ? 'text-slate-300' : 'text-slate-700'
+                      theme === 'dark' ? 'text-neutral-200' : 'text-slate-700'
                     }`}>
                       {tool.name}
                     </p>

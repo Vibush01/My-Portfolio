@@ -10,7 +10,7 @@ function ProjectsPage() {
   const projects = data?.projects || []
 
   return (
-    <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-slate-900' : 'bg-slate-50'}`}>
+    <div className={`min-h-screen pt-24 pb-16 ${theme === 'dark' ? 'bg-black' : 'bg-slate-50'}`}>
       <Helmet>
         <title>All Projects | Vivek Kumar</title>
         <meta name="description" content="A complete collection of my web development projects and work." />
@@ -20,7 +20,7 @@ function ProjectsPage() {
         <Link 
           to="/#projects" 
           className={`inline-flex items-center gap-2 mb-8 text-sm hover:gap-3 transition-all ${
-            theme === 'dark' ? 'text-slate-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
+            theme === 'dark' ? 'text-zinc-400 hover:text-white' : 'text-slate-500 hover:text-slate-900'
           }`}
         >
           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -36,7 +36,7 @@ function ProjectsPage() {
           }`}>
             All Projects
           </h1>
-          <p className={`text-lg ${theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}`}>
+          <p className={`text-lg ${theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}`}>
             A complete collection of my work
           </p>
         </div>

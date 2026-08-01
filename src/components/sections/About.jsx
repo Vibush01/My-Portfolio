@@ -18,7 +18,7 @@ function About() {
   return (
     <section 
       id="about" 
-      className={`py-20 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-50'}`}
+      className={`py-20 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
         {/* Section Title */}
@@ -29,7 +29,7 @@ function About() {
             About Me
           </h2>
           <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-slate-400' : 'text-slate-600'
+            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
           }`}>
             Get to know me better
           </p>
@@ -44,7 +44,7 @@ function About() {
               Who I Am
             </h3>
             <div className={`space-y-4 leading-relaxed ${
-              theme === 'dark' ? 'text-slate-300' : 'text-slate-600'
+              theme === 'dark' ? 'text-neutral-200' : 'text-slate-600'
             }`}>
               {data?.general?.bio ? (
                 data.general.bio.split('\n').map((paragraph, index) => (
@@ -80,7 +80,7 @@ function About() {
                 <div 
                   key={index} 
                   className={`p-4 rounded-lg ${
-                    theme === 'dark' ? 'bg-slate-900' : 'bg-white shadow-sm'
+                    theme === 'dark' ? 'bg-black' : 'bg-white shadow-sm'
                   }`}
                 >
                   <p className={`font-semibold ${
@@ -90,7 +90,7 @@ function About() {
                   </p>
                   <p className="text-indigo-500">{edu.school}</p>
                   <p className={`text-sm ${
-                    theme === 'dark' ? 'text-slate-400' : 'text-slate-500'
+                    theme === 'dark' ? 'text-zinc-400' : 'text-slate-500'
                   }`}>
                     {edu.year}
                   </p>
@@ -113,7 +113,7 @@ function About() {
                     disabled={certPage === 0}
                     className={`p-1.5 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
                       theme === 'dark' 
-                        ? 'hover:bg-slate-700 text-slate-400' 
+                        ? 'hover:bg-neutral-800 text-zinc-400' 
                         : 'hover:bg-slate-200 text-slate-500'
                     }`}
                     aria-label="Previous certifications"
@@ -131,7 +131,7 @@ function About() {
                         className={`w-2 h-2 rounded-full transition-all ${
                           i === certPage 
                             ? 'bg-indigo-500 w-4' 
-                            : theme === 'dark' ? 'bg-slate-600 hover:bg-slate-500' : 'bg-slate-300 hover:bg-slate-400'
+                            : theme === 'dark' ? 'bg-neutral-700 hover:bg-neutral-600' : 'bg-slate-300 hover:bg-slate-400'
                         }`}
                         aria-label={`Page ${i + 1}`}
                       />
@@ -142,7 +142,7 @@ function About() {
                     disabled={certPage === totalPages - 1}
                     className={`p-1.5 rounded-lg transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
                       theme === 'dark' 
-                        ? 'hover:bg-slate-700 text-slate-400' 
+                        ? 'hover:bg-neutral-800 text-zinc-400' 
                         : 'hover:bg-slate-200 text-slate-500'
                     }`}
                     aria-label="Next certifications"
@@ -161,7 +161,7 @@ function About() {
                     key={certPage * certsPerPage + index}
                     className={`p-4 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 h-[96px] flex items-center ${
                       theme === 'dark' 
-                        ? 'bg-slate-900 border-slate-700 hover:border-indigo-500/40' 
+                        ? 'bg-black border-neutral-800 hover:border-indigo-500/40' 
                         : 'bg-white border-slate-200 hover:border-indigo-400/40 shadow-sm'
                     }`}
                   >
@@ -176,7 +176,7 @@ function About() {
                           justifyContent: 'center', 
                           fontSize: '20px',
                           flexShrink: 0,
-                          backgroundColor: theme === 'dark' ? 'rgba(99, 102, 241, 0.2)' : 'rgba(224, 231, 255, 1)'
+                          backgroundColor: theme === 'dark' ? 'rgba(99, 102, 241, 0.15)' : 'rgba(224, 231, 255, 1)'
                         }}
                       >
                         {cert.icon}
@@ -226,7 +226,7 @@ function About() {
                         key={index}
                         className={`px-3 py-1.5 text-sm font-medium rounded-lg border transition-colors ${
                           theme === 'dark' 
-                            ? 'bg-slate-800/50 border-slate-700 text-slate-300 hover:bg-slate-700' 
+                            ? 'bg-neutral-900/50 border-neutral-800 text-neutral-200 hover:bg-neutral-800' 
                             : 'bg-white border-slate-200 text-slate-700 hover:bg-slate-50'
                         }`}
                       >

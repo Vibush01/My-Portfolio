@@ -17,7 +17,7 @@ function EndBanner() {
         <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight drop-shadow-2xl">
           You've hit the bottom!
           <br className="hidden md:block" /> 
-          <span className="text-slate-300"> Time to build something amazing.</span>
+          <span className="text-neutral-300"> Time to build something amazing.</span>
         </h2>
       </div>
     </section>

@@ -84,7 +84,7 @@ function ManageGeneral() {
       <div className="mb-8 flex justify-between items-center">
         <div>
           <h1 className="text-3xl font-bold mb-2">General Settings</h1>
-          <p className={theme === 'dark' ? 'text-slate-400' : 'text-slate-600'}>
+          <p className={theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'}>
             Manage your about bio, contact info, and social links.
           </p>
         </div>
@@ -114,7 +114,7 @@ function ManageGeneral() {
       <form onSubmit={handleSubmit} className="space-y-8">
         
         {/* About Section */}
-        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-4">About Me (Bio)</h2>
           <div>
             <label className="block text-sm font-medium mb-2 opacity-70">
@@ -126,7 +126,7 @@ function ManageGeneral() {
               onChange={handleChange}
               rows="6"
               className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
               }`}
               placeholder="I am a passionate Full Stack Developer..."
             />
@@ -134,7 +134,7 @@ function ManageGeneral() {
         </div>
 
         {/* Contact Section */}
-        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-4">Contact Information</h2>
           <div className="grid md:grid-cols-2 gap-6">
             <div>
@@ -145,7 +145,7 @@ function ManageGeneral() {
                 value={formData.contactEmail}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
               />
             </div>
@@ -157,7 +157,7 @@ function ManageGeneral() {
                 value={formData.contactPhone}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
               />
             </div>
@@ -165,7 +165,7 @@ function ManageGeneral() {
         </div>
 
         {/* Footer & Socials Section */}
-        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-slate-800 border-slate-700' : 'bg-white border-slate-200'}`}>
+        <div className={`p-6 rounded-2xl border ${theme === 'dark' ? 'bg-neutral-950 border-neutral-800' : 'bg-white border-slate-200'}`}>
           <h2 className="text-xl font-bold mb-4">Footer & Social Links</h2>
           <div className="space-y-6">
             <div>
@@ -176,7 +176,7 @@ function ManageGeneral() {
                 value={formData.footerText}
                 onChange={handleChange}
                 className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                  theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                  theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                 }`}
               />
             </div>
@@ -189,7 +189,7 @@ function ManageGeneral() {
                   value={formData.linkedinUrl}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                    theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                    theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                   }`}
                 />
               </div>
@@ -201,7 +201,7 @@ function ManageGeneral() {
                   value={formData.githubUrl}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                    theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                    theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                   }`}
                 />
               </div>
@@ -213,7 +213,7 @@ function ManageGeneral() {
                   value={formData.twitterUrl}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                    theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                    theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                   }`}
                 />
               </div>
@@ -225,7 +225,7 @@ function ManageGeneral() {
                   value={formData.whatsappUrl}
                   onChange={handleChange}
                   className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${
-                    theme === 'dark' ? 'bg-slate-900 border-slate-600 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
+                    theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'
                   }`}
                 />
               </div>
