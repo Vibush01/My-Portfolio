@@ -1,5 +1,6 @@
 import useTheme from '../../hooks/useTheme'
 import { useData } from '../../context/DataContext'
+import SectionTitle from '../SectionTitle'
 
 function Experience() {
   const { theme } = useTheme()
@@ -13,26 +14,15 @@ function Experience() {
       className={`py-20 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            theme === 'dark' ? 'text-white' : 'text-slate-900'
-          }`}>
-            Experience
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
-          }`}>
-            My professional journey
-          </p>
-        </div>
+        <SectionTitle title="Experience" subtitle="My professional journey" />
 
         {/* Timeline */}
         <div className="relative max-w-3xl mx-auto">
-          {/* Timeline line */}
-          <div className={`absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2 ${
-            theme === 'dark' ? 'bg-neutral-800' : 'bg-slate-300'
-          }`} />
+          {/* Timeline line — gradient */}
+          <div 
+            className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 md:-translate-x-1/2" 
+            style={{ background: 'linear-gradient(180deg, #6366f1, #22d3ee, #6366f1)' }}
+          />
 
           {experience.map((exp, index) => (
             <div 

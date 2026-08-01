@@ -10,11 +10,17 @@ function Home() {
   return (
     <div className="pt-16">
       <Hero />
+      <div className="section-divider" />
       <About />
+      <div className="section-divider" />
       <Experience />
+      <div className="section-divider" />
       <Tools />
+      <div className="section-divider" />
       <Projects />
+      <div className="section-divider" />
       <Blog />
+      <div className="section-divider" />
       <Contact />
     </div>
   )

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import useTheme from '../../hooks/useTheme'
+import SectionTitle from '../SectionTitle'
 import ProjectCard from '../ProjectCard'
 import { useData } from '../../context/DataContext'
 
@@ -17,19 +18,7 @@ function Projects() {
       className={`py-20 ${theme === 'dark' ? 'bg-black' : 'bg-white'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            theme === 'dark' ? 'text-white' : 'text-slate-900'
-          }`}>
-            Projects
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
-          }`}>
-            A selection of my recent work
-          </p>
-        </div>
+        <SectionTitle title="Projects" subtitle="A selection of my recent work" />
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">

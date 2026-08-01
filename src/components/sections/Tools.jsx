@@ -1,5 +1,6 @@
 import useTheme from '../../hooks/useTheme'
 import { useData } from '../../context/DataContext'
+import SectionTitle from '../SectionTitle'
 import { 
   SiFigma, 
   SiFramer, 
@@ -99,19 +100,7 @@ function Tools() {
       className={`py-20 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Title */}
-        <div className="text-center mb-16">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            theme === 'dark' ? 'text-white' : 'text-slate-900'
-          }`}>
-            Tools & Tech Stack
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
-          }`}>
-            Software and technologies I use on a daily basis
-          </p>
-        </div>
+        <SectionTitle title="Tools & Tech Stack" subtitle="Software and technologies I use on a daily basis" />
 
         <div className="space-y-16">
           {toolsWithIcons.map((toolCategory) => (

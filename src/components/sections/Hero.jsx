@@ -41,13 +41,19 @@ function Hero() {
           }`}
           style={{ animationDuration: '6s', animationDelay: '2s' }}
         />
+        <div
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full blur-3xl animate-float ${
+            theme === "dark" ? "bg-purple-500/10" : "bg-purple-500/5"
+          }`}
+          style={{ animationDuration: '10s', animationDelay: '4s' }}
+        />
       </div>
 
       <div className="max-w-6xl mx-auto px-6 py-20 relative z-10">
         <div className="text-center max-w-3xl mx-auto">
           {/* Greeting */}
           <p
-            className={`text-sm font-medium tracking-widest uppercase mb-4 ${
+            className={`hero-enter hero-enter-delay-1 text-sm font-medium tracking-widest uppercase mb-4 ${
               theme === "dark" ? "text-cyan-400" : "text-cyan-600"
             }`}
           >
@@ -56,7 +62,7 @@ function Hero() {
 
           {/* Name */}
           <h1
-            className={`text-5xl md:text-7xl font-bold mb-4 ${
+            className={`hero-enter hero-enter-delay-2 text-5xl md:text-7xl font-bold mb-4 ${
               theme === "dark" ? "text-white" : "text-slate-900"
             }`}
           >
@@ -67,7 +73,7 @@ function Hero() {
 
           {/* Role */}
           <h2
-            className={`text-2xl md:text-3xl font-semibold mb-6 h-10 ${
+            className={`hero-enter hero-enter-delay-3 text-2xl md:text-3xl font-semibold mb-6 h-10 ${
               theme === "dark" ? "text-neutral-200" : "text-slate-700"
             }`}
           >
@@ -77,7 +83,7 @@ function Hero() {
 
           {/* Description */}
           <p
-            className={`text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed ${
+            className={`hero-enter hero-enter-delay-4 text-lg md:text-xl max-w-2xl mx-auto mb-8 leading-relaxed ${
               theme === "dark" ? "text-zinc-400" : "text-slate-600"
             }`}
           >
@@ -85,7 +91,7 @@ function Hero() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="hero-enter hero-enter-delay-4 flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
             <a
               href="#contact"
               className="px-8 py-3 rounded-lg font-medium text-white bg-gradient-to-r from-indigo-500 to-cyan-500 hover:opacity-90 hover:-translate-y-0.5 transition-all shadow-lg shadow-indigo-500/25"
@@ -106,7 +112,7 @@ function Hero() {
           </div>
 
           {/* Social Links */}
-          <div className="flex items-center justify-center gap-6">
+          <div className="hero-enter hero-enter-delay-5 flex items-center justify-center gap-6">
             <a
               href={heroData.github || "https://github.com/Vibush01"}
               target="_blank"
@@ -146,6 +152,15 @@ function Hero() {
             </a>
           </div>
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div className="hero-enter hero-enter-delay-5 absolute bottom-8 left-1/2 -translate-x-1/2">
+        <a href="#about" className={`animate-bounce-subtle block ${theme === 'dark' ? 'text-zinc-500' : 'text-slate-400'}`}>
+          <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </a>
       </div>
     </section>
   );

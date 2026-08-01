@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import useTheme from '../../hooks/useTheme'
+import SectionTitle from '../SectionTitle'
 import BlogCard from '../BlogCard'
 import { blogPosts } from '../../data/blog'
 
@@ -13,19 +14,7 @@ function Blog() {
       className={`py-20 ${theme === 'dark' ? 'bg-neutral-950' : 'bg-slate-50'}`}
     >
       <div className="max-w-6xl mx-auto px-6">
-        {/* Section Title */}
-        <div className="text-center mb-12">
-          <h2 className={`text-3xl md:text-4xl font-bold mb-4 ${
-            theme === 'dark' ? 'text-white' : 'text-slate-900'
-          }`}>
-            Blog
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            theme === 'dark' ? 'text-zinc-400' : 'text-slate-600'
-          }`}>
-            Thoughts, tutorials, and insights
-          </p>
-        </div>
+        <SectionTitle title="Blog" subtitle="Thoughts, tutorials, and insights" />
 
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
