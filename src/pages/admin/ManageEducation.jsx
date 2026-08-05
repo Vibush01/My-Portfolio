@@ -131,9 +131,9 @@ function ManageEducation() {
           <h2 className="text-xl font-bold mb-6">Education</h2>
           
           <form onSubmit={handleAddEdu} className="flex flex-col gap-3 mb-6 p-4 rounded-xl border border-dashed border-indigo-500/30 bg-indigo-500/5">
-            <input type="text" name="degree" placeholder="Degree / Course" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
-            <input type="text" name="school" placeholder="School / University" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
-            <input type="text" name="year" placeholder="Year (e.g. 2022 - 2026)" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="degree" placeholder="Degree / Course" required className={`px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
+            <input type="text" name="school" placeholder="School / University" required className={`px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
+            <input type="text" name="year" placeholder="Year (e.g. 2022 - 2026)" required className={`px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             <button type="submit" disabled={isGuest} className="mt-1 px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50">+ Add Education</button>
           </form>
 
@@ -159,9 +159,9 @@ function ManageEducation() {
           <h2 className="text-xl font-bold mb-6">Certifications</h2>
           
           <form onSubmit={handleAddCert} className="flex flex-col gap-3 mb-6 p-4 rounded-xl border border-dashed border-indigo-500/30 bg-indigo-500/5">
-            <input type="text" name="name" placeholder="Certificate Name" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
-            <input type="text" name="source" placeholder="Issuer (e.g. Meta)" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
-            <input type="text" name="icon" placeholder="Emoji Icon (e.g. ♾️)" required className={`px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="name" placeholder="Certificate Name" required className={`px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
+            <input type="text" name="source" placeholder="Issuer (e.g. Meta)" required className={`px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
+            <input type="text" name="icon" placeholder="Emoji Icon (e.g. ♾️)" required className={`px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             <button type="submit" disabled={isGuest} className="mt-1 px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50">+ Add Certification</button>
           </form>
 

@@ -150,7 +150,7 @@ function ManageProjects() {
       tags: tagsArray,
       features: featuresArray,
       github: formData.github || null,
-      live: formData.live,
+      live: formData.live || null,
       featured: formData.featured
     };
 
@@ -210,17 +210,17 @@ function ManageProjects() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Project Title</label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="title" value={formData.title} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Subtitle</label>
-                <input type="text" name="subtitle" value={formData.subtitle} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="subtitle" value={formData.subtitle} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Description</label>
-              <textarea name="description" value={formData.description} onChange={handleChange} rows="3" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+              <textarea name="description" value={formData.description} onChange={handleChange} rows="3" required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -234,7 +234,7 @@ function ManageProjects() {
                     type="file" 
                     accept="image/*"
                     onChange={handleFileChange}
-                    className={`w-full px-4 py-2 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
+                    className={`w-full px-4 py-2 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
                   />
                   <div className="flex items-center gap-2">
                     <span className="text-xs opacity-60">OR</span>
@@ -265,17 +265,17 @@ function ManageProjects() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">GitHub Link (optional)</label>
-                <input type="url" name="github" value={formData.github} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="url" name="github" value={formData.github} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} placeholder="https://github.com/..." />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 opacity-80">Live Link</label>
-                <input type="url" name="live" value={formData.live} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <label className="block text-sm font-medium mb-2 opacity-80">Live Link (optional)</label>
+                <input type="url" name="live" value={formData.live} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} placeholder="https://example.com" />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Tags (Comma separated)</label>
-              <input type="text" name="tags" value={formData.tags} onChange={handleChange} placeholder="React, Tailwind, Node.js..." required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+              <input type="text" name="tags" value={formData.tags} onChange={handleChange} placeholder="React, Tailwind, Node.js..." required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             </div>
 
             <div>

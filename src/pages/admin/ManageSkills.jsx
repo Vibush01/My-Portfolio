@@ -169,7 +169,7 @@ function ManageSkills() {
         <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center mb-6">
           <h2 className="text-xl font-bold">Technical Skills Categories</h2>
           <form onSubmit={handleAddSkillCategory} className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0">
-            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             <button type="submit" disabled={isGuest} className="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50 whitespace-nowrap">+ Add Category</button>
           </form>
         </div>
@@ -217,7 +217,7 @@ function ManageSkills() {
         <div className="flex flex-col sm:flex-row gap-4 justify-between sm:items-center mb-6">
           <h2 className="text-xl font-bold">Tools & Software Categories</h2>
           <form onSubmit={handleAddToolCategory} className="flex gap-2 w-full sm:w-auto mt-2 sm:mt-0">
-            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none text-sm ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-white border-slate-300'}`} />
+            <input type="text" name="catName" placeholder="New Category..." required className={`flex-1 min-w-0 px-3 py-2 rounded-lg border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 text-sm ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             <button type="submit" disabled={isGuest} className="px-4 py-2 bg-indigo-500 text-white rounded-lg text-sm font-bold disabled:opacity-50 whitespace-nowrap">+ Add Category</button>
           </form>
         </div>

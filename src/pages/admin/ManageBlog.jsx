@@ -183,18 +183,18 @@ function ManageBlog() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Title</label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="title" value={formData.title} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">URL Slug (e.g. my-first-post)</label>
-                <input type="text" name="slug" value={formData.slug} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="slug" value={formData.slug} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Category</label>
-                <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="e.g. React" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="category" value={formData.category} onChange={handleChange} placeholder="e.g. React" required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               
               <div>
@@ -207,7 +207,7 @@ function ManageBlog() {
                     type="file" 
                     accept="image/*"
                     onChange={handleFileChange}
-                    className={`w-full px-4 py-2 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
+                    className={`w-full px-4 py-2 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'} file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 text-sm`} 
                   />
                   <div className="flex items-center gap-2">
                     <span className="text-xs opacity-60">OR</span>
@@ -227,24 +227,24 @@ function ManageBlog() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Date</label>
-                <input type="text" name="date" value={formData.date} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="date" value={formData.date} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Read Time</label>
-                <input type="text" name="readTime" value={formData.readTime} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="readTime" value={formData.readTime} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Short Excerpt</label>
-              <textarea name="excerpt" value={formData.excerpt} onChange={handleChange} rows="2" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+              <textarea name="excerpt" value={formData.excerpt} onChange={handleChange} rows="2" required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="flex gap-4">
                 <div className="w-24">
                   <label className="block text-sm font-medium mb-2 opacity-80">Emoji</label>
-                  <input type="text" name="emoji" value={formData.emoji} onChange={handleChange} className={`w-full px-4 py-3 text-center rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="text" name="emoji" value={formData.emoji} onChange={handleChange} className={`w-full px-4 py-3 text-center rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
                 </div>
                 <div className="flex-1">
                   <label className="block text-sm font-medium mb-2 opacity-80">Gradient Start</label>

@@ -152,39 +152,39 @@ function ManageExperience() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Job Role / Title</label>
-                <input type="text" name="role" value={formData.role} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="role" value={formData.role} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Company Name</label>
-                <input type="text" name="company" value={formData.company} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="company" value={formData.company} onChange={handleChange} required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Company URL</label>
-                <input type="url" name="companyUrl" value={formData.companyUrl} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="url" name="companyUrl" value={formData.companyUrl} onChange={handleChange} className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-2 opacity-80">Location</label>
-                  <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="e.g. Remote" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="e.g. Remote" className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
                 </div>
                 <div>
                   <label className="block text-sm font-medium mb-2 opacity-80">Type</label>
-                  <input type="text" name="type" value={formData.type} onChange={handleChange} placeholder="e.g. Internship" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                  <input type="text" name="type" value={formData.type} onChange={handleChange} placeholder="e.g. Internship" className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">Start Date</label>
-                <input type="text" name="startDate" value={formData.startDate} onChange={handleChange} placeholder="e.g. Sep 2023" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="startDate" value={formData.startDate} onChange={handleChange} placeholder="e.g. Sep 2023" required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
               <div>
                 <label className="block text-sm font-medium mb-2 opacity-80">End Date</label>
-                <input type="text" name="endDate" value={formData.endDate} onChange={handleChange} placeholder="e.g. Present" required className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+                <input type="text" name="endDate" value={formData.endDate} onChange={handleChange} placeholder="e.g. Present" required className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
               </div>
             </div>
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Short Description</label>
-              <textarea name="description" value={formData.description} onChange={handleChange} rows="2" className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+              <textarea name="description" value={formData.description} onChange={handleChange} rows="2" className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             </div>
 
             <div>
@@ -210,7 +210,7 @@ function ManageExperience() {
 
             <div>
               <label className="block text-sm font-medium mb-2 opacity-80">Technologies (Comma separated)</label>
-              <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} placeholder="React, Node.js, MongoDB..." className={`w-full px-4 py-3 rounded-xl border outline-none ${theme === 'dark' ? 'bg-black border-neutral-700' : 'bg-slate-50 border-slate-200'}`} />
+              <input type="text" name="technologies" value={formData.technologies} onChange={handleChange} placeholder="React, Node.js, MongoDB..." className={`w-full px-4 py-3 rounded-xl border outline-none transition-all focus:ring-2 focus:ring-indigo-500/30 ${theme === 'dark' ? 'bg-black border-neutral-700 focus:border-indigo-500' : 'bg-slate-50 border-slate-200 focus:border-indigo-500'}`} />
             </div>
 
             <div className="flex justify-end gap-4 pt-4">
