@@ -347,7 +347,7 @@ function ManageProjects() {
                 </p>
               </div>
             </div>
-            <div className="flex gap-2 mt-auto pt-4 border-t border-slate-200 dark:border-neutral-800">
+            <div className={`flex gap-2 mt-auto pt-4 border-t ${theme === 'dark' ? 'border-neutral-800' : 'border-slate-200'}`}>
               <button 
                 onClick={() => handleEdit(project)}
                 className={`flex-1 px-4 py-2 rounded-lg font-medium border transition-colors ${theme === 'dark' ? 'border-neutral-700 hover:bg-neutral-800' : 'border-slate-300 hover:bg-slate-100'}`}
